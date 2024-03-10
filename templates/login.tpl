@@ -1,17 +1,21 @@
 {include file="head.tpl"}
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/login.css">
 </head>
 
-<h1>{$title}</h1>
+<div>
+    <h1>Welcome to Medipoint!</h1>
+    <p>Streamline your medical appointments with ease using our intuitive app designed to simplify your healthcare journey.</p>
+</div>
 
 <form action="authentication" method="post">
-    <label for="email">Email: </label>
-    <input type="email" name="email" id="email">
+    <input type="email" name="email" id="email" placeholder="Email">
 
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password">
+    <input type="password" name="password" id="password" placeholder="Password">
 
     <button type="submit">Log in</button>
-</form>
-<a href="{$baseUrl}/signUp">Sign up</a>
 
-<p>{$errorMsg}</p>
+    <p class="errorMsg">{$errorMsg}</p>
+
+    <a href="{$baseUrl}/signUp"><button type="button">Sign up</button></a>
+</form>

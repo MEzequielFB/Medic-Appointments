@@ -1,0 +1,25 @@
+body {
+    color: var(--white);
+}
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+    font: inherit;
+    font-family: 'Lato', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    /* Colors */
+    --primary-light: #6075ee;
+    --primary: #1c34b8;
+    --white: aliceblue;
+    --white-transparent: rgba(240, 248, 255, 0.432);
+    --striking: rgb(139, 14, 14);
+
+    /* Radius */
+    --soft-radius: 8px;
+
+}

@@ -1,17 +1,16 @@
 {include file="head.tpl"}
 </head>
 
-<h1>{$title}</h1>
+<h1>Get started!</h1>
 
 <form action="user" method="post">
-    <label for="email">Email: </label>
-    <input type="email" name="email" id="email">
+    <input type="text" name="username" id="username" placeholder="Username">
 
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password">
+    <input type="email" name="email" id="email" placeholder="Email">
 
-    <label for="passwordCheck">Enter the password again: </label>
-    <input type="password" name="passwordCheck" id="passwordCheck">
+    <input type="password" name="password" id="password" placeholder="Password">
+
+    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Repeat the password">
 
     <button type="submit">Sign up</button>
 </form>
