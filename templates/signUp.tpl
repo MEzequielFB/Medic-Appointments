@@ -1,4 +1,7 @@
 {include file="head.tpl"}
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/signUp.css">
 </head>
 
 <h1>Get started!</h1>
