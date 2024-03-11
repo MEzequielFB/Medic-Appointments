@@ -1,0 +1,15 @@
+header {
+    padding: 5% 10%;
+    background-color: var(--primary);
+}
+nav {
+    display: flex;
+    align-items: center;
+}
+nav button {
+    padding: 2%;
+    background-color: transparent;
+}
+nav button.selected {
+    background-color: var(--primary-light);
+}

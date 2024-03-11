@@ -1,5 +1,11 @@
 {include file="head.tpl"}
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/appointments.css">
 </head>
+
+{include file="header.tpl"}
+{include file="appointmentsList.tpl"}
 
 <a href="logout">Logout</a>
 <h1>Users:</h1>
