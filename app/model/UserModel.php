@@ -27,9 +27,9 @@ class UserModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function saveUser($email, $password, $role) {
-        $query = $this->db->prepare("INSERT INTO user(email, password, role_id) VALUES(?,?,?)");
-        $query->execute([$email, $password, $role]);
+    public function saveUser($username, $email, $password, $role) {
+        $query = $this->db->prepare("INSERT INTO user(username, email, password, role_id) VALUES(?,?,?,?)");
+        $query->execute([$username, $email, $password, $role]);
 
         return $this->db->lastInsertId();
     }

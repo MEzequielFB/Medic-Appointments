@@ -6,7 +6,7 @@ class UserView {
 
     function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign("homeUrl", HOME);
+        $this->smarty->assign("homeUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
         $this->smarty->assign("loginUrl", LOGIN);
     }
@@ -25,11 +25,11 @@ class UserView {
         $this->smarty->display("templates/signUp.tpl");
     }
 
-    public function showHome($users) {
+    public function showUpcomingAppointments($users) {
         $this->smarty->assign("title", "Users");
         $this->smarty->assign("users", $users);
 
-        $this->smarty->display("templates/home.tpl");
+        $this->smarty->display("templates/appointments.tpl");
     }
 }
 ?>

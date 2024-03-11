@@ -4,7 +4,7 @@ require_once "app/controller/UserController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']));
 define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . "/login");
-define('HOME', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . "/home");
+define('APPOINTMENTS', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . "/appointments");
 
 $router = new Router();
 
@@ -15,7 +15,7 @@ $router->addRoute("authentication", "POST", "UserController", "authenticateUser"
 $router->addRoute("signUp", "GET", "UserController", "showSignUp");
 
 // User
-$router->addRoute("home", "GET", "UserController", "showHome");
+$router->addRoute("appointments", "GET", "UserController", "showUpcomingAppointments");
 $router->addRoute("user", "POST", "UserController", "saveUser");
 
 $router->route($_GET["action"], $_SERVER["REQUEST_METHOD"]);

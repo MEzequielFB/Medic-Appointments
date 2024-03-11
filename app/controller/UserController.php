@@ -21,7 +21,7 @@ class UserController {
 
     public function showLogin() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . HOME);
+            header("Location: " . APPOINTMENTS);
         } else {
             $this->view->showLogin();
         }
@@ -29,17 +29,17 @@ class UserController {
 
     public function showSignUp() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . HOME);
+            header("Location: " . APPOINTMENTS);
         } else {
             $this->view->showSignUp();
         }
     }
 
-    public function showHome() {
+    public function showUpcomingAppointments() {
         $this->authHelper->checkLoggedUser();
 
         $users = $this->model->findAllUsers();
-        $this->view->showHome($users);
+        $this->view->showUpcomingAppointments($users);
     }
 
     public function logoutUser() {
@@ -65,16 +65,17 @@ class UserController {
         }
 
         $this->authHelper->login($user);
-        header("Location: " . HOME);
+        header("Location: " . APPOINTMENTS);
     }
 
     public function saveUser() {
-        $emptyFields = $this->checkRequiredFields(["email", "password", "passwordCheck"]);
+        $emptyFields = $this->checkRequiredFields(["username", "email", "password", "passwordCheck"]);
         if (!empty($emptyFields)) {
             $this->view->showLogin("The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
+        $username = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         $passwordCheck = $_POST["passwordCheck"];
@@ -98,12 +99,12 @@ class UserController {
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $insertedId = $this->model->saveUser($email, $hashedPassword, $role->id);
+        $insertedId = $this->model->saveUser($username, $email, $hashedPassword, $role->id);
         $user = $this->model->findUserById($insertedId);
 
         $this->authHelper->login($user);
 
-        header("Location: " . HOME);
+        header("Location: " . APPOINTMENTS);
     }
 
     private function checkRequiredFields($requiredFields) {
