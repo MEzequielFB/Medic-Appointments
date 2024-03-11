@@ -3,12 +3,10 @@ require_once "app/model/UserModel.php";
 require_once "app/model/RoleModel.php";
 require_once "app/view/UserView.php";
 require_once "app/controller/AuthHelper.php";
+require_once "app/controller/Controller.php";
 
-class UserController {
-    private $model;
-    private $view;
+class UserController extends Controller {
     private $authHelper;
-
     private $roleModel;
 
     function __construct() {
@@ -105,18 +103,6 @@ class UserController {
         $this->authHelper->login($user);
 
         header("Location: " . APPOINTMENTS);
-    }
-
-    private function checkRequiredFields($requiredFields) {
-        $emptyFields = [];
-
-        foreach ($requiredFields as $field) {
-            if (!isset($_POST[$field]) || empty($_POST[$field])) {
-                array_push($emptyFields, $field);
-            }
-        }
-
-        return $emptyFields;
     }
 }
 ?>

@@ -6,7 +6,7 @@ class UserView {
 
     function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign("homeUrl", APPOINTMENTS);
+        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
         $this->smarty->assign("loginUrl", LOGIN);
     }
