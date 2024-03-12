@@ -12,10 +12,11 @@ class DoctorView {
     }
 
     // ADMIN - SUPERADMIN
-    public function showDoctorCreation($specializations, $hospitals) {
+    public function showDoctorCreation($specializations, $hospitals, $errorMsg = "") {
         $this->smarty->assign("title", "Save doctor");
         $this->smarty->assign("specializations", $specializations);
         $this->smarty->assign("hospitals", $hospitals);
+        $this->smarty->assign("errorMsg", $errorMsg);
 
         $this->smarty->display("templates/saveDoctor.tpl");
     }

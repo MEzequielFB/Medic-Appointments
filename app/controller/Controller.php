@@ -14,5 +14,10 @@ class Controller {
 
         return $emptyFields;
     }
+
+    protected function checkFileExtension($filename, $validExtensions) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        return in_array($ext, $validExtensions);
+    }
 }
 ?>

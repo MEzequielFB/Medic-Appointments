@@ -28,7 +28,7 @@ class DoctorController extends Controller {
             array_push($emptyFields, "image");
         }
         if (!empty($emptyFields)) {
-            $this->view->showLogin("The following fields are empty: " . implode(", ", $emptyFields));
+            $this->view->showDoctorCreation("The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
@@ -39,11 +39,18 @@ class DoctorController extends Controller {
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
         $folder = "image/profile/" . $filename;
+        $validExtensions = ["png", "jpg", "jpeg"];
 
-        $insertedId = $this->model->saveDoctor($fullname, $filename, $specialization, $hospital);
+        $isValidFile = $this->checkFileExtension($filename, $validExtensions);
+        if (!$isValidFile) {
+            $this->view->showDoctorCreation("Invalid extension file! Allowed extensions: " . implode(", ", $validExtensions));
+            die();
+        }
+
+        $this->model->saveDoctor($fullname, $filename, $specialization, $hospital);
 
         if (!move_uploaded_file($tempname, $folder)) {
-            $this->view->showLogin("Error while uploading image");
+            $this->view->showDoctorCreation("Error while uploading image");
             die();
         }
 

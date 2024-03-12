@@ -8,7 +8,7 @@
 
 <h1>Save doctor</h1>
 
-<form action="doctor" method="post" enctype="multipart/form-data">
+<form action="{$baseUrl}doctor" method="post" enctype="multipart/form-data">
     <input type="text" name="fullname" id="fullname" placeholder="Fullname">
 
     <label for="specialization">Specialization:</label>
@@ -29,3 +29,4 @@
 
     <button type="submit">Save</button>
 </form>
+<p>{$errorMsg}</p>
