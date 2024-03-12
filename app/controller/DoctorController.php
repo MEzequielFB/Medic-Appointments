@@ -6,27 +6,22 @@ require_once "app/view/DoctorView.php";
 require_once "app/controller/Controller.php";
 
 class DoctorController extends Controller {
-    private $specializationModel;
-    private $hospitalModel;
-
     function __construct() {
         $this->model = new DoctorModel();
         $this->view = new DoctorView();
-        $this->specializationModel = new SpecializationModel();
-        $this->hospitalModel = new HospitalModel();
     }
 
     public function showDoctorCreation() {
-        $specializations = $this->specializationModel->findAllSpecializations();
-        $hospitals = $this->hospitalModel->findAllHospitals();
-        $this->view->showDoctorCreation($specializations, $hospitals);
+        $this->view->showDoctorCreation();
     }
 
     public function saveDoctor() {
-        $emptyFields = $this->checkRequiredFields(["fullname", "image", "specialization", "hospital"]);
-        if (!isset($_FILES["image"])) {
+        $emptyFields = $this->checkRequiredFields(["fullname", "specialization", "hospital"]);
+
+        if (!isset($_FILES["image"]["name"]) || empty($_FILES["image"]["name"])) {
             array_push($emptyFields, "image");
         }
+
         if (!empty($emptyFields)) {
             $this->view->showDoctorCreation("The following fields are empty: " . implode(", ", $emptyFields));
             die();

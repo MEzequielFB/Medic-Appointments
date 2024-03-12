@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>${doctor.specialization}</p>
                     <p>${doctor.hospital}</p>
                 </div>
-                <img src="${doctor.image}" alt="doctor's image">
+                <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
             </article>`;
         });
     }
