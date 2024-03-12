@@ -13,7 +13,7 @@ class DoctorView {
 
     // ADMIN - SUPERADMIN
     public function showDoctorCreation($specializations, $hospitals) {
-        $this->smarty->assign("title", "Doctors");
+        $this->smarty->assign("title", "Save doctor");
         $this->smarty->assign("specializations", $specializations);
         $this->smarty->assign("hospitals", $hospitals);
 

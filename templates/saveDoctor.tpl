@@ -1,7 +1,7 @@
 {include file="head.tpl"}
 <link rel="stylesheet" href="{$baseUrl}css/global.css">
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
-<link rel="stylesheet" href="{$baseUrl}css/doctor.css">
+<link rel="stylesheet" href="{$baseUrl}css/save.css">
 </head>
 
 {include file="header.tpl"}

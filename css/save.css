@@ -26,8 +26,11 @@ form select {
     padding: 2%;
 }
 form button {
-    width: 60%;
+    width: 35%;
     margin: 5% auto 0 auto;
-    padding: 5%;
+    padding: 3%;
     background-color: var(--secundary);
+}
+p.errorMsg{
+    color: var(--striking);
 }

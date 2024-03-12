@@ -12,5 +12,17 @@ class SpecializationModel {
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function findSpecializationByName($name) {
+        $query = $this->db->prepare("SELECT * FROM specialization WHERE name = ?");
+        $query->execute([$name]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function saveSpecialization($name) {
+        $query = $this->db->prepare("INSERT INTO specialization(name) VALUES(?)");
+        $query->execute([$name]);
+    }
 }
 ?>
