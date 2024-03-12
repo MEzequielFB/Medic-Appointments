@@ -15,5 +15,18 @@ class ApiController {
     protected function getRequestData() {
         return json_decode($this->requestData);
     }
+
+    protected function checkRequiredFields($requiredFields) {
+        $emptyFields = [];
+        $requestData = $this->getRequestData();
+
+        foreach ($requiredFields as $field) {
+            if (!isset($requestData->$field) || empty($requestData->$field)) {
+                array_push($emptyFields, $field);
+            }
+        }
+
+        return $emptyFields;
+    }
 }
 ?>

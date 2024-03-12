@@ -1,13 +1,25 @@
 <?php
 require_once "app/model/DoctorModel.php";
+require_once "app/model/SpecializationModel.php";
+require_once "app/model/HospitalModel.php";
 require_once "app/view/DoctorView.php";
 require_once "app/controller/Controller.php";
 
 class DoctorController extends Controller {
+    private $specializationModel;
+    private $hospitalModel;
 
     function __construct() {
         $this->model = new DoctorModel();
         $this->view = new DoctorView();
+        $this->specializationModel = new SpecializationModel();
+        $this->hospitalModel = new HospitalModel();
+    }
+
+    public function showDoctorCreation() {
+        $specializations = $this->specializationModel->findAllSpecializations();
+        $hospitals = $this->hospitalModel->findAllHospitals();
+        $this->view->showDoctorCreation($specializations, $hospitals);
     }
 
     public function saveDoctor() {
@@ -34,6 +46,8 @@ class DoctorController extends Controller {
             $this->view->showLogin("Error while uploading image");
             die();
         }
+
+        header("Location: " . BASE_URL . "doctor/save");
     }
 }
 ?>

@@ -19,10 +19,10 @@ class AppointmentView {
     }
 
     public function showAppointmentCreation(/* $times */) {
-        $this->smarty->assign("title", "Make appointment");
+        $this->smarty->assign("title", "Add appointment");
         /* $this->smarty->assign("times", $times); */
 
-        $this->smarty->display("templates/makeAppointment.tpl");
+        $this->smarty->display("templates/saveAppointment.tpl");
     }
 }
 ?>

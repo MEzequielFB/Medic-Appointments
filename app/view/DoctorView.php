@@ -10,5 +10,14 @@ class DoctorView {
         $this->smarty->assign("baseUrl", BASE_URL);
         $this->smarty->assign("loginUrl", LOGIN);
     }
+
+    // ADMIN - SUPERADMIN
+    public function showDoctorCreation($specializations, $hospitals) {
+        $this->smarty->assign("title", "Doctors");
+        $this->smarty->assign("specializations", $specializations);
+        $this->smarty->assign("hospitals", $hospitals);
+
+        $this->smarty->display("templates/saveDoctor.tpl");
+    }
 }
 ?>
