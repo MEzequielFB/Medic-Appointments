@@ -4,6 +4,7 @@ require_once "app/controller/UserController.php";
 require_once "app/controller/AppointmentController.php";
 require_once "app/controller/DoctorController.php";
 require_once "app/controller/SpecializationController.php";
+require_once "app/controller/HospitalController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . "/");
 define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . "/login");
@@ -31,6 +32,10 @@ $router->addRoute("doctor", "POST", "DoctorController", "saveDoctor");
 // Specialization
 $router->addRoute("specialization/save", "GET", "SpecializationController", "showSpecializationCreation");
 $router->addRoute("specialization", "POST", "SpecializationController", "saveSpecialization");
+
+// Hospital
+$router->addRoute("hospital/save", "GET", "HospitalController", "showHospitalCreation");
+$router->addRoute("hospital", "POST", "HospitalController", "saveHospital");
 
 $router->route($_GET["action"], $_SERVER["REQUEST_METHOD"]);
 ?>

@@ -17,7 +17,7 @@ class SpecializationController extends Controller {
     public function saveSpecialization() {
         $emptyFields = $this->checkRequiredFields(["name"]);
         if (!empty($emptyFields)) {
-            $this->view->showSpecializationCreation("The following fields are empty: " . implode($emptyFields));
+            $this->view->showSpecializationCreation("The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 

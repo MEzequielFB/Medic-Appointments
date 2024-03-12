@@ -32,5 +32,7 @@ form button {
     background-color: var(--secundary);
 }
 p.errorMsg{
+    margin: 5% 0 0 0;
+    text-align: center;
     color: var(--striking);
 }
