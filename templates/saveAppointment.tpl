@@ -40,14 +40,7 @@
         <input type="search" placeholder="name, specialization, hospital...">
 
         <section class="doctorsSection">
-            {* <article>
-                <div>
-                    <h1>Dr. Here the Name</h1>
-                    <p>Specialist in this</p>
-                    <p>The hospital</p>
-                </div>
-                <div style="width:50%;height:100%;background-color:blue"></div>
-            </article> *}
+            
         </section>
     </div>
 </div>

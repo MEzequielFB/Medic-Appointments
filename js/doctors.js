@@ -40,9 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
             doctorsSection.innerHTML += `
             <article>
                 <div>
-                    <h1>Dr. ${doctor.fullname}</h1>
-                    <p>${doctor.specialization}</p>
-                    <p>${doctor.hospital}</p>
+                    <div>
+                        <h1>Dr. ${doctor.fullname}</h1>
+                        <p>${doctor.specialization}</p>
+                    </div>
+                    <p class="hospitalP">${doctor.hospital}</p>
                 </div>
                 <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
             </article>`;
