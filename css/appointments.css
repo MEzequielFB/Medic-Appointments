@@ -1,0 +1,47 @@
+.doctorBtn, .scheduleBtn {
+    display: block;
+    width: 60%;
+    margin: 5% auto;
+    padding: 5%;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
+.scheduleBtn {
+    width: 35%;
+    padding: 3%;
+    background-color: var(--secundary);
+}
+h1 {
+    text-align: center;
+    font-size: xx-large;
+}
+.date {
+    width: 60%;
+    color: var(--white);
+    background-color: var(--primary);
+}
+.date, .timeDiv ul {
+    margin: 2% 0 0 0;
+}
+.dateDiv, .timeDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dateDiv {
+    margin: 5% 0;
+}
+.timeDiv ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.timeDiv ul li {
+    margin: 0 0 5% 0;
+    padding: 5%;
+    background-color: var(--primary);
+    border: 1px solid var(--white);
+    border-radius: var(--soft-radius);
+}
