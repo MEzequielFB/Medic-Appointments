@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         doctorsSection.innerHTML = "";
         doctors.forEach(doctor => {
             doctorsSection.innerHTML += `
-            <article>
+            <article class="eligibleDoctor doctor${doctor.id}">
                 <div>
                     <div>
                         <h1>Dr. ${doctor.fullname}</h1>
@@ -48,6 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
             </article>`;
+        });
+
+        addDoctorsBehavior();
+    }
+
+    function addDoctorsBehavior() {
+        const doctors = document.querySelectorAll(".eligibleDoctor");
+        doctors.forEach(doctor => {
+            doctor.addEventListener("click", () => { // Choose doctor
+                const chosenDoctor = document.querySelector(".chosenDoctor");
+                chosenDoctor.innerHTML = doctor.innerHTML;
+                chosenDoctor.classList.remove("hidden");
+            });
         });
     }
 });

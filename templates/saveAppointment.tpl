@@ -10,6 +10,9 @@
     {include file="header.tpl"}
 
     <button class="doctorBtn" type="button">Choose a doctor</button>
+    <article class="chosenDoctor hidden">
+        
+    </article>
 
     <div class="dateDiv">
         <h1>Date</h1>
