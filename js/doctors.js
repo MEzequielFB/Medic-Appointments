@@ -59,6 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
             doctor.addEventListener("click", () => { // Choose doctor
                 const chosenDoctor = document.querySelector(".chosenDoctor");
                 chosenDoctor.innerHTML = doctor.innerHTML;
+
+                const doctorId = doctor.className.charAt(doctor.className.length-1);
+                chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
+
                 chosenDoctor.classList.remove("hidden");
             });
         });
