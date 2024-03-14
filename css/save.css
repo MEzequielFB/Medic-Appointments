@@ -16,6 +16,9 @@ form input, form select, form button {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
+input#endTime, input#startTime {
+    margin: 0;
+}
 form input {
     padding: 3%;
 }

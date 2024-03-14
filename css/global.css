@@ -19,6 +19,7 @@ body {
     --white: aliceblue;
     --white-transparent: rgba(240, 248, 255, 0.432);
     --striking: rgb(139, 14, 14);
+    --success: #258625;
 
     /* Radius */
     --soft-radius: 8px;

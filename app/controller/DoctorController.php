@@ -16,7 +16,7 @@ class DoctorController extends Controller {
     }
 
     public function saveDoctor() {
-        $emptyFields = $this->checkRequiredFields(["fullname", "specialization", "hospital"]);
+        $emptyFields = $this->checkRequiredFields(["fullname", "specialization", "hospital", "startTime", "endTime"]);
 
         if (!isset($_FILES["image"]["name"]) || empty($_FILES["image"]["name"])) {
             array_push($emptyFields, "image");
@@ -30,6 +30,8 @@ class DoctorController extends Controller {
         $fullname = $_POST["fullname"];
         $specialization = $_POST["specialization"];
         $hospital = $_POST["hospital"];
+        $startTime = $_POST["startTime"];
+        $endTime = $_POST["endTime"];
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
@@ -42,7 +44,7 @@ class DoctorController extends Controller {
             die();
         }
 
-        $this->model->saveDoctor($fullname, $filename, $specialization, $hospital);
+        $this->model->saveDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital);
 
         if (!move_uploaded_file($tempname, $folder)) {
             $this->view->showDoctorCreation("Error while uploading image");

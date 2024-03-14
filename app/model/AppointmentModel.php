@@ -17,5 +17,14 @@ class AppointmentModel {
         
         $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    /* public function findAllAppointmentsByTime($start_time, $endTime) {
+        $query = $this->db->prepare("SELECT * FROM appointment WHERE TIME(date) <= ");
+    } */
+
+    public function saveAppointment($date, $doctorId, $statusId, $userId) {
+        $query = $this->db->prepare("INSERT INTO appointment(date, doctor_id, status_id, user_id) VALUES(?,?,?,?)");
+        $query->execute([$date, $doctorId, $statusId, $userId]);
+    }
 }
 ?>

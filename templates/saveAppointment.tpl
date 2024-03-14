@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{$baseUrl}/css/global.css">
 <link rel="stylesheet" href="{$baseUrl}/css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}/css/appointments.css">
-<script src="{$baseUrl}/js/doctors.js"></script>
+<script src="{$baseUrl}/js/saveAppointment.js"></script>
 </head>
 
 <div class="container">
@@ -16,25 +16,11 @@
 
     <div class="dateDiv">
         <h1>Date</h1>
-        <input type="date" name="date" id="date" class="date">
-    </div>
-
-    <div class="timeDiv">
-        <h1>Time</h1>
-        <ul>
-            <li>12:00</li>
-            <li>16:30</li>
-            <li>11:00</li>
-            <li>11:00</li>
-            <li>11:00</li>
-            <li>11:00</li>
-            {* {foreach from=$times item=time}
-                <li>{$time}</li>
-            {/foreach} *}
-        </ul>
+        <input type="datetime-local" name="date" id="date" class="date">
     </div>
 
     <button class="scheduleBtn" type="button">Schedule</button>
+    <p class="message"></p>
 
     <div class="doctorsDiv">
         <img src="image/left-arrow.png" alt="left arrow" class="leftArrow">

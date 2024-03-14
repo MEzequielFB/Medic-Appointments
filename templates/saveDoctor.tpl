@@ -21,6 +21,12 @@
     <select name="hospital" id="hospital">
 
     </select>
+
+    <label for="startTime">Start time:</label>
+    <input type="time" name="startTime" id="startTime">
+
+    <label for="endTime">End time:</label>
+    <input type="time" name="endTime" id="endTime">
     
     <input type="file" name="image" id="image">
 

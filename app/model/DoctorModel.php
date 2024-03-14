@@ -16,6 +16,13 @@ class DoctorModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findDoctorById($id) {
+        $query = $this->db->prepare("SELECT * FROM doctor WHERE id = ?");
+        $query->execute([$id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function findDoctorByFullname($fullname) {
         $query = $this->db->prepare("SELECT * FROM doctor WHERE fullname = ?");
         $query->execute([$fullname]);
@@ -23,9 +30,9 @@ class DoctorModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function saveDoctor($fullname, $image, $specialization, $hospital) {
-        $query = $this->db->prepare("INSERT INTO doctor(fullname, image, specialization_id, hospital_id) VALUES(?,?,?,?)");
-        $query->execute([$fullname, $image, $specialization, $hospital]);
+    public function saveDoctor($fullname, $image, $startTime, $endTime, $specialization, $hospital) {
+        $query = $this->db->prepare("INSERT INTO doctor(fullname, image, start_time, end_time, specialization_id, hospital_id) VALUES(?,?,?,?,?,?)");
+        $query->execute([$fullname, $image, $startTime, $endTime, $specialization, $hospital]);
 
         return $this->db->lastInsertId();
     }

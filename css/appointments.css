@@ -21,9 +21,11 @@ h1 {
     font-size: xx-large;
 }
 .date {
+    padding: 2%;
     width: 60%;
     color: var(--white);
     background-color: var(--primary);
+    border-radius: var(--soft-radius);
 }
 .date, .timeDiv ul {
     margin: 2% 0 0 0;
@@ -36,18 +38,13 @@ h1 {
 .dateDiv {
     margin: 5% 0;
 }
-.timeDiv ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+p.message {
+    margin: 5% 0 0 0;
+    text-align: center;
+    color: var(--striking);
 }
-.timeDiv ul li {
-    margin: 0 0 5% 0;
-    padding: 5%;
-    background-color: var(--primary);
-    border: 1px solid var(--white);
-    border-radius: var(--soft-radius);
+p.success {
+    color: var(--striking);
 }
 .leftArrow {
     position: absolute;
