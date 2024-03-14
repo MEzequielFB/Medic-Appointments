@@ -1,17 +1,27 @@
 <?php
 require_once "api/controller/ApiController.php";
 require_once "app/model/DoctorModel.php";
+require_once "app/model/AppointmentModel.php";
 
 class DoctorApiController extends ApiController {
+    private $appointmentModel;
 
     function __construct() {
         parent::__construct();
         $this->model = new DoctorModel();
+        $this->appointmentModel = new AppointmentModel();
     }
 
     public function findAllDoctors() {
         $doctors = $this->model->findAllDoctors();
         $this->view->response($doctors, 200);
+    }
+
+    public function findAllAvailableDoctorTimes() {
+        $requestData = $this->getRequestData();
+        $times = $this->appointmentModel->findAppointmentsTimeByDate($requestData->date);
+
+        return $this->view->response($times, 200);
     }
 
     /* public function saveDoctor() {

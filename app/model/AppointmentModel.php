@@ -18,6 +18,18 @@ class AppointmentModel {
         $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findAppointmentsTimeByDate($date) {
+        $query = $this->db->prepare("SELECT TIME(a.date) AS hour 
+            FROM appointment a
+            JOIN appointment a2
+            WHERE DATE(a.date) = ? 
+            AND TIME(a.date) != TIME(a2.date)");
+            /* AND TIME(a.date) != TIME_ADD(TIME(a2.date), INTERVAL 29 MINUTE)"); */
+        $query->execute([$date]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     /* public function findAllAppointmentsByTime($start_time, $endTime) {
         $query = $this->db->prepare("SELECT * FROM appointment WHERE TIME(date) <= ");
     } */

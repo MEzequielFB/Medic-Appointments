@@ -35,6 +35,19 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
+.timeDiv ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.timeDiv ul li {
+    margin: 0 0 5% 0;
+    padding: 5%;
+    background-color: var(--primary);
+    border: 1px solid var(--white);
+    border-radius: var(--soft-radius);
+}
 .dateDiv {
     margin: 5% 0;
 }

@@ -17,7 +17,48 @@ document.addEventListener("DOMContentLoaded", () => {
     leftArrow.addEventListener("click", hideDoctors);
 
     const chosenDoctor = document.querySelector(".chosenDoctor");
+    const timesList = document.querySelector(".times");
+
     const date = document.querySelector(".date");
+    date.addEventListener("input", async () => {
+        try {
+            const doctorId = chosenDoctor.lastElementChild.value;
+            const data = {
+                "date": date.value
+            };
+
+            const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`, {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": data
+            });
+
+            if (response.ok) {
+                let times = await response.json();
+                /* times = times.split(","); */
+                console.log("times", times);
+
+                timesList.innerHTML = "";
+                times.forEach(time => {
+                    timesList.innerHTML += `
+                        <li>${time.hour}</li>
+                    `;
+                });
+                /* times.forEach(time => {
+                    timesList.innerHTML += `
+                        <li>${time}</li>
+                    `;
+                }); */
+            } else {
+                messageP.innerHTML = await response.text();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
     const messageP = document.querySelector(".message");
 
     async function showDoctors() {
@@ -68,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const doctorId = doctor.className.charAt(doctor.className.length-1);
                 chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
 
-                try {
+                /* try {
                     const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`);
                     if (response.ok) {
                         const times = await response.json();
@@ -78,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 } catch (error) {
                     console.error(error);
-                }
+                } */
 
                 chosenDoctor.classList.remove("hidden");
             });

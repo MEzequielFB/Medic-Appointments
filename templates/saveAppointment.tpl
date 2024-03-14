@@ -16,7 +16,18 @@
 
     <div class="dateDiv">
         <h1>Date</h1>
-        <input type="datetime-local" name="date" id="date" class="date">
+        <input type="date" name="date" id="date" class="date">
+    </div>
+
+    <div class="timeDiv">
+        <h1>Available Times</h1>
+        {* <input type="datetime-local" name="date" id="date" class="date"> *}
+        <ul class="times">
+            <li>11:00</li>
+            <li>11:00</li>
+            <li>11:00</li>
+            <li>11:00</li>
+        </ul>
     </div>
 
     <button class="scheduleBtn" type="button">Schedule</button>
