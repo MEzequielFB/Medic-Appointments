@@ -2,6 +2,7 @@
 require_once "api/controller/ApiController.php";
 require_once "app/model/DoctorModel.php";
 require_once "app/model/AppointmentModel.php";
+require_once "app/controller/TimesHelper.php";
 
 class DoctorApiController extends ApiController {
     private $appointmentModel;
@@ -17,11 +18,26 @@ class DoctorApiController extends ApiController {
         $this->view->response($doctors, 200);
     }
 
-    public function findAllAvailableDoctorTimes() {
-        $requestData = $this->getRequestData();
+    public function findAllAvailableDoctorTimes($params = null) {
+        /* $requestData = $this->getRequestData();
         $times = $this->appointmentModel->findAppointmentsTimeByDate($requestData->date);
 
-        return $this->view->response($times, 200);
+        return $this->view->response($times, 200); */
+
+        $requestData = $this->getRequestData();
+        $doctorId = $params[":ID"];
+
+        $doctor = $this->model->findDoctorById($doctorId);
+        if (!$doctor) {
+            return $this->view->response("The doctor with id '$doctorId' doesn't exist", 404);
+        }
+
+        $times = $this->appointmentModel->findAppointmentsTimeByDateAndDoctor($requestData->date, $doctorId);
+
+        $timesHelper = new TimesHelper($doctor);
+        $availableTimes = $timesHelper->getAvailableTimes($times);
+
+        return $this->view->response($availableTimes, 200);
     }
 
     /* public function saveDoctor() {

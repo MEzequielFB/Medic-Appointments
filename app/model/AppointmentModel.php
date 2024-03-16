@@ -30,6 +30,17 @@ class AppointmentModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findAppointmentsTimeByDateAndDoctor($date, $doctorId) {
+        $query = $this->db->prepare("SELECT TIME(date) AS hour, duration
+            FROM appointment
+            WHERE DATE(date) = ?
+            AND doctor_id = ?");
+            /* AND TIME(a.date) != TIME_ADD(TIME(a2.date), INTERVAL 29 MINUTE)"); */
+        $query->execute([$date, $doctorId]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     /* public function findAllAppointmentsByTime($start_time, $endTime) {
         $query = $this->db->prepare("SELECT * FROM appointment WHERE TIME(date) <= ");
     } */
