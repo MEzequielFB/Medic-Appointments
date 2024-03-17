@@ -116,15 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 time.classList.add("selected");
             })
         }
-
-        /* timesList.children.forEach(time => {
-            time.addEventListener("click", () => {
-                timesList.children.forEach(time2 => {
-                    time2.classList.remove("selected");
-                });
-                time.classList.add("selected");
-            });
-        }); */
     }
 
     function addDoctorsBehavior() {
@@ -138,18 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (date.value != "") {
                     getAvailableTimesByDateAndDoctor();
                 }
-
-                /* try {
-                    const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`);
-                    if (response.ok) {
-                        const times = await response.json();
-                        
-                    } else {
-                        messageP.innerHTML = "Error while fetching times";
-                    }
-                } catch (error) {
-                    console.error(error);
-                } */
 
                 chosenDoctor.classList.remove("hidden");
                 dateDiv.classList.remove("hidden");
@@ -169,15 +148,23 @@ document.addEventListener("DOMContentLoaded", () => {
             emptyFields.push("date");
         }
 
-        if (emptyFields.length != 0) {
-            messageP.innerHTML = "The following fields are empty: " + emptyFields.join(", ");
+        const selectedTime = document.querySelector(".selected");
+        if (!selectedTime) {
+            emptyFields.push("time");
         }
 
-        console.log(emptyFields);
+        if (emptyFields.length != 0) {
+            messageP.innerHTML = "The following fields are empty: " + emptyFields.join(", ");
+            return;
+        }
+
+        console.log("Date: ", `${date.value} ${selectedTime.innerHTML}`);
 
         let data = {
-            "doctorId": doctorId,
-            "date": date
+            "date": `${date.value} ${selectedTime.innerHTML}`,
+            "duration": 30,
+            "reason": "consultation",
+            "doctorId": doctorId.value,
         };
 
         try {
@@ -194,19 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 const message = await response.text();
                 messageP.innerHTML = message;
-                /* switch (response.status) {
-                    case 404:
-                        messageP.innerHTML = "The selected doctor is not available";
-                        break;
-                    case 400:
-                        messageP.innerHTML = "The following fields are empty: " + response.statusText;
-                        break;
-                    case 500:
-                        messageP.innerHTML = "Server Error";
-                        break;
-                    default:
-                        break;
-                } */
             }
         } catch (error) {
             console.error(error);

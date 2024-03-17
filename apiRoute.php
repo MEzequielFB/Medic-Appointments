@@ -1,6 +1,6 @@
 <?php
 require_once "Router.php";
-/* require_once "api/controller/AppointmentApiController.php"; */
+require_once "api/controller/AppointmentApiController.php";
 require_once "api/controller/DoctorApiController.php";
 require_once "api/controller/SpecializationApiController.php";
 require_once "api/controller/HospitalApiController.php";
@@ -8,7 +8,7 @@ require_once "api/controller/HospitalApiController.php";
 $router = new Router();
 
 // Appointment
-/* $router->addRoute("appointment", "POST", "AppointmentApiController", "saveAppointment"); */
+$router->addRoute("appointment", "POST", "AppointmentApiController", "saveAppointment");
 
 // Doctor
 $router->addRoute("doctor", "GET", "DoctorApiController", "findAllDoctors");

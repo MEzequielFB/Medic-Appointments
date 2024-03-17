@@ -1,6 +1,6 @@
 <?php
 require_once "api/controller/ApiController.php";
-require_once "api/controller/AuthHelper.php";
+require_once "app/controller/AuthHelper.php";
 require_once "app/model/AppointmentModel.php";
 require_once "app/model/DoctorModel.php";
 require_once "app/model/StatusModel.php";
@@ -19,7 +19,7 @@ class AppointmentApiController extends ApiController {
     }
 
     public function saveAppointment() {
-        $emptyFields = $this->checkRequiredFields(["doctorId", "date"]);
+        $emptyFields = $this->checkRequiredFields(["date", "duration", "reason", "doctorId"]);
         if (!empty($emptyFields)) {
             return $this->view->response("The following fields are empty: " . implode(", ", $emptyFields), 400);
         }
@@ -38,18 +38,24 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("The selected doctor doesn't exists or isn't available", 404);
         }
 
-        $startTime = DateTime::createFromFormat('H:i:s', $doctor->start_time);
-        $endTime = DateTime::createFromFormat('H:i:s', $doctor->end);
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
 
-        $requestTime = $requestData->date->format('H:i:s');
-        $requestTime = DateTime::createFromFormat('H:i:s', $requestTime);
+        $currentDate = date("Y-m-d");
+        $currentTime = time();
 
-        if ($requestTime < $startTime || $requestTime > $endTime) {
-            return $this->view->response("Invalid time. The doctor $doctor->fullname is available at $doctor->start_time to $doctor->end_time", 400);
-            /* return $this->view->response("The doctor $doctor->fullname is unavailable at $requestTime", 400); */
+        $dateArray = explode(" ", $requestData->date);
+        $requestDate = $dateArray[0];
+        $requestTime = strtotime($dateArray[1]);
+
+        if ($currentDate === $requestDate) {
+            if ($requestTime < $currentTime) {
+                return $this->view->response("The selected time has already passed", 400);
+            }
+        } else if ($requestDate < $currentDate) {
+            return $this->view->response("The selected date has already passed", 400);
         }
-
-        $this->model->saveAppointment($requestData->date, $requestData->doctorId, $status->id, $userId);
+        
+        $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
     }
 }
 ?>
