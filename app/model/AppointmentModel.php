@@ -13,7 +13,8 @@ class AppointmentModel {
         JOIN specialization sp ON d.specialization_id = sp.id
         JOIN status s ON a.status_id = s.id
         JOIN hospital h ON d.hospital_id = h.id
-        WHERE a.user_id = ?");
+        WHERE a.user_id = ?
+        ORDER BY DATE(a.date), TIME(a.date)");
         $query->execute([$userId]);
         
         return $query->fetchAll(PDO::FETCH_OBJ);
