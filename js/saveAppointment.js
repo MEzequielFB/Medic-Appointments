@@ -17,41 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     leftArrow.addEventListener("click", hideDoctors);
 
     const chosenDoctor = document.querySelector(".chosenDoctor");
+
     const timesList = document.querySelector(".times");
 
+    const timeDiv = document.querySelector(".timeDiv");
+    const dateDiv = document.querySelector(".dateDiv");
+
     const date = document.querySelector(".date");
-    date.addEventListener("input", async () => {
-        try {
-            const doctorId = chosenDoctor.lastElementChild.value;
-            const data = {
-                "date": date.value
-            };
-
-            const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`, {
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                let times = await response.json();
-                console.log("times", times);
-
-                timesList.innerHTML = "";
-                times.forEach(time => {
-                    timesList.innerHTML += `
-                        <li>${time.hour}</li>
-                    `;
-                });
-            } else {
-                messageP.innerHTML = await response.text();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    });
+    date.addEventListener("input", getAvailableTimesByDateAndDoctor);
 
     const messageP = document.querySelector(".message");
 
@@ -95,6 +68,65 @@ document.addEventListener("DOMContentLoaded", () => {
         addDoctorsBehavior();
     }
 
+    async function getAvailableTimesByDateAndDoctor() {
+        try {
+            const doctorId = chosenDoctor.lastElementChild.value;
+            const data = {
+                "date": date.value
+            };
+
+            const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`, {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                let times = await response.json();
+                console.log("times", times);
+
+                timeDiv.classList.remove("hidden");
+
+                timesList.innerHTML = "";
+                times.forEach(time => {
+                    timesList.innerHTML += `
+                        <li>${time.hour}</li>
+                    `;
+                });
+
+                addTimesBehavior();
+            } else {
+                messageP.innerHTML = await response.text();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function addTimesBehavior() {
+        console.log(timesList.children);
+
+        for (let time of timesList.children) {
+            time.addEventListener("click", () => {
+                for (let time2 of timesList.children) {
+                    time2.classList.remove("selected");
+                }
+                time.classList.add("selected");
+            })
+        }
+
+        /* timesList.children.forEach(time => {
+            time.addEventListener("click", () => {
+                timesList.children.forEach(time2 => {
+                    time2.classList.remove("selected");
+                });
+                time.classList.add("selected");
+            });
+        }); */
+    }
+
     function addDoctorsBehavior() {
         const doctors = document.querySelectorAll(".eligibleDoctor");
         doctors.forEach(doctor => {
@@ -102,6 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 chosenDoctor.innerHTML = doctor.innerHTML;
                 const doctorId = doctor.className.charAt(doctor.className.length-1);
                 chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
+
+                if (date.value != "") {
+                    getAvailableTimesByDateAndDoctor();
+                }
 
                 /* try {
                     const response = await fetch(baseUrl + `api/doctor/${doctorId}/times`);
@@ -116,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } */
 
                 chosenDoctor.classList.remove("hidden");
+                dateDiv.classList.remove("hidden");
             });
         });
     }

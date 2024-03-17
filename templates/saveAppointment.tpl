@@ -14,12 +14,12 @@
         
     </article>
 
-    <div class="dateDiv">
+    <div class="dateDiv hidden">
         <h1>Date</h1>
         <input type="date" name="date" id="date" class="date">
     </div>
 
-    <div class="timeDiv">
+    <div class="timeDiv hidden">
         <h1>Available Times</h1>
         <ul class="times">
 
