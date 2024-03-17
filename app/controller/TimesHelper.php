@@ -15,10 +15,15 @@ class TimesHelper {
 
         while ($currentTime <= $endTime) {
             if (!$this->isSuperposed($currentTime, $appointmentsTime)) {
-                array_push($times, date("H:i:s", $currentTime));
+                $objectTime = new stdClass();
+                $objectTime->hour = date("H:i", $currentTime);
+
+                array_push($times, $objectTime);
             }
             $currentTime = $currentTime + 30 * 60;
         }
+
+        return $times;
     }
 
     private function isSuperposed($time, $appointmentsTime) {

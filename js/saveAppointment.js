@@ -32,12 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "headers": {
                     "Content-Type": "application/json"
                 },
-                "body": data
+                "body": JSON.stringify(data)
             });
 
             if (response.ok) {
                 let times = await response.json();
-                /* times = times.split(","); */
                 console.log("times", times);
 
                 timesList.innerHTML = "";
@@ -46,11 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <li>${time.hour}</li>
                     `;
                 });
-                /* times.forEach(time => {
-                    timesList.innerHTML += `
-                        <li>${time}</li>
-                    `;
-                }); */
             } else {
                 messageP.innerHTML = await response.text();
             }

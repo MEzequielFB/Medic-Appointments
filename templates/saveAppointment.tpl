@@ -21,12 +21,8 @@
 
     <div class="timeDiv">
         <h1>Available Times</h1>
-        {* <input type="datetime-local" name="date" id="date" class="date"> *}
         <ul class="times">
-            <li>11:00</li>
-            <li>11:00</li>
-            <li>11:00</li>
-            <li>11:00</li>
+
         </ul>
     </div>
 

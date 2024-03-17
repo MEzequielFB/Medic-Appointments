@@ -12,7 +12,7 @@ $router = new Router();
 
 // Doctor
 $router->addRoute("doctor", "GET", "DoctorApiController", "findAllDoctors");
-$router->addRoute("doctor/:ID/times", "GET", "DoctorApiController", "findAllAvailableDoctorTimes");
+$router->addRoute("doctor/:ID/times", "POST", "DoctorApiController", "findAllAvailableDoctorTimes");
 
 // Specialization
 $router->addRoute("specialization", "GET", "SpecializationApiController", "findAllSpecializations");
