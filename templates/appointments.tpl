@@ -6,4 +6,6 @@
 
 <a href="logout">Logout</a>
 {include file="header.tpl"}
+
+<h2>Future visits</h2>
 {include file="appointmentsList.tpl"}

@@ -7,15 +7,23 @@ class AppointmentModel {
     }
 
     public function findAllUpcomingAppointmentsByUser($userId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, h.name AS doctor_hospital
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id
         JOIN status s ON a.status_id = s.id
+        JOIN hospital h ON d.hospital_id = h.id
         WHERE a.user_id = ?");
         $query->execute([$userId]);
         
-        $query->fetchAll(PDO::FETCH_OBJ);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function findAllAppointmentsByUser($userId) {
+        $query = $this->db->prepare("SELECT * FROM appointment WHERE user_id = ?");
+        $query->execute([$userId]);
+        
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function findAppointmentsTimeByDate($date) {

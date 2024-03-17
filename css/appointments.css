@@ -154,3 +154,74 @@ p.success {
 .timeDiv .selected {
     background-color: var(--success);
 }
+
+/* Appointment home */
+
+h2 {
+    font-size: x-large;
+}
+.appointment .doctorInfo {
+    display: flex;
+    justify-content: space-between;
+}
+.appointment {
+    width: 90%;
+    margin: 3% auto;
+    padding: 2%;
+    border: 2px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+.doctorInfo div h1, .doctorInfo div p {
+    text-align: start;
+}
+.doctorInfo h1 {
+    font-size: x-large;
+    font-weight: 800;
+}
+.doctorInfo div p {
+    text-transform: capitalize;
+    font-size: medium;
+    opacity: 0.7;
+}
+.doctorInfo img {
+    width: 40%;
+}
+.appointment ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5% 0;
+}
+.appointment ul img {
+    width: 20%;
+    display: block;
+    margin: auto;
+}
+.appointment ul li {
+    text-align: center;
+}
+.appointment ul li p {
+    margin: 4% 0 0 0;
+}
+.appointment ul li:last-child img {
+    width: 15%;
+}
+.appointment ul li:last-child p::first-letter {
+    text-transform: uppercase;
+}
+.appointmentBtns {
+    display: flex;
+    justify-content: space-around;
+}
+.appointmentBtns button {
+    padding: 3%;
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+.appointmentBtns button:first-child {
+    background-color: var(--white-transparent);
+}
+.appointmentBtns button:last-child {
+    background-color: var(--primary);
+}
