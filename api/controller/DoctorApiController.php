@@ -18,6 +18,19 @@ class DoctorApiController extends ApiController {
         $this->view->response($doctors, 200);
     }
 
+    public function findAllDoctorsByFilter() {
+        $requestData = $this->getRequestData();
+        $doctors = [];
+
+        if ($requestData->filter == "") {
+            $doctors = $this->model->findAllDoctors();
+        } else {
+            $doctors = $this->model->findAllDoctorsByFilter($requestData->filter);
+        }
+
+        return $this->view->response($doctors, 200);
+    }
+
     public function findAllAvailableDoctorTimes($params = null) {
         $requestData = $this->getRequestData();
         $doctorId = $params[":ID"];

@@ -12,6 +12,7 @@ $router->addRoute("appointment", "POST", "AppointmentApiController", "saveAppoin
 
 // Doctor
 $router->addRoute("doctor", "GET", "DoctorApiController", "findAllDoctors");
+$router->addRoute("doctor/search", "POST", "DoctorApiController", "findAllDoctorsByFilter");
 $router->addRoute("doctor/:ID/times", "POST", "DoctorApiController", "findAllAvailableDoctorTimes");
 
 // Specialization

@@ -30,6 +30,19 @@ class DoctorModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findAllDoctorsByFilter($filter) {
+        $query = $this->db->prepare("SELECT d.id, d.fullname, d.image, sp.name AS specialization, h.name AS hospital
+            FROM doctor d
+            JOIN specialization sp ON d.specialization_id = sp.id
+            JOIN hospital h ON d.hospital_id = h.id
+            WHERE d.fullname LIKE CONCAT(?, '%')
+            OR sp.name LIKE CONCAT(?, '%')
+            OR h.name LIKE CONCAT(?, '%')");
+        $query->execute([$filter, $filter, $filter]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function saveDoctor($fullname, $image, $startTime, $endTime, $specialization, $hospital) {
         $query = $this->db->prepare("INSERT INTO doctor(fullname, image, start_time, end_time, specialization_id, hospital_id) VALUES(?,?,?,?,?,?)");
         $query->execute([$fullname, $image, $startTime, $endTime, $specialization, $hospital]);

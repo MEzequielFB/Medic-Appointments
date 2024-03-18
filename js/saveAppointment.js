@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeDiv = document.querySelector(".timeDiv");
     const dateDiv = document.querySelector(".dateDiv");
 
+    const doctorSearch = document.querySelector(".doctorSearch");
+    doctorSearch.addEventListener("input", searchDoctors);
+
     const date = document.querySelector(".date");
     date.addEventListener("input", getAvailableTimesByDateAndDoctor);
 
@@ -138,6 +141,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 dateDiv.classList.remove("hidden");
             });
         });
+    }
+
+    async function searchDoctors() {
+        doctorsSection.innerHTML = "<div class='loader'></div>"
+        const data = {
+            "filter": doctorSearch.value
+        };
+
+        try {
+            const response = await fetch(baseUrl + "api/doctor/search", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(data)
+            });
+            if (response.ok) {
+                const doctors = await response.json();
+
+                if (doctors.length == 0) {
+                    doctorsSection.innerHTML = "<p>No doctors found</p>";
+                } else {
+                    setTimeout(() => {
+                        renderDoctors(doctors);
+                    }, 1000);
+                }
+            } else{
+                const message = await response.text();
+                messageP.innerHTML = message;
+            }
+        } catch (error) {
+            console.error(error);
+            messageP.innerHTML = "Error while fetching doctors";
+        }
     }
 
     async function saveAppointment() {
