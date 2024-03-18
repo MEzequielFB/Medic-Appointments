@@ -9,18 +9,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelledAppointments = document.querySelector(".cancelledAppointments");
 
     const upcomingBtn = document.querySelector(".upcomingBtn");
-    upcomingBtn.addEventListener("click", async () => {
+    const completedBtn = document.querySelector(".completedBtn");
+    const cancelledBtn = document.querySelector(".cancelledBtn");
+
+    const loader = document.querySelector(".loader");
+    setTimeout(() => {
+        loader.classList.add("hidden");
         upcomingAppointments.classList.remove("hidden");
+    }, 500);
+
+    upcomingBtn.addEventListener("click", async () => {
+        if (upcomingAppointments.classList.contains("hidden")) {
+            loader.classList.remove("hidden");
+        }
+
+        upcomingBtn.classList.add("selected");
+        completedBtn.classList.remove("selected");
+        cancelledBtn.classList.remove("selected");
+
         completedAppointments.classList.add("hidden");
         cancelledAppointments.classList.add("hidden");
+
+        setTimeout(() => {
+            loader.classList.add("hidden");
+            upcomingAppointments.classList.remove("hidden");
+        }, 500);
     });
 
-    const completedBtn = document.querySelector(".completedBtn");
     completedBtn.addEventListener("click", async () => {
+        upcomingBtn.classList.remove("selected");
+        completedBtn.classList.add("selected");
+        cancelledBtn.classList.remove("selected");
+
         upcomingAppointments.classList.add("hidden");
         completedAppointments.classList.remove("hidden");
         cancelledAppointments.classList.add("hidden");
 
+        completedAppointments.innerHTML = "<div class='loader margin'></div>";
         try {
             const response = await fetch(baseUrl + "api/appointment/completed");
             if (response.ok) {
@@ -29,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (appointments.length == 0) {
                     completedAppointments.innerHTML = "<p>No appointments!</p>";
                 } else {
-                    renderAppointments(appointments, "completedAppointments");
+                    setTimeout(() => {
+                        renderAppointments(appointments, "completedAppointments");
+                    }, 500);
                 }
             } else {
                 completedAppointments.innerHTML = "<p>Error while fetching appointments</p>";
@@ -40,12 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    const cancelledBtn = document.querySelector(".cancelledBtn");
     cancelledBtn.addEventListener("click", async () => {
+        upcomingBtn.classList.remove("selected");
+        completedBtn.classList.remove("selected");
+        cancelledBtn.classList.add("selected");
+
         upcomingAppointments.classList.add("hidden");
         completedAppointments.classList.add("hidden");
         cancelledAppointments.classList.remove("hidden");
 
+        cancelledAppointments.innerHTML = "<div class='loader margin'></div>";
         try {
             const response = await fetch(baseUrl + "api/appointment/cancelled");
             if (response.ok) {
@@ -54,7 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (appointments.length == 0) {
                     cancelledAppointments.innerHTML = "<p>No appointments!</p>";
                 } else {
-                    renderAppointments(appointments, "cancelledAppointments");
+                    setTimeout(() => {
+                        renderAppointments(appointments, "cancelledAppointments");
+                    }, 500);
                 }
             } else {
                 cancelledAppointments.innerHTML = "<p>Error while fetching appointments</p>";

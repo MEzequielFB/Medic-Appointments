@@ -13,12 +13,14 @@
 {include file="dashboard.tpl"}
 
 <nav class="appointmentsNav">
-    <button type="button" class="upcomingBtn">Upcoming</button>
+    <button type="button" class="upcomingBtn selected">Upcoming</button>
     <button type="button" class="completedBtn">Completed</button>
     <button type="button" class="cancelledBtn">Cancelled</button>
 </nav>
 
-<div class="upcomingAppointments">
+<div class="loader margin"></div>
+
+<div class="upcomingAppointments hidden">
     {if $nearest neq null}
         <h2>Nearest visit</h2>
         <li class="appointment" id="appointment{$nearest->id}">

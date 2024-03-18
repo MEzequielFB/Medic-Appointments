@@ -154,14 +154,17 @@ p.success {
 /* HTML: <div class="loader"></div> */
 .loader {
     width: 50px;
+    margin: auto auto;
     aspect-ratio: 1;
     box-shadow: 0 0 0 3px #fff inset;
     border-radius: 50%;
     position: relative;
     animation: l11 7s infinite;
-  }
-  .loader:before,
-  .loader:after {
+}
+.loader.margin {
+    margin-top: 10%;
+}
+.loader:before, .loader:after {
     content: "";
     position: absolute;
     top: calc(100% + 3px);
@@ -172,15 +175,15 @@ p.success {
     border-radius: 50%;
     transform-origin: 50% -28px;
     animation: l11 1.5s infinite;
-  }
-  .loader:after {
+}
+.loader:after {
     animation-delay: -0.75s;
-  }
-  @keyframes l11 {
+}
+@keyframes l11 {
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
 /* Appointment home */
 
