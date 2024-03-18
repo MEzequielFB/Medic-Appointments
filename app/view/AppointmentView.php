@@ -11,9 +11,10 @@ class AppointmentView {
         $this->smarty->assign("loginUrl", LOGIN);
     }
 
-    public function showAppointments($appointments) {
+    public function showAppointments($appointments, $nearest) {
         $this->smarty->assign("title", "Appointments");
         $this->smarty->assign("appointments", $appointments);
+        $this->smarty->assign("nearest", $nearest);
 
         $this->smarty->display("templates/appointments.tpl");
     }

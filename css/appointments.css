@@ -185,6 +185,7 @@ p.success {
 /* Appointment home */
 
 h2 {
+    margin: 10% 0 0 0;
     font-size: x-large;
 }
 .appointment .doctorInfo {
