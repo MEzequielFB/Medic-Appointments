@@ -59,8 +59,8 @@ p.success {
     position: absolute;
     top: 0.3rem;
     left: 0.7rem;
-    width: 10%;
-    height: 12%;
+    width: 36px;
+    height: 43px;
     cursor: pointer;
 }
 .doctorsDiv {
@@ -68,7 +68,7 @@ p.success {
     top: 0;
     left: -100vw;
     width: 100vw;
-    height: 100vw;
+    min-height: 100vw;
     background-color: var(--primary-light);
     transition: 0.7s;
     opacity: 0;
