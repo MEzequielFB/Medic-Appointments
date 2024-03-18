@@ -19,8 +19,8 @@
                     <img src="{$baseUrl}/image/clock.png" alt="clock">
                     <p>{$appointment->time}</p>
                 </li>
-                <li>
-                    <img src="{$baseUrl}/image/status-to-be-confirmed.png" alt="dot">
+                <li class="">
+                    <img src="{$baseUrl}/image/{$appointment->status_image}" alt="dot">
                     <p>{$appointment->status}</p>
                 </li>
             </ul>
