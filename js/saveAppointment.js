@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageP = document.querySelector(".message");
 
     async function showDoctors() {
+        doctorsSection.innerHTML = "<div class='loader'></div>"
         doctorsDiv.classList.add("visible");
 
         try {
@@ -36,9 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 const doctors = await response.json();
                 console.log(doctors);
-                renderDoctors(doctors);
+
+                setTimeout(() => {
+                    renderDoctors(doctors);
+                }, 2000);
             } else {
-                doctorsSection.innerHTML = "<p>Error while fetching doctors</p>";
+                doctorsSection.innerHTML = "<p class='message'>Error while fetching doctors</p>";
             }
         } catch (error) {
             console.error(error);

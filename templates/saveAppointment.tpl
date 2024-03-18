@@ -40,7 +40,7 @@
         <input type="search" placeholder="name, specialization, hospital...">
 
         <section class="doctorsSection">
-            
+            <div class="loader"></div>
         </section>
     </div>
 {* </div> *}
