@@ -9,6 +9,8 @@ $router = new Router();
 
 // Appointment
 $router->addRoute("appointment", "POST", "AppointmentApiController", "saveAppointment");
+$router->addRoute("appointment/completed", "GET", "AppointmentApiController", "findAllCompletedAppointmentsByUser");
+$router->addRoute("appointment/cancelled", "GET", "AppointmentApiController", "findAllCancelledAppointmentsByUser");
 
 // Doctor
 $router->addRoute("doctor", "GET", "DoctorApiController", "findAllDoctors");

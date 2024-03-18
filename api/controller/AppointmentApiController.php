@@ -18,6 +18,20 @@ class AppointmentApiController extends ApiController {
         $this->authHelper = new AuthHelper();
     }
 
+    public function findAllCompletedAppointmentsByUser() {
+        $userId = $this->authHelper->getUserId();
+        $appointents = $this->model->findAllCompletedAppointmentsByUser($userId);
+
+        $this->view->response($appointents, 200);
+    }
+
+    public function findAllCancelledAppointmentsByUser() {
+        $userId = $this->authHelper->getUserId();
+        $appointents = $this->model->findAllCancelledAppointmentsByUser($userId);
+
+        $this->view->response($appointents, 200);
+    }
+
     public function saveAppointment() {
         $emptyFields = $this->checkRequiredFields(["date", "duration", "reason", "doctorId"]);
         if (!empty($emptyFields)) {

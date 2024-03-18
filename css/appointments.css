@@ -184,6 +184,18 @@ p.success {
 
 /* Appointment home */
 
+.appointmentsNav {
+    width: 100%;
+    margin: 5% auto;
+}
+.appointmentsNav button {
+    font-size: medium;
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
+.appointmentsNav button.selected {
+    background-color: var(--success);
+}
 h2 {
     margin: 10% 0 0 0;
     font-size: x-large;
