@@ -25,10 +25,12 @@
                 </li>
             </ul>
 
-            <div class="appointmentBtns">
-                <button>Cancel</button>
-                <button>Reschedule</button>
-            </div>
+            {if $appointment->status eq "to be confirmed" || $appointment->status eq "confirmed"}
+                <div class="appointmentBtns">
+                    <button>Cancel</button>
+                    <button>Reschedule</button>
+                </div>
+            {/if}
         </li>
     {/foreach}
 </ul>

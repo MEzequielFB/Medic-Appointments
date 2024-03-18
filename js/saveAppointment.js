@@ -139,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 chosenDoctor.classList.remove("hidden");
                 dateDiv.classList.remove("hidden");
+                doctorsDiv.classList.remove("visible");
             });
         });
     }

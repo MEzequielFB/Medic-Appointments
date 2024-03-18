@@ -68,7 +68,7 @@ p.success {
     top: 0;
     left: -100vw;
     width: 100vw;
-    min-height: 100vw;
+    min-height: 100vh;
     background-color: var(--primary-light);
     transition: 0.7s;
     opacity: 0;
