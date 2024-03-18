@@ -3,11 +3,15 @@
 <link rel="stylesheet" href="{$baseUrl}/css/global.css">
 <link rel="stylesheet" href="{$baseUrl}/css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}/css/appointments.css">
+<link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
+
 <script src="{$baseUrl}/js/saveAppointment.js"></script>
+<script src="{$baseUrl}js/nav.js"></script>
 </head>
 
-<div class="container">
+{* <div class="container"> *}
     {include file="header.tpl"}
+    {include file="dashboard.tpl"}
 
     <button class="doctorBtn" type="button">Choose a doctor</button>
     <article class="chosenDoctor hidden">
@@ -39,4 +43,4 @@
             
         </section>
     </div>
-</div>
+{* </div> *}

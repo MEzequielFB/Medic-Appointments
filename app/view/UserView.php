@@ -24,12 +24,5 @@ class UserView {
 
         $this->smarty->display("templates/signUp.tpl");
     }
-
-    /* public function showUpcomingAppointments($appointments) {
-        $this->smarty->assign("title", "Appointments");
-        $this->smarty->assign("appointments", $appointments);
-
-        $this->smarty->display("templates/appointments.tpl");
-    } */
 }
 ?>

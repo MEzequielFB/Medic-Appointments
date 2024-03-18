@@ -1,11 +1,17 @@
 header {
+    display: flex;
+    justify-content: space-around;
     padding: 5% 0;
     background-color: var(--primary);
+}
+header img {
+    width: 10%;
 }
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 80%;
 }
 nav button {
     width: max-content;
