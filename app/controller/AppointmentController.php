@@ -39,20 +39,29 @@ class AppointmentController extends Controller {
         $appointment = $this->model->findAppointmentById($appointmentId);
         if (!$appointment) {
             header("Location: " . BASE_URL . "appointments");
+            die();
+        }
+
+        if ($appointment->user_id != $this->authHelper->getUserId()) {
+            header("Location: " . BASE_URL . "appointments");
+            die();
         }
 
         if ($appointment->status != "to be confirmed" && $appointment->status != "confirmed") {
             header("Location: " . BASE_URL . "appointments");
+            die();
         }
 
         // Only admins and superadmins can reschedule non consultation appointments
         if (strtolower($appointment->reason) != "consultation" && ($this->authHelper->getUserRole() != "ADMIN" && $this->authHelper->getUserRole() != "SUPERADMIN")) {
             header("Location: " . BASE_URL . "appointments");
+            die();
         }
 
         $doctor = $this->doctorModel->findDoctorById($appointment->doctor_id);
         if (!$doctor) {
             header("Location: " . BASE_URL . "appointments");
+            die();
         }
 
         $doctorAppointmentsTime = $this->model->findAppointmentsTimeByDateAndDoctor($appointment->date, $appointment->doctor_id);
@@ -68,10 +77,18 @@ class AppointmentController extends Controller {
         $appointment = $this->model->findAppointmentById($appointmentId);
         if (!$appointment) {
             header("Location: " . BASE_URL . "appointments");
+            die();
         }
+
+        if ($appointment->user_id != $this->authHelper->getUserId()) {
+            header("Location: " . BASE_URL . "appointments");
+            die();
+        }
+
         $statusCancelled = $this->statusModel->findStatusByName("cancelled");
         if (!$statusCancelled) {
             header("Location: " . BASE_URL . "appointments");
+            die();
         }
 
         $this->model->cancelAppointment($statusCancelled->id, $appointmentId);

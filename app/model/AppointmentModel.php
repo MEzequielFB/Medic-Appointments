@@ -7,7 +7,7 @@ class AppointmentModel {
     }
 
     public function findAppointmentById($appointmentId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.id AS doctor_id, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, h.name AS doctor_hospital
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, a.user_id, d.id AS doctor_id, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, h.name AS doctor_hospital
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id

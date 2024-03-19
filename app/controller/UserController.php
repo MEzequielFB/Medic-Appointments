@@ -33,13 +33,6 @@ class UserController extends Controller {
         }
     }
 
-    /* public function showUpcomingAppointments() {
-        $this->authHelper->checkLoggedUser();
-
-        $users = $this->model->findAllUsers();
-        $this->view->showUpcomingAppointments($users);
-    } */
-
     public function logoutUser() {
         $this->authHelper->logout();
 

@@ -79,6 +79,10 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("The appointment with id '$appointmentId' doesn't exist", 404);
         }
 
+        if ($appointment->user_id != $this->authHelper->getUserId()) {
+            return $this->view->response("Server Error", 500);
+        }
+
         $requestData = $this->getRequestData();
         $status = $this->statusModel->findStatusByName("to be confirmed");
         if (!$status) {
