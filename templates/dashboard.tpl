@@ -3,7 +3,7 @@
 
     <div class="userInfo">
         <img src="{$baseUrl}image/profile/therapist.jpg" alt="profile image">
-        <p>profile's username</p>
+        <p>{$username}</p>
     </div>
 
     <nav>

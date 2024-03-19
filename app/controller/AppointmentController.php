@@ -16,10 +16,11 @@ class AppointmentController extends Controller {
         $this->model = new AppointmentModel();
         $this->statusModel = new StatusModel();
         $this->doctorModel = new DoctorModel();
-        $this->view = new AppointmentView();
-        $this->authHelper = new AuthHelper();
 
+        $this->authHelper = new AuthHelper();
         $this->authHelper->checkLoggedUser();
+
+        $this->view = new AppointmentView($this->authHelper->getUserUsername());
     }
 
     public function showAllUpcomingAppointmentsByUser() {

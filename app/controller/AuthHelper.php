@@ -8,6 +8,7 @@ class AuthHelper {
     public function login($user) {
         $_SESSION["ID"] = $user->id;
         $_SESSION["EMAIL"] = $user->email;
+        $_SESSION["USERNAME"] = $user->username;
         $_SESSION["ROLE"] = $user->role;
     }
 
@@ -37,6 +38,14 @@ class AuthHelper {
     public function getUserEmail() {
         if (isset($_SESSION["EMAIL"])) {
             return $_SESSION["EMAIL"];
+        }
+
+        return null;
+    }
+
+    public function getUserUsername() {
+        if (isset($_SESSION["USERNAME"])) {
+            return $_SESSION["USERNAME"];
         }
 
         return null;
