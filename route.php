@@ -25,6 +25,7 @@ $router->addRoute("user", "POST", "UserController", "saveUser");
 $router->addRoute("appointments", "GET", "AppointmentController", "showAllUpcomingAppointmentsByUser");
 $router->addRoute("appointment/save", "GET", "AppointmentController", "showAppointmentCreation");
 $router->addRoute("appointment/:ID/reschedule", "GET", "AppointmentController", "showAppointmentReschedule");
+$router->addRoute("appointment/:ID/cancel", "GET", "AppointmentController", "cancelAppointment");
 
 // Doctor
 $router->addRoute("doctor/save", "GET", "DoctorController", "showDoctorCreation");

@@ -48,12 +48,14 @@
                 </li>
             </ul>
 
-            {if $nearest->status eq "to be confirmed" || $nearest->status eq "confirmed"}
-                <div class="appointmentBtns">
-                    <button>Cancel</button>
-                    <button>Reschedule</button>
-                </div>
-            {/if}
+            <div class="appointmentBtns">
+                <a href="{$baseUrl}appointment/{$nearest->id}/cancel">
+                    <button type="button">Cancel</button>
+                </a>
+                <a href="{$baseUrl}appointment/{$nearest->id}/reschedule">
+                    <button type="button">Reschedule</button>
+                </a>
+            </div>
         </li>
     {/if}
 

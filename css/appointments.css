@@ -262,7 +262,7 @@ h2 {
     border: 1px solid var(--white);
     border-radius: var(--soft-radius);
 }
-.appointmentBtns button:first-child {
+.appointmentBtns a:first-child button {
     background-color: var(--white-transparent);
 }
 .appointmentBtns button:last-child {

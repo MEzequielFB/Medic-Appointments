@@ -62,5 +62,20 @@ class AppointmentController extends Controller {
 
         $this->view->showAppointmentCreation($appointment, $availableDoctorTimes);
     }
+
+    public function cancelAppointment($params = null) {
+        $appointmentId = $params[":ID"];
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        if (!$appointment) {
+            header("Location: " . BASE_URL . "appointments");
+        }
+        $statusCancelled = $this->statusModel->findStatusByName("cancelled");
+        if (!$statusCancelled) {
+            header("Location: " . BASE_URL . "appointments");
+        }
+
+        $this->model->cancelAppointment($statusCancelled->id, $appointmentId);
+        header("Location: " . BASE_URL . "appointments");
+    }
 }
 ?>

@@ -117,5 +117,10 @@ class AppointmentModel {
         $query = $this->db->prepare("UPDATE appointment SET date = ?, duration = ?, reason = ?, status_id = ?, doctor_id = ? WHERE id = ?");
         $query->execute([$date, $duration, $reason, $statusId, $doctorId, $appointmentId]);
     }
+
+    public function cancelAppointment($statusId, $appointmentId) {
+        $query = $this->db->prepare("UPDATE appointment SET status_id = ? WHERE id = ?");
+        $query->execute([$statusId, $appointmentId]);
+    }
 }
 ?>
