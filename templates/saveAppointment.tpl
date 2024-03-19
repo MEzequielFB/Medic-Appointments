@@ -14,23 +14,58 @@
     {include file="dashboard.tpl"}
 
     <button class="doctorBtn" type="button">Choose a doctor</button>
-    <article class="chosenDoctor hidden">
+
+    {if $appointment eq null}
+        <article class="chosenDoctor hidden">
         
-    </article>
+        </article>
 
-    <div class="dateDiv hidden">
-        <h1>Date</h1>
-        <input type="date" name="date" id="date" class="date">
-    </div>
+        <div class="dateDiv hidden">
+            <h1>Date</h1>
+            <input type="date" name="date" id="date" class="date">
+        </div>
+    {else}
+        <article class="chosenDoctor">
+            <div>
+                <div>
+                    <h1>Dr. {$appointment->doctor_name}</h1>
+                    <p>{$appointment->doctor_specialization}</p>
+                </div>
+                <p class="hospitalP">{$appointment->doctor_hospital}</p>
+            </div>
+            <img src="{$baseUrl}image/profile/{$appointment->doctor_image}" alt="doctor's image">
+            <input type="hidden" name="doctorId" class="doctorId" value="{$appointment->doctor_id}">
+        </article>
 
-    <div class="timeDiv hidden">
-        <h1>Available Times</h1>
-        <ul class="times">
+        <div class="dateDiv">
+            <h1>Date</h1>
+            <input type="date" name="date" id="date" class="date" value="{$appointment->date}">
+        </div>
+    {/if}
 
-        </ul>
-    </div>
+    {if $times eq null}
+        <div class="timeDiv hidden">
+            <h1>Available Times</h1>
+            <ul class="times">
 
-    <button class="scheduleBtn" type="button">Schedule</button>
+            </ul>
+        </div>
+    {else}
+        <div class="timeDiv">
+            <h1>Available Times</h1>
+            <ul class="times">
+                {foreach from=$times item=time}
+                    <li>{$time->hour}</li>
+                {/foreach}
+            </ul>
+        </div>
+    {/if}
+
+    {if $appointment eq null}
+        <button class="scheduleBtn" type="button">Schedule</button>
+    {else}
+        <button class="rescheduleBtn" type="button">Reschedule</button>
+    {/if}
     <p class="message"></p>
 
     <div class="doctorsDiv">

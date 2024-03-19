@@ -1,4 +1,4 @@
-.doctorBtn, .scheduleBtn {
+.doctorBtn, .scheduleBtn, .rescheduleBtn {
     display: block;
     width: 60%;
     margin: 5% auto;
@@ -7,7 +7,7 @@
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.scheduleBtn {
+.scheduleBtn, .rescheduleBtn {
     width: 35%;
     padding: 3%;
     background-color: var(--secundary);
@@ -257,7 +257,7 @@ h2 {
     justify-content: space-around;
 }
 .appointmentBtns button {
-    padding: 3%;
+    padding: 0.6rem;
     color: var(--white);
     border: 1px solid var(--white);
     border-radius: var(--soft-radius);

@@ -6,6 +6,19 @@ class AppointmentModel {
         $this->db = new PDO('mysql:host=localhost;dbname=appointments_db;charset=utf8', 'root', '');
     }
 
+    public function findAppointmentById($appointmentId) {
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.id AS doctor_id, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, h.name AS doctor_hospital
+        FROM appointment a
+        JOIN doctor d ON a.doctor_id = d.id
+        JOIN specialization sp ON d.specialization_id = sp.id
+        JOIN status s ON a.status_id = s.id
+        JOIN hospital h ON d.hospital_id = h.id
+        WHERE a.id = ?");
+        $query->execute([$appointmentId]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function findAllUpcomingAppointmentsByUser($userId) {
         $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
         FROM appointment a
@@ -80,7 +93,6 @@ class AppointmentModel {
             JOIN appointment a2
             WHERE DATE(a.date) = ? 
             AND TIME(a.date) != TIME(a2.date)");
-            /* AND TIME(a.date) != TIME_ADD(TIME(a2.date), INTERVAL 29 MINUTE)"); */
         $query->execute([$date]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
@@ -91,19 +103,19 @@ class AppointmentModel {
             FROM appointment
             WHERE DATE(date) = ?
             AND doctor_id = ?");
-            /* AND TIME(a.date) != TIME_ADD(TIME(a2.date), INTERVAL 29 MINUTE)"); */
         $query->execute([$date, $doctorId]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    /* public function findAllAppointmentsByTime($start_time, $endTime) {
-        $query = $this->db->prepare("SELECT * FROM appointment WHERE TIME(date) <= ");
-    } */
-
     public function saveAppointment($date, $duration, $reason, $doctorId, $statusId, $userId) {
         $query = $this->db->prepare("INSERT INTO appointment(date, duration, reason, doctor_id, status_id, user_id) VALUES(?,?,?,?,?,?)");
         $query->execute([$date, $duration, $reason, $doctorId, $statusId, $userId]);
+    }
+
+    public function rescheduleAppointment($date, $duration, $reason, $statusId, $doctorId, $appointmentId) {
+        $query = $this->db->prepare("UPDATE appointment SET date = ?, duration = ?, reason = ?, status_id = ?, doctor_id = ? WHERE id = ?");
+        $query->execute([$date, $duration, $reason, $statusId, $doctorId, $appointmentId]);
     }
 }
 ?>

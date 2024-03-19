@@ -27,8 +27,10 @@
 
             {if $appointment->status eq "to be confirmed" || $appointment->status eq "confirmed"}
                 <div class="appointmentBtns">
-                    <button>Cancel</button>
-                    <button>Reschedule</button>
+                    <button type="button">Cancel</button>
+                    <a href="{$baseUrl}appointment/{$appointment->id}/reschedule">
+                        <button type="button">Reschedule</button>
+                    </a>
                 </div>
             {/if}
         </li>

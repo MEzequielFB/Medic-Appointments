@@ -7,8 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const doctorBtn = document.querySelector(".doctorBtn");
     doctorBtn.addEventListener("click", showDoctors);
 
-    const scheduleBtn = document.querySelector(".scheduleBtn");
-    scheduleBtn.addEventListener("click", saveAppointment);
+    // try catch because just one of the button can be render on the tpl (saveAppointment.tpl). Prevents the application to stop
+    try {
+        const scheduleBtn = document.querySelector(".scheduleBtn");
+        scheduleBtn.addEventListener("click", saveAppointment);
+    } catch (error) {
+        console.warn(error);
+    }
+
+    try {
+        const rescheduleBtn = document.querySelector(".rescheduleBtn");
+        rescheduleBtn.addEventListener("click", rescheduleAppointment);
+    } catch (error) {
+        console.warn(error);
+    }
 
     const doctorsDiv = document.querySelector(".doctorsDiv");
     const doctorsSection = document.querySelector(".doctorsSection");
@@ -212,6 +224,68 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(baseUrl + "api/appointment", {
                 "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                window.location.href = baseUrl + "appointments";
+            } else {
+                const message = await response.text();
+                messageP.innerHTML = message;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function fieldsHaveBeenEntered() {
+        let emptyFields = [];
+
+        const doctorId = chosenDoctor.lastElementChild;
+        if (!doctorId) {
+            emptyFields.push("doctor");
+        }
+
+        if (date.value == "") {
+            emptyFields.push("date");
+        }
+
+        const selectedTime = document.querySelector(".selected");
+        if (!selectedTime) {
+            emptyFields.push("time");
+        }
+
+        if (emptyFields.length != 0) {
+            messageP.innerHTML = "The following fields are empty: " + emptyFields.join(", ");
+            return false;
+        }
+
+        return true;
+    }
+
+    async function rescheduleAppointment() {
+        if (!fieldsHaveBeenEntered()) {
+            return;
+        }
+
+        const selectedTime = document.querySelector(".selected");
+        const doctorId = chosenDoctor.lastElementChild;
+        console.log("Date: ", `${date.value} ${selectedTime.innerHTML}`);
+
+        let data = {
+            "date": `${date.value} ${selectedTime.innerHTML}`,
+            "duration": 30,
+            "reason": "consultation",
+            "doctorId": doctorId.value,
+        };
+
+        try {
+            // window.location.pathname.split( '/' )[3] is the id of the appointment from the url path
+            const response = await fetch(baseUrl + `api/appointment/${window.location.pathname.split( '/' )[3]}/reschedule`, {
+                "method": "PUT",
                 "headers": {
                     "Content-Type": "application/json"
                 },

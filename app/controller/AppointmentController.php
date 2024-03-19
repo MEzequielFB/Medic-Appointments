@@ -1,17 +1,21 @@
 <?php
 require_once "app/controller/Controller.php";
 require_once "app/controller/AuthHelper.php";
+require_once "app/controller/TimesHelper.php";
 require_once "app/model/AppointmentModel.php";
 require_once "app/model/StatusModel.php";
+require_once "app/model/DoctorModel.php";
 require_once "app/view/AppointmentView.php";
 
 class AppointmentController extends Controller {
     private $statusModel;
+    private $doctorModel;
     private $authHelper;
 
     function __construct() {
         $this->model = new AppointmentModel();
         $this->statusModel = new StatusModel();
+        $this->doctorModel = new DoctorModel();
         $this->view = new AppointmentView();
         $this->authHelper = new AuthHelper();
 
@@ -28,6 +32,35 @@ class AppointmentController extends Controller {
 
     public function showAppointmentCreation() {
         $this->view->showAppointmentCreation();
+    }
+
+    public function showAppointmentReschedule($params = null) {
+        $appointmentId = $params[":ID"];
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        if (!$appointment) {
+            header("Location: " . BASE_URL . "appointments");
+        }
+
+        if ($appointment->status != "to be confirmed" && $appointment->status != "confirmed") {
+            header("Location: " . BASE_URL . "appointments");
+        }
+
+        // Only admins and superadmins can reschedule non consultation appointments
+        if (strtolower($appointment->reason) != "consultation" && ($this->authHelper->getUserRole() != "ADMIN" && $this->authHelper->getUserRole() != "SUPERADMIN")) {
+            header("Location: " . BASE_URL . "appointments");
+        }
+
+        $doctor = $this->doctorModel->findDoctorById($appointment->doctor_id);
+        if (!$doctor) {
+            header("Location: " . BASE_URL . "appointments");
+        }
+
+        $doctorAppointmentsTime = $this->model->findAppointmentsTimeByDateAndDoctor($appointment->date, $appointment->doctor_id);
+        $timesHelper = new TimesHelper($doctor);
+
+        $availableDoctorTimes = $timesHelper->getAvailableTimes($doctorAppointmentsTime);
+
+        $this->view->showAppointmentCreation($appointment, $availableDoctorTimes);
     }
 }
 ?>

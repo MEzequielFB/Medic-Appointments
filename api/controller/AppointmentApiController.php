@@ -71,5 +71,23 @@ class AppointmentApiController extends ApiController {
         
         $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
     }
-}
+
+    public function rescheduleAppointment($params = null) {
+        $appointmentId = $params[":ID"];
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        if (!$appointment) {
+            return $this->view->response("The appointment with id '$appointmentId' doesn't exist", 404);
+        }
+
+        $requestData = $this->getRequestData();
+        $status = $this->statusModel->findStatusByName("to be confirmed");
+        if (!$status) {
+            return $this->view->response("Server Error", 500);
+        }
+
+        $this->model->rescheduleAppointment($requestData->date, $requestData->duration, $requestData->reason, $status->id, $requestData->doctorId, $appointmentId);
+
+        $this->view->response("Appointment rescheduled succesfully", 200);
+    }
+}   
 ?>
