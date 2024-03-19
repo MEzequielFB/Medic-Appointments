@@ -4,11 +4,18 @@ require_once "app/model/SpecializationModel.php";
 require_once "app/model/HospitalModel.php";
 require_once "app/view/DoctorView.php";
 require_once "app/controller/Controller.php";
+require_once "app/controller/AuthHelper.php";
 
 class DoctorController extends Controller {
+    private $authHelper;
+
     function __construct() {
         $this->model = new DoctorModel();
-        $this->view = new DoctorView();
+
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkIsAdmin();
+
+        $this->view = new DoctorView($this->authHelper->getUserUsername());
     }
 
     public function showDoctorCreation() {

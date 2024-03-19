@@ -1,12 +1,18 @@
 <?php
 require_once "app/controller/Controller.php";
+require_once "app/controller/AuthHelper.php";
 require_once "app/view/HospitalView.php";
 
 class HospitalController extends Controller {
+    private $authHelper;
 
     function __construct() {
         $this->model = new HospitalModel();
-        $this->view = new HospitalView();
+
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkIsAdmin();
+
+        $this->view = new HospitalView($this->authHelper->getUserUsername());
     }
 
     public function showHospitalCreation() {

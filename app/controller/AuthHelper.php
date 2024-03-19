@@ -23,6 +23,13 @@ class AuthHelper {
         }
     }
 
+    public function checkIsAdmin() {
+        if (!isset($_SESSION["ROLE"]) || ($_SESSION["ROLE"] != "ADMIN" && $_SESSION["ROLE"] != "SUPERADMIN")) {
+            header("Location: " . BASE_URL . "appointments");
+            die();
+        }
+    }
+
     public function isUserLogged() {
         return isset($_SESSION["ID"]);
     }

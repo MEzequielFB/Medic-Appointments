@@ -2,10 +2,14 @@
 <link rel="stylesheet" href="{$baseUrl}css/global.css">
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}css/save.css">
+<link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
+
 <script src="{$baseUrl}js/saveDoctor.js"></script>
+<script src="{$baseUrl}js/nav.js"></script>
 </head>
 
 {include file="header.tpl"}
+{include file="dashboard.tpl"}
 
 <h1>Save doctor</h1>
 

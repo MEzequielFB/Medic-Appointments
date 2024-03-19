@@ -1,13 +1,19 @@
 <?php
 require_once "app/controller/Controller.php";
+require_once "app/controller/AuthHelper.php";
 require_once "app/model/SpecializationModel.php";
 require_once "app/view/SpecializationView.php";
 
 class SpecializationController extends Controller {
+    private $authHelper;
 
     function __construct() {
         $this->model = new SpecializationModel();
-        $this->view = new SpecializationView();
+
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkIsAdmin();
+
+        $this->view = new SpecializationView($this->authHelper->getUserUsername());
     }
 
     public function showSpecializationCreation(){
