@@ -14,14 +14,14 @@ class UserModel {
     }
 
     public function findUserById($id) {
-        $query = $this->db->prepare("SELECT * FROM user WHERE id = ?");
+        $query = $this->db->prepare("SELECT u.*, r.name AS role FROM user u JOIN role r ON u.role_id = r.id WHERE id = ?");
         $query->execute([$id]);
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
     public function findUserByEmail($email) {
-        $query = $this->db->prepare("SELECT * FROM user WHERE email = ?");
+        $query = $this->db->prepare("SELECT u.*, r.name AS role FROM user u JOIN role r ON u.role_id = r.id WHERE email = ?");
         $query->execute([$email]);
 
         return $query->fetch(PDO::FETCH_OBJ);
