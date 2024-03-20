@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{$baseUrl}css/global.css">
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}css/save.css">
+<link rel="stylesheet" href="{$baseUrl}/css/hospitals.css">
 <link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
 
 <script src="{$baseUrl}js/nav.js"></script>
@@ -19,3 +20,12 @@
     <button type="submit">Save</button>
 </form>
 <p class="errorMsg">{$errorMsg}</p>
+
+<section class="hospitalsSection">
+    {foreach from=$hospitals item=hospital}
+        <article>
+            <h1>{$hospital->name}</h1>
+            <p>{$hospital->address}</p>
+        </article>
+    {/foreach}
+</section>

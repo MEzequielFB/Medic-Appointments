@@ -13,17 +13,19 @@ class SpecializationController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new SpecializationView($this->authHelper->getUserUsername());
+        $this->view = new SpecializationView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
     }
 
     public function showSpecializationCreation(){
-        $this->view->showSpecializationCreation();
+        $specializations = $this->model->findAllSpecializations();
+        $this->view->showSpecializationCreation($specializations);
     }
 
     public function saveSpecialization() {
         $emptyFields = $this->checkRequiredFields(["name"]);
         if (!empty($emptyFields)) {
-            $this->view->showSpecializationCreation("The following fields are empty: " . implode(", ", $emptyFields));
+            $specializations = $this->model->findAllSpecializations();
+            $this->view->showSpecializationCreation($specializations, "The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
@@ -31,7 +33,8 @@ class SpecializationController extends Controller {
 
         $specialization = $this->model->findSpecializationByName($name);
         if ($specialization) {
-            $this->view->showSpecializationCreation("A specialization with the name '$name' already exists");
+            $specializations = $this->model->findAllSpecializations();
+            $this->view->showSpecializationCreation($specializations, "A specialization with the name '$name' already exists");
             die();
         }
 

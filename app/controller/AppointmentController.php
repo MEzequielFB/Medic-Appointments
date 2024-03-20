@@ -20,7 +20,7 @@ class AppointmentController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkLoggedUser();
 
-        $this->view = new AppointmentView($this->authHelper->getUserUsername());
+        $this->view = new AppointmentView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
     }
 
     public function showAllUpcomingAppointmentsByUser() {

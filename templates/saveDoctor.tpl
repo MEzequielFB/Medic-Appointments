@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}css/save.css">
 <link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
+<link rel="stylesheet" href="{$baseUrl}/css/doctors.css">
 
 <script src="{$baseUrl}js/saveDoctor.js"></script>
 <script src="{$baseUrl}js/nav.js"></script>
@@ -37,3 +38,18 @@
     <button type="submit">Save</button>
 </form>
 <p class="errorMsg">{$errorMsg}</p>
+
+<section class="doctorsSection">
+    {foreach from=$doctors item=doctor}
+        <article class="eligibleDoctor doctor{$doctor->id}">
+            <div>
+                <div>
+                    <h1>Dr. {$doctor->fullname}</h1>
+                    <p>{$doctor->specialization}</p>
+                </div>
+                <p class="hospitalP">{$doctor->hospital}</p>
+            </div>
+            <img src="{$baseUrl}image/profile/{$doctor->image}" alt="doctor's image">
+        </article>
+    {/foreach}
+</section>

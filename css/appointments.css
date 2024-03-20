@@ -92,58 +92,6 @@ p.success {
 .doctorsDiv input::placeholder {
     color: var(--white-transparent);
 }
-.doctorsDiv section {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.doctorsDiv article, .chosenDoctor {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin: 0 0 4% 0;
-    padding: 3%;
-    border: 2px solid var(--white);
-    border-radius: var(--soft-radius);
-    text-transform: capitalize;
-}
-.chosenDoctor {
-    margin: 0 auto 0 auto;
-}
-.doctorsDiv article h1, .doctorsDiv article p, .chosenDoctor h1, .chosenDoctor p {
-    display: inline-block;
-    max-height: max-content;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.doctorsDiv article > div, .chosenDoctor > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    max-width: 50%;
-}
-.doctorsDiv article h1, .chosenDoctor h1 {
-    margin: 0 0 1% 0;
-    font-weight: 900;
-    font-size: larger;
-    text-align: start;
-}
-.doctorsDiv article p, .chosenDoctor p {
-    margin: 0 0 10% 0;
-    opacity: 0.7;
-    font-size: medium;
-}
-.doctorsDiv article p.hospitalP, .chosenDoctor p.hospitalP {
-    opacity: 1;
-    margin: 0;
-    font-size: large;
-}
-.doctorsDiv article img, .chosenDoctor img {
-    width: 50%;
-    height: 100%;
-}
 .hidden {
     display: none;
 }

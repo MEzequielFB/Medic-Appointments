@@ -1,0 +1,26 @@
+.hospitalsSection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    margin: 0 0 3% 0;
+    padding: 3%;
+    border: 2px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+article h1, article p {
+    text-align: center;
+    margin: auto;
+}
+article h1 {
+    font-size: large;
+    font-weight: 700;
+}
+article p {
+    font-size: medium;
+}

@@ -16,3 +16,11 @@
     <button type="submit">Save</button>
 </form>
 <p class="errorMsg">{$errorMsg}</p>
+
+<section class="specializationsSection">
+    {foreach from=$specializations item=specialization}
+        <article>
+            <h1>{$specialization->name}</h1>
+        </article>
+    {/foreach}
+</section>

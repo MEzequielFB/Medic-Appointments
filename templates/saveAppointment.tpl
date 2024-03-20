@@ -2,6 +2,7 @@
 <base href="{$baseUrl}">
 <link rel="stylesheet" href="{$baseUrl}/css/global.css">
 <link rel="stylesheet" href="{$baseUrl}/css/nav.css">
+<link rel="stylesheet" href="{$baseUrl}/css/doctors.css">
 <link rel="stylesheet" href="{$baseUrl}/css/appointments.css">
 <link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
 

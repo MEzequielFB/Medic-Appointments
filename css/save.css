@@ -6,7 +6,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin: auto auto;
+    margin: 0 auto 15% auto;
 }
 form input, form label, form button {
     margin: 5% 0 0 0;
@@ -35,7 +35,26 @@ form button {
     background-color: var(--secundary);
 }
 p.errorMsg{
-    margin: 5% 0 0 0;
+    margin: 5% 0;
     text-align: center;
     color: var(--striking);
+}
+.specializationsSection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.specializationsSection article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    margin: 0 0 3% 0;
+    padding: 1%;
+    border: 2px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+.specializationsSection h1 {
+    text-transform: capitalize;
+    font-size: larger;
 }

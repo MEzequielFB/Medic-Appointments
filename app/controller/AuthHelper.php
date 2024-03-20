@@ -24,7 +24,7 @@ class AuthHelper {
     }
 
     public function checkIsAdmin() {
-        if (!isset($_SESSION["ROLE"]) || ($_SESSION["ROLE"] != "ADMIN" && $_SESSION["ROLE"] != "SUPERADMIN")) {
+        if (!isset($_SESSION["ROLE"]) || ($_SESSION["ROLE"] != "ADMIN" && $_SESSION["ROLE"] != "SUPER_ADMIN")) {
             header("Location: " . BASE_URL . "appointments");
             die();
         }

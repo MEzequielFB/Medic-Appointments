@@ -15,11 +15,12 @@ class DoctorController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new DoctorView($this->authHelper->getUserUsername());
+        $this->view = new DoctorView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
     }
 
     public function showDoctorCreation() {
-        $this->view->showDoctorCreation();
+        $doctors = $this->model->findAllDoctors();
+        $this->view->showDoctorCreation($doctors);
     }
 
     public function saveDoctor() {
@@ -30,7 +31,8 @@ class DoctorController extends Controller {
         }
 
         if (!empty($emptyFields)) {
-            $this->view->showDoctorCreation("The following fields are empty: " . implode(", ", $emptyFields));
+            $doctors = $this->model->findAllDoctors();
+            $this->view->showDoctorCreation($doctors, "The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
@@ -47,14 +49,16 @@ class DoctorController extends Controller {
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
         if (!$isValidFile) {
-            $this->view->showDoctorCreation("Invalid extension file! Allowed extensions: " . implode(", ", $validExtensions));
+            $doctors = $this->model->findAllDoctors();
+            $this->view->showDoctorCreation($doctors, "Invalid extension file! Allowed extensions: " . implode(", ", $validExtensions));
             die();
         }
 
         $this->model->saveDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital);
 
         if (!move_uploaded_file($tempname, $folder)) {
-            $this->view->showDoctorCreation("Error while uploading image");
+            $doctors = $this->model->findAllDoctors();
+            $this->view->showDoctorCreation($doctors, "Error while uploading image");
             die();
         }
 

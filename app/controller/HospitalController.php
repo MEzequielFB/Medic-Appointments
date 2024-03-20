@@ -12,17 +12,19 @@ class HospitalController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new HospitalView($this->authHelper->getUserUsername());
+        $this->view = new HospitalView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
     }
 
     public function showHospitalCreation() {
-        $this->view->showHospitalCreation();
+        $hospitals = $this->model->findAllHospitals();
+        $this->view->showHospitalCreation($hospitals);
     }
 
     public function saveHospital() {
         $emptyFields = $this->checkRequiredFields(["name", "address"]);
         if (!empty($emptyFields)) {
-            $this->view->showHospitalCreation("The following fields are empty: " . implode(", ", $emptyFields));
+            $hospitals = $this->model->findAllHospitals();
+            $this->view->showHospitalCreation($hospitals, "The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
@@ -31,13 +33,14 @@ class HospitalController extends Controller {
 
         $hospital = $this->model->findHospitalByName($name);
         if ($hospital) {
-            $this->view->showHospitalCreation("A hospital with the name '$name' already exists");
+            $hospitals = $this->model->findAllHospitals();
+            $this->view->showHospitalCreation($hospitals, "A hospital with the name '$name' already exists");
             die();
         }
 
         $this->model->saveHospital($name, $address);
 
-        header("Location " . BASE_URL . "hospital/save");
+        header("Location: " . BASE_URL . "hospital/save");
     }
 }
 ?>
