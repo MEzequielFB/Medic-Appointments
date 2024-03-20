@@ -9,6 +9,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const hospitalSelect = document.querySelector("#hospital");
     const errorMsgP = document.querySelector(".errorMsg");
 
+    const doctorsSection = document.querySelector(".doctorsSection");
+    for (let doctorArticle of doctorsSection.children) {
+        doctorArticle.addEventListener(/* "dblclick" */"click", () => {
+            // doctor's id
+            showDoctorEdit(doctorArticle.className.charAt(doctorArticle.className.length-1));
+        });
+    }
+
+    async function showDoctorEdit(doctorId) {
+        form.scrollIntoView({
+            "behavior": "smooth",
+            "block": "start"
+        });
+        
+        try {
+            const response = await fetch(baseUrl + `api/doctor/${doctorId}`);
+            if (response.ok) {
+                const doctor = await response.json();
+                
+                document.querySelector("#fullname").value = doctor.fullname;
+                for (let option of specializationSelect.options) {
+                    if (option.value == doctor.specialization_id) {
+                        option.selected = "selected";
+                        break;
+                    }
+                }
+
+                for (let option of hospitalSelect.options) {
+                    if (option.value == doctor.hospital_id) {
+                        option.selected = "selected";
+                        break;
+                    }
+                }
+
+                document.querySelector("#startTime").value = doctor.start_time;
+                document.querySelector("#endTime").value = doctor.end_time;
+            } else {
+                const msg = await response.text();
+                errorMsgP.innerHTML = msg;
+            }
+        } catch (error) {
+            console.error(error);
+            errorMsgP.innerHTML = "Error showing doctor's edit form";
+        }
+    }
+
     async function findAllSpecializations() {
         try {
             const response = await fetch(baseUrl + "api/specialization");

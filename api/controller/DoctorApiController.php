@@ -18,6 +18,16 @@ class DoctorApiController extends ApiController {
         $this->view->response($doctors, 200);
     }
 
+    public function findDoctorById($params = null) {
+        $doctorId = $params[":ID"];
+        $doctor = $this->model->findDoctorById($doctorId);
+        if (!$doctor) {
+            return $this->view->response("The doctor with id '$doctorId' doesn't exist", 404);
+        }
+
+        return $this->view->response($doctor, 200);
+    }
+
     public function findAllDoctorsByFilter() {
         $requestData = $this->getRequestData();
         $doctors = [];

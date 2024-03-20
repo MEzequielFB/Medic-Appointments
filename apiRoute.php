@@ -15,6 +15,7 @@ $router->addRoute("appointment/:ID/reschedule", "PUT", "AppointmentApiController
 
 // Doctor
 $router->addRoute("doctor", "GET", "DoctorApiController", "findAllDoctors");
+$router->addRoute("doctor/:ID", "GET", "DoctorApiController", "findDoctorById");
 $router->addRoute("doctor/search", "POST", "DoctorApiController", "findAllDoctorsByFilter");
 $router->addRoute("doctor/:ID/times", "POST", "DoctorApiController", "findAllAvailableDoctorTimes");
 
