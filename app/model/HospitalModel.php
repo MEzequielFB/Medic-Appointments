@@ -20,9 +20,21 @@ class HospitalModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findHospitalById($hospitalId) {
+        $query = $this->db->prepare("SELECT * FROM hospital WHERE id = ?");
+        $query->execute([$hospitalId]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function saveHospital($name, $address) {
         $query = $this->db->prepare("INSERT INTO hospital(name, address) VALUES(?,?)");
         $query->execute([$name, $address]);
+    }
+
+    public function updateHospital($name, $address, $hospitalId) {
+        $query = $this->db->prepare("UPDATE hospital SET name = ?, address = ? WHERE id = ?");
+        $query->execute([$name, $address, $hospitalId]);
     }
 }
 ?>

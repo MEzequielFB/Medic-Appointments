@@ -40,6 +40,7 @@ $router->addRoute("specialization/:ID/update", "POST", "SpecializationController
 // Hospital
 $router->addRoute("hospital/save", "GET", "HospitalController", "showHospitalCreation");
 $router->addRoute("hospital", "POST", "HospitalController", "saveHospital");
+$router->addRoute("hospital/:ID/update", "POST", "HospitalController", "updateHospital");
 
 $router->route($_GET["action"], $_SERVER["REQUEST_METHOD"]);
 ?>

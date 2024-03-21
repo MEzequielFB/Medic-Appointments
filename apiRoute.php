@@ -25,6 +25,7 @@ $router->addRoute("specialization/:ID", "GET", "SpecializationApiController", "f
 
 // Hospital
 $router->addRoute("hospital", "GET", "HospitalApiController", "findAllHospitals");
+$router->addRoute("hospital/:ID", "GET", "HospitalApiController", "findHospitalById");
 
 $router->route($_GET["resource"], $_SERVER["REQUEST_METHOD"]);
 ?>

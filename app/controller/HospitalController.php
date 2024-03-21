@@ -42,5 +42,36 @@ class HospitalController extends Controller {
 
         header("Location: " . BASE_URL . "hospital/save");
     }
+
+    public function updateHospital($params = null) {
+        $hospitalId = $params[":ID"];
+        $hospital = $this->model->findHospitalById($hospitalId);
+        if (!$hospital) {
+            $hospitals = $this->model->findAllHospitals();
+            $this->view->showHospitalCreation($hospitals, "The specified hospital doesn't exist");
+            die();
+        }
+
+        $emptyFields = $this->checkRequiredFields(["name", "address"]);
+        if (!empty($emptyFields)) {
+            $hospitals = $this->model->findAllHospitals();
+            $this->view->showHospitalCreation($hospitals, "The following fields are empty: " . implode(", ", $emptyFields));
+            die();
+        }
+
+        $name = $_POST["name"];
+        $address = $_POST["address"];
+
+        $hospital = $this->model->findHospitalByName($name);
+        if ($hospital) {
+            $hospitals = $this->model->findAllHospitals();
+            $this->view->showHospitalCreation($hospitals, "A hospital with the name '$name' already exists");
+            die();
+        }
+
+        $this->model->updateHospital($name, $address, $hospitalId);
+
+        header("Location: " . BASE_URL . "hospital/save");
+    }
 }
 ?>
