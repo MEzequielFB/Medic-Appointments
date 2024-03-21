@@ -15,8 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const specializations = document.querySelectorAll(".eligibleSpecialization");
     for (let specialization of specializations) {
         specialization.addEventListener("click", () => {
-            const specializationId = specialization.className.charAt(specialization.className.length-1);
-            showSpecializationEdit(specializationId);
+            if (!specialization.classList.contains("selected")) {
+                removeSelected();
+
+                const specializationId = specialization.className.charAt(specialization.className.length-1);
+                specialization.classList.add("selected");
+                showSpecializationEdit(specializationId);
+            }
         });
     }
 
@@ -58,6 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error(error);
             showSpecializationSave();
+        }
+    }
+
+    function removeSelected() {
+        for (let specialization of specializations) {
+            specialization.classList.remove("selected");
         }
     }
 });

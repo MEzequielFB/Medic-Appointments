@@ -18,11 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelBtn = document.querySelector(".cancelBtn");
     cancelBtn.addEventListener("click", showDoctorSave)
 
-    const doctorsSection = document.querySelector(".doctorsSection");
-    for (let doctorArticle of doctorsSection.children) {
-        doctorArticle.addEventListener(/* "dblclick" */"click", () => {
-            // doctor's id
-            showDoctorEdit(doctorArticle.className.charAt(doctorArticle.className.length-1));
+    const doctors = document.querySelector(".doctorsSection").children;
+    for (let doctor of doctors) {
+        doctor.addEventListener("click", () => {
+            if (!doctor.classList.contains("selected")) {
+                removeSelected();
+
+                // doctor's id
+                const doctorId = doctor.className.charAt(doctor.className.length-1);
+                doctor.classList.add("selected");
+                showDoctorEdit(doctorId);
+
+            }
         });
     }
 
@@ -38,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         fullnameField.value = "";
         startTimeField.value = "";
-        endTimeField = "";
+        endTimeField.value = "";
 
         form.action = baseUrl + "doctor";
     }
@@ -138,5 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function removeSelected() {
+        for (let doctor of doctors) {
+            doctor.classList.remove("selected");
+        }
+    }
+
     renderOptions();
+    
 });

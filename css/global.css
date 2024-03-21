@@ -31,3 +31,6 @@ button {
 .hidden {
     display: none;
 }
+img {
+    border-radius: var(--soft-radius);
+}
