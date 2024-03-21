@@ -39,6 +39,17 @@ p.errorMsg{
     text-align: center;
     color: var(--striking);
 }
+select {
+    text-transform: capitalize;
+}
+.formBtns {
+    display: flex;
+    justify-content: space-between;
+}
+.cancelBtn {
+    border: 1px solid var(--white);
+    background-color: var(--white-transparent);
+}
 .specializationsSection {
     display: flex;
     justify-content: space-around;

@@ -12,7 +12,7 @@
 {include file="header.tpl"}
 {include file="dashboard.tpl"}
 
-<h1>Save doctor</h1>
+<h1 class="pageHeader">Save doctor</h1>
 
 <form action="{$baseUrl}doctor" method="post" enctype="multipart/form-data" class="saveDoctorForm">
     <input type="text" name="fullname" id="fullname" placeholder="Fullname">
@@ -35,7 +35,10 @@
     
     <input type="file" name="image" id="image">
 
-    <button type="submit">Save</button>
+    <div class="formBtns">
+        <button type="button" class="cancelBtn hidden">Cancel</button>
+        <button type="submit" class="saveBtn">Save</button>
+    </div>
 </form>
 <p class="errorMsg">{$errorMsg}</p>
 

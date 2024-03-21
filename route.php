@@ -30,6 +30,7 @@ $router->addRoute("appointment/:ID/cancel", "GET", "AppointmentController", "can
 // Doctor
 $router->addRoute("doctor/save", "GET", "DoctorController", "showDoctorCreation");
 $router->addRoute("doctor", "POST", "DoctorController", "saveDoctor");
+$router->addRoute("doctor/:ID/update", "POST", "DoctorController", "updateDoctor");
 
 // Specialization
 $router->addRoute("specialization/save", "GET", "SpecializationController", "showSpecializationCreation");

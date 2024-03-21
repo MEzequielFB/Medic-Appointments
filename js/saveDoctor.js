@@ -8,6 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const specializationSelect = document.querySelector("#specialization");
     const hospitalSelect = document.querySelector("#hospital");
     const errorMsgP = document.querySelector(".errorMsg");
+    const pageHeader = document.querySelector(".pageHeader");
+    const saveBtn = document.querySelector(".saveBtn");
+
+    const fullnameField = document.querySelector("#fullname");
+    const startTimeField = document.querySelector("#startTime");
+    const endTimeField = document.querySelector("#endTime");
+
+    const cancelBtn = document.querySelector(".cancelBtn");
+    cancelBtn.addEventListener("click", showDoctorSave)
 
     const doctorsSection = document.querySelector(".doctorsSection");
     for (let doctorArticle of doctorsSection.children) {
@@ -17,8 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function showDoctorSave() {
+        pageHeader.scrollIntoView({
+            "behavior": "smooth",
+            "block": "start"
+        });
+
+        pageHeader.innerHTML = "Save doctor";
+        saveBtn.innerHTML = "Save";
+        cancelBtn.classList.add("hidden");
+
+        fullnameField.value = "";
+        startTimeField.value = "";
+        endTimeField = "";
+
+        form.action = baseUrl + "doctor";
+    }
+
     async function showDoctorEdit(doctorId) {
-        form.scrollIntoView({
+        pageHeader.scrollIntoView({
             "behavior": "smooth",
             "block": "start"
         });
@@ -27,8 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(baseUrl + `api/doctor/${doctorId}`);
             if (response.ok) {
                 const doctor = await response.json();
+                pageHeader.innerHTML = "Edit doctor";
+                saveBtn.innerHTML = "Edit";
+                cancelBtn.classList.remove("hidden");
+
+                form.action = baseUrl + `doctor/${doctor.id}/update`;
                 
-                document.querySelector("#fullname").value = doctor.fullname;
+                fullnameField.value = doctor.fullname;
                 for (let option of specializationSelect.options) {
                     if (option.value == doctor.specialization_id) {
                         option.selected = "selected";
@@ -43,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
-                document.querySelector("#startTime").value = doctor.start_time;
-                document.querySelector("#endTime").value = doctor.end_time;
+                startTimeField.value = doctor.start_time;
+                endTimeField.value = doctor.end_time;
             } else {
                 const msg = await response.text();
                 errorMsgP.innerHTML = msg;
@@ -52,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error(error);
             errorMsgP.innerHTML = "Error showing doctor's edit form";
+            showDoctorSave();
         }
     }
 

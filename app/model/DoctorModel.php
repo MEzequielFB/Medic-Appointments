@@ -49,5 +49,10 @@ class DoctorModel {
 
         return $this->db->lastInsertId();
     }
+
+    public function updateDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital, $doctorId) {
+        $query = $this->db->prepare("UPDATE doctor SET fullname = ?, image = ?, start_time = ?, end_time = ?, specialization_id = ?, hospital_id = ? WHERE id = ?");
+        $query->execute([$fullname, $filename, $startTime, $endTime, $specialization, $hospital, $doctorId]);
+    }
 }
 ?>
