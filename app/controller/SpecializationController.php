@@ -42,5 +42,35 @@ class SpecializationController extends Controller {
 
         header("Location: " . BASE_URL . "specialization/save");
     }
+
+    public function updateSpecialization($params = null) {
+        $specializationId = $params[":ID"];
+        $specialization = $this->model->findSpecializationById($specializationId);
+        if (!$specialization) {
+            $specializations = $this->model->findAllSpecializations();
+            $this->view->showSpecializationCreation($specializations, "The specified specialization doesn't exist");
+            die();
+        }
+
+        $emptyFields = $this->checkRequiredFields(["name"]);
+        if (!empty($emptyFields)) {
+            $specializations = $this->model->findAllSpecializations();
+            $this->view->showSpecializationCreation($specializations, "The following fields are empty: " . implode(", ", $emptyFields));
+            die();
+        }
+
+        $name = $_POST["name"];
+
+        $specialization = $this->model->findSpecializationByName($name);
+        if ($specialization) {
+            $specializations = $this->model->findAllSpecializations();
+            $this->view->showSpecializationCreation($specializations, "A specialization with the name '$name' already exists");
+            die();
+        }
+
+        $this->model->updateSpecialization($name, $specializationId);
+
+        header("Location: " . BASE_URL . "specialization/save");
+    }
 }
 ?>

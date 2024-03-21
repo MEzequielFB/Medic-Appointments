@@ -21,6 +21,7 @@ $router->addRoute("doctor/:ID/times", "POST", "DoctorApiController", "findAllAva
 
 // Specialization
 $router->addRoute("specialization", "GET", "SpecializationApiController", "findAllSpecializations");
+$router->addRoute("specialization/:ID", "GET", "SpecializationApiController", "findSpecializationById");
 
 // Hospital
 $router->addRoute("hospital", "GET", "HospitalApiController", "findAllHospitals");

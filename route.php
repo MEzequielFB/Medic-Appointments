@@ -35,6 +35,7 @@ $router->addRoute("doctor/:ID/update", "POST", "DoctorController", "updateDoctor
 // Specialization
 $router->addRoute("specialization/save", "GET", "SpecializationController", "showSpecializationCreation");
 $router->addRoute("specialization", "POST", "SpecializationController", "saveSpecialization");
+$router->addRoute("specialization/:ID/update", "POST", "SpecializationController", "updateSpecialization");
 
 // Hospital
 $router->addRoute("hospital/save", "GET", "HospitalController", "showHospitalCreation");
