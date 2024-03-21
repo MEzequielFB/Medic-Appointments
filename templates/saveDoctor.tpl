@@ -1,9 +1,9 @@
 {include file="head.tpl"}
 <link rel="stylesheet" href="{$baseUrl}css/global.css">
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
+<link rel="stylesheet" href="{$baseUrl}/css/doctors.css">
 <link rel="stylesheet" href="{$baseUrl}css/save.css">
 <link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
-<link rel="stylesheet" href="{$baseUrl}/css/doctors.css">
 
 <script src="{$baseUrl}js/saveDoctor.js"></script>
 <script src="{$baseUrl}js/nav.js"></script>

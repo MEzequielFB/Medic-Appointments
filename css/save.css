@@ -69,3 +69,6 @@ select {
     text-transform: capitalize;
     font-size: larger;
 }
+article.selected {
+    border-color: var(--secundary);
+}

@@ -16,8 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const hospitals = document.querySelectorAll(".eligibleHospital");
     for (let hospital of hospitals) {
         hospital.addEventListener("click", () => {
-            const hospitalId = hospital.className.charAt(hospital.className.length-1);
-            showHospitalEdit(hospitalId);
+            if (!hospital.classList.contains("selected")) {
+                removeSelected();
+
+                const hospitalId = hospital.className.charAt(hospital.className.length-1);
+                hospital.classList.add("selected");
+                showHospitalEdit(hospitalId);
+            }
         });
     }
 
@@ -64,4 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function removeSelected() {
+        for (let hospital of hospitals) {
+            hospital.classList.remove("selected");
+        }
+    }
 });
