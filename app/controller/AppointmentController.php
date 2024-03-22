@@ -73,6 +73,12 @@ class AppointmentController extends Controller {
         $this->view->showAppointmentCreation($appointment, $availableDoctorTimes);
     }
 
+    // ADMIN - SUPER_ADMIN
+    public function showAppointmentsManage() {
+        $this->authHelper->checkIsAdmin();
+        $this->view->showAppointmentsManage();
+    }
+
     public function cancelAppointment($params = null) {
         $appointmentId = $params[":ID"];
         $appointment = $this->model->findAppointmentById($appointmentId);

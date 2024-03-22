@@ -1,4 +1,4 @@
-.doctorBtn, .scheduleBtn, .rescheduleBtn {
+.doctorBtn, .scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
     display: block;
     width: 60%;
     margin: 5% auto;
@@ -7,7 +7,7 @@
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.scheduleBtn, .rescheduleBtn {
+.scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
     width: 35%;
     padding: 3%;
     background-color: var(--secundary);
@@ -16,7 +16,7 @@ h1 {
     text-align: center;
     font-size: xx-large;
 }
-.date {
+.date, .dateSearch, .statusSearch {
     padding: 2%;
     width: 60%;
     color: var(--white);
@@ -80,7 +80,7 @@ p.success {
 .doctorsDiv h1, .chosenDoctor h1  {
     margin: 10% 0 0 0;
 }
-.doctorsDiv input {
+.doctorSearch, .appointmentSearch {
     display: block;
     width: 80%;
     margin: 5% auto 10% auto;
@@ -89,7 +89,7 @@ p.success {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.doctorsDiv input::placeholder {
+.doctorSearch::placeholder, .appointmentSearch::placeholder {
     color: var(--white-transparent);
 }
 .hidden {
@@ -175,7 +175,10 @@ h2 {
     opacity: 0.7;
 }
 .doctorInfo img {
-    width: 40%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
 }
 .appointment ul {
     display: flex;
@@ -215,4 +218,27 @@ h2 {
 }
 .appointmentBtns button:last-child {
     background-color: var(--primary);
+}
+
+/* Appointments manager */
+
+.appointmentsSearchForm {
+    padding: 2%;
+    border: 2px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+.appointmentSearch {
+    margin: 5% auto;
+}
+.appointmentsSearchForm div {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
+.statusSearch, .dateSearch {
+    width: 40%;
+}
+.appointmentsSearchForm button {
+    display: block;
+    margin: 10% auto 2% auto;
 }

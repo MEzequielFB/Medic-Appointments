@@ -38,8 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const doctorSearch = document.querySelector(".doctorSearch");
     doctorSearch.addEventListener("input", searchDoctors);
 
-    const date = document.querySelector(".date");
-    date.addEventListener("input", getAvailableTimesByDateAndDoctor);
+    try {
+        const date = document.querySelector(".date");
+        date.addEventListener("input", getAvailableTimesByDateAndDoctor);
+    } catch (error) {
+        console.warn(error);
+    }
 
     const messageP = document.querySelector(".message");
 
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 setTimeout(() => {
                     renderDoctors(doctors);
-                }, 2000);
+                }, 1000);
             } else {
                 doctorsSection.innerHTML = "<p class='message'>Error while fetching doctors</p>";
             }
@@ -85,6 +89,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         addDoctorsBehavior();
+    }
+
+    function addDoctorsBehavior() {
+        const doctors = document.querySelectorAll(".eligibleDoctor");
+        doctors.forEach(doctor => {
+            doctor.addEventListener("click", async () => { // Choose doctor
+                chosenDoctor.innerHTML = doctor.innerHTML;
+                const doctorId = doctor.className.charAt(doctor.className.length-1);
+                chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
+
+                if (date.value != "") {
+                    getAvailableTimesByDateAndDoctor();
+                }
+
+                chosenDoctor.classList.remove("hidden");
+                dateDiv.classList.remove("hidden");
+                doctorsDiv.classList.remove("visible");
+            });
+        });
     }
 
     async function getAvailableTimesByDateAndDoctor() {
@@ -135,25 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 time.classList.add("selected");
             })
         }
-    }
-
-    function addDoctorsBehavior() {
-        const doctors = document.querySelectorAll(".eligibleDoctor");
-        doctors.forEach(doctor => {
-            doctor.addEventListener("click", async () => { // Choose doctor
-                chosenDoctor.innerHTML = doctor.innerHTML;
-                const doctorId = doctor.className.charAt(doctor.className.length-1);
-                chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
-
-                if (date.value != "") {
-                    getAvailableTimesByDateAndDoctor();
-                }
-
-                chosenDoctor.classList.remove("hidden");
-                dateDiv.classList.remove("hidden");
-                doctorsDiv.classList.remove("visible");
-            });
-        });
     }
 
     async function searchDoctors() {

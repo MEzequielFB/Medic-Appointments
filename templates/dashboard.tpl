@@ -11,6 +11,7 @@
             <li><a href="{$baseUrl}appointments">HOME</a></li>
 
             {if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
+                <li><a href="{$baseUrl}appointments/manage">MANAGE APPOINTMENTS</a></li>
                 <li><a href="{$baseUrl}doctor/save">DOCTORS</a></li>
                 <li><a href="{$baseUrl}hospital/save">HOSPITALS</a></li>
                 <li><a href="{$baseUrl}specialization/save">SPECIALIZATIONS</a></li>

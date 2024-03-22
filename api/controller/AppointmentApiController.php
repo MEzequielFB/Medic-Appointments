@@ -32,6 +32,13 @@ class AppointmentApiController extends ApiController {
         $this->view->response($appointents, 200);
     }
 
+    public function findAllAppointmentsByDoctor($params = null) {
+        $doctorId = $params[":DOCTOR_ID"];
+        $appointments = $this->model->findAllAppointmentsByDoctor($doctorId);
+
+        return $this->view->response($appointments, 200);
+    }
+
     public function saveAppointment() {
         $emptyFields = $this->checkRequiredFields(["date", "duration", "reason", "doctorId"]);
         if (!empty($emptyFields)) {

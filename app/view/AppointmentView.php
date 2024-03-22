@@ -30,5 +30,11 @@ class AppointmentView {
 
         $this->smarty->display("templates/saveAppointment.tpl");
     }
+
+    public function showAppointmentsManage() {
+        $this->smarty->assign("title", "Appointments manager");
+
+        $this->smarty->display("templates/appointmentsManage.tpl");
+    }
 }
 ?>
