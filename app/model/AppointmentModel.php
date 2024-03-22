@@ -102,7 +102,8 @@ class AppointmentModel {
         $query = $this->db->prepare("SELECT TIME(date) AS hour, duration
             FROM appointment
             WHERE DATE(date) = ?
-            AND doctor_id = ?");
+            AND doctor_id = ?
+            ORDER BY DATE(a.date), TIME(a.date)");
         $query->execute([$date, $doctorId]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
@@ -115,7 +116,8 @@ class AppointmentModel {
         JOIN specialization sp ON d.specialization_id = sp.id
         JOIN status s ON a.status_id = s.id
         JOIN hospital h ON d.hospital_id = h.id
-        WHERE a.doctor_id = ?");
+        WHERE a.doctor_id = ?
+        ORDER BY DATE(a.date), TIME(a.date)");
         $query->execute([$doctorId]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
@@ -134,9 +136,10 @@ class AppointmentModel {
             OR DATE(a.date) = ?
             OR a.status_id = ?
         )
-        AND a.doctor_id = ?");
+        AND a.doctor_id = ?
+        ORDER BY DATE(a.date), TIME(a.date)");
         $query->execute([$username, $date, $statusId, $doctorId]);
-        
+
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
