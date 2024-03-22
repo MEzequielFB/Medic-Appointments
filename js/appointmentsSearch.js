@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div>
                             <h1>${appointment.doctor_name}<h1>
                             <p>${appointment.doctor_specialization} - ${appointment.doctor_hospital}</p>
+                            <p>Pacient: ${appointment.user_username}</p>
                         </div>
 
                         <img src="image/profile/${appointment.doctor_image}">

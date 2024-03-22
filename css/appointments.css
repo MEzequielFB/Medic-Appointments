@@ -242,3 +242,6 @@ h2 {
     display: block;
     margin: 10% auto 2% auto;
 }
+.appointment div > div {
+    width: 60%;
+}

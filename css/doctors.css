@@ -16,7 +16,7 @@
 .chosenDoctor {
     margin: 0 auto 0 auto;
 }
-.doctorsSection article h1, .doctorsSection article p, .chosenDoctor h1, .chosenDoctor p {
+.doctorsSection article h1, .doctorsSection article p, .chosenDoctor h1, .chosenDoctor p, .appointment p {
     display: inline-block;
     max-height: max-content;
     max-width: 100%;
