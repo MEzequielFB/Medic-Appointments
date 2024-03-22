@@ -20,6 +20,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageP = document.querySelector(".message");
     const appointmentsList = document.querySelector(".appointments");
 
+    const searchForm = document.querySelector(".appointmentsSearchForm");
+    searchForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!chosenDoctor.classList.contains("hidden")) {
+            const data =  {
+                "username": document.querySelector(".usernameSearch").value,
+                "date": document.querySelector(".dateSearch").value,
+                "statusId": document.querySelector(".statusSearch").value,
+                "doctorId": document.querySelector(".doctorId").value // Hidden input value from chosenDoctor
+            }
+
+            try {
+                const response = await fetch(baseUrl + "api/appointment/search", {
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const appointments = await response.json();
+                    renderAppointments(appointments);
+
+                    messageP.innerHTML = "";
+                } else {
+                    messageP.innerHTML = "Error while fetching appointments";
+                }
+            } catch (error) {
+                console.log(error);
+                const message = await response.text();
+                messageP.innerHTML = message;
+            }
+        } else {
+            messageP.innerHTML = "Please choose a doctor";
+        }
+        
+    });
+
     function hideDoctors() {
         doctorsDiv.classList.remove("visible");
     }
@@ -82,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         console.log(appointments);
 
                         renderAppointments(appointments);
+
+                        messageP.innerHTML = "";
                     } else {
                         const message = await response.text();
                         messageP.innerHTML = message;

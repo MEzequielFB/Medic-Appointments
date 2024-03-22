@@ -6,6 +6,13 @@ class StatusModel {
         $this->db = new PDO('mysql:host=localhost;dbname=appointments_db;charset=utf8', 'root', '');
     }
 
+    public function findAllStatus() {
+        $query = $this->db->prepare("SELECT * FROM status");
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findStatusById($id) {
         $query = $this->db->prepare("SELECT * FROM status WHERE id = ?");
         $query->execute([$id]);

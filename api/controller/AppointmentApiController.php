@@ -20,21 +20,33 @@ class AppointmentApiController extends ApiController {
 
     public function findAllCompletedAppointmentsByUser() {
         $userId = $this->authHelper->getUserId();
-        $appointents = $this->model->findAllCompletedAppointmentsByUser($userId);
+        $appointments = $this->model->findAllCompletedAppointmentsByUser($userId);
 
-        $this->view->response($appointents, 200);
+        $this->view->response($appointments, 200);
     }
 
     public function findAllCancelledAppointmentsByUser() {
         $userId = $this->authHelper->getUserId();
-        $appointents = $this->model->findAllCancelledAppointmentsByUser($userId);
+        $appointments = $this->model->findAllCancelledAppointmentsByUser($userId);
 
-        $this->view->response($appointents, 200);
+        $this->view->response($appointments, 200);
     }
 
     public function findAllAppointmentsByDoctor($params = null) {
         $doctorId = $params[":DOCTOR_ID"];
         $appointments = $this->model->findAllAppointmentsByDoctor($doctorId);
+
+        return $this->view->response($appointments, 200);
+    }
+
+    public function findAllAppointmentsByFilter() {
+        $requestData = $this->getRequestData();
+        if ($requestData->username == "" && $requestData->date == "" && $requestData->statusId == "") {
+            $appointments = $this->model->findAllAppointmentsByDoctor($requestData->doctorId);
+            return $this->view->response($appointments, 200);
+        }
+
+        $appointments = $this->model->findAllAppointmentsByFilter($requestData->username, $requestData->date, $requestData->statusId, $requestData->doctorId);
 
         return $this->view->response($appointments, 200);
     }

@@ -76,7 +76,10 @@ class AppointmentController extends Controller {
     // ADMIN - SUPER_ADMIN
     public function showAppointmentsManage() {
         $this->authHelper->checkIsAdmin();
-        $this->view->showAppointmentsManage();
+        
+        $status = $this->statusModel->findAllStatus();
+
+        $this->view->showAppointmentsManage($status);
     }
 
     public function cancelAppointment($params = null) {

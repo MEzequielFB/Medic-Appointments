@@ -80,7 +80,7 @@ p.success {
 .doctorsDiv h1, .chosenDoctor h1  {
     margin: 10% 0 0 0;
 }
-.doctorSearch, .appointmentSearch {
+.doctorSearch, .usernameSearch {
     display: block;
     width: 80%;
     margin: 5% auto 10% auto;
@@ -89,7 +89,7 @@ p.success {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.doctorSearch::placeholder, .appointmentSearch::placeholder {
+.doctorSearch::placeholder, .usernameSearch::placeholder {
     color: var(--white-transparent);
 }
 .hidden {
@@ -227,7 +227,7 @@ h2 {
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
 }
-.appointmentSearch {
+.usernameSearch {
     margin: 5% auto;
 }
 .appointmentsSearchForm div {

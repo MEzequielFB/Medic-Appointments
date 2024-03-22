@@ -18,20 +18,23 @@
     
 </article>
 
-<form action="{$baseUrl}appointments/search" method="post" class="appointmentsSearchForm">
-    <input type="search" placeholder="username" class="appointmentSearch">
+<form class="appointmentsSearchForm">
+    <input type="search" placeholder="username" name="usernameSearch" id="usernameSearch" class="usernameSearch">
 
     <div>
         <input type="date" name="dateSearch" id="dateSearch" class="dateSearch">
         <select name="statusSearch" id="statusSearch" class="statusSearch">
-
+            <option value=""></option>
+            {foreach from=$status item=s}
+                <option value="{$s->id}">{$s->name|capitalize}</option>
+            {/foreach}
         </select>
     </div>
 
     <button type="submit" class="appointmentSearchBtn">Search</button>
 </form>
 
-<p class="errorMsg"></p>
+<p class="message"></p>
 
 <h1>Appointments</h1>
 <ul class="appointments">

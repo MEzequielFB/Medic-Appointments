@@ -120,6 +120,25 @@ class AppointmentModel {
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    public function findAllAppointmentsByFilter($username, $date, $statusId, $doctorId) {
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
+        FROM appointment a
+        JOIN doctor d ON a.doctor_id = d.id
+        JOIN specialization sp ON d.specialization_id = sp.id
+        JOIN status s ON a.status_id = s.id
+        JOIN hospital h ON d.hospital_id = h.id
+        JOIN user u ON a.user_id = u.id
+        WHERE (
+            u.username = ? 
+            OR DATE(a.date) = ?
+            OR a.status_id = ?
+        )
+        AND a.doctor_id = ?");
+        $query->execute([$username, $date, $statusId, $doctorId]);
+        
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function saveAppointment($date, $duration, $reason, $doctorId, $statusId, $userId) {
         $query = $this->db->prepare("INSERT INTO appointment(date, duration, reason, doctor_id, status_id, user_id) VALUES(?,?,?,?,?,?)");
