@@ -285,6 +285,17 @@ document.addEventListener("DOMContentLoaded", () => {
             emptyFields.push("doctor");
         }
 
+        let userId = null
+        try {
+            const chosenUser = document.querySelector(".chosenUser");
+            userId = chosenUser.lastElementChild;
+            if (!userId) {
+                emptyFields.push("user");
+            }
+        } catch (error) {
+            console.warn(error);
+        }
+
         if (date.value == "") {
             emptyFields.push("date");
         }
@@ -305,8 +316,14 @@ document.addEventListener("DOMContentLoaded", () => {
             "date": `${date.value} ${selectedTime.innerHTML}`,
             "duration": 30,
             "reason": "consultation",
-            "doctorId": doctorId.value,
+            "doctorId": doctorId.value
         };
+
+        if (userId) {
+            data["userId"] = userId.value;
+        }
+
+        console.log("DATA: ", data);
 
         try {
             const response = await fetch(baseUrl + "api/appointment", {
@@ -318,7 +335,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                window.location.href = baseUrl + "appointments";
+                console.log(response.body);
+                /* window.location.href = baseUrl + "appointments"; */
             } else {
                 const message = await response.text();
                 messageP.innerHTML = message;

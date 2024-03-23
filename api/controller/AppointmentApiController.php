@@ -4,10 +4,12 @@ require_once "app/controller/AuthHelper.php";
 require_once "app/model/AppointmentModel.php";
 require_once "app/model/DoctorModel.php";
 require_once "app/model/StatusModel.php";
+require_once "app/model/UserModel.php";
 
 class AppointmentApiController extends ApiController {
     private $doctorModel;
     private $statusModel;
+    private $userModel;
     private $authHelper;
 
     function __construct() {
@@ -15,6 +17,7 @@ class AppointmentApiController extends ApiController {
         $this->model = new AppointmentModel();
         $this->doctorModel = new DoctorModel();
         $this->statusModel = new StatusModel();
+        $this->userModel = new UserModel();
         $this->authHelper = new AuthHelper();
     }
 
@@ -52,7 +55,13 @@ class AppointmentApiController extends ApiController {
     }
 
     public function saveAppointment() {
-        $emptyFields = $this->checkRequiredFields(["date", "duration", "reason", "doctorId"]);
+        $requiredFields = ["date", "duration", "reason", "doctorId"];
+
+        if ($this->authHelper->getUserRole() == "ADMIN" || $this->authHelper->getUserRole() == "SUPER_ADMIN") {
+            array_push($requiredFields, "userId");
+        }
+
+        $emptyFields = $this->checkRequiredFields($requiredFields);
         if (!empty($emptyFields)) {
             return $this->view->response("The following fields are empty: " . implode(", ", $emptyFields), 400);
         }
@@ -65,6 +74,14 @@ class AppointmentApiController extends ApiController {
         }
 
         $userId = $this->authHelper->getUserId();
+        if ($this->authHelper->getUserRole() == "ADMIN" || $this->authHelper->getUserRole() == "SUPER_ADMIN") {
+            $userId = $requestData->userId;
+            $user = $this->userModel->findUserById($userId);
+            if (!$user) {
+                return $this->view->response("The specified user doesn't exist", 404);
+            }
+        }
+
         $doctor = $this->doctorModel->findDoctorById($requestData->doctorId);
 
         if (!$doctor) {

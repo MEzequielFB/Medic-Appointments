@@ -13,7 +13,7 @@
     border-radius: var(--soft-radius);
     text-transform: capitalize;
 }
-.usersSection article {
+.usersSection article, .chosenUser {
     align-items: center;
 }
 .usersSection article p {
@@ -58,7 +58,7 @@
     margin: 0;
     font-size: large;
 }
-.doctorsSection article img, .usersSection article img, .chosenDoctor img {
+.doctorsSection article img, .usersSection article img, .chosenUser img, .chosenDoctor img {
     width: 50%;
     height: 120px;
 }
