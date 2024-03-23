@@ -13,6 +13,16 @@ class UserModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findAllUsersByRole($role) {
+        $query = $this->db->prepare("SELECT u.*, r.name AS role 
+        FROM user u
+        JOIN role r ON u.role_id = r.id
+        WHERE r.name = ?");
+        $query->execute([$role]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findUserById($id) {
         $query = $this->db->prepare("SELECT u.*, r.name AS role FROM user u JOIN role r ON u.role_id = r.id WHERE id = ?");
         $query->execute([$id]);

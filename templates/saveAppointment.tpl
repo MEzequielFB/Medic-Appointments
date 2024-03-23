@@ -20,6 +20,13 @@
     
     </article>
 
+    {if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
+        <button class="userBtn" type="button">Choose user</button>
+        <article class="chosenUser hidden">
+    
+        </article>
+    {/if}
+
     <div class="dateDiv hidden">
         <h1>Date</h1>
         <input type="date" name="date" id="date" class="date">
@@ -69,3 +76,6 @@
 <p class="message"></p>
 
 {include file="doctorsDiv.tpl"}
+{if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
+    {include file="usersDiv.tpl"}
+{/if}

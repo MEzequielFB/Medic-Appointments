@@ -4,6 +4,7 @@ require_once "api/controller/AppointmentApiController.php";
 require_once "api/controller/DoctorApiController.php";
 require_once "api/controller/SpecializationApiController.php";
 require_once "api/controller/HospitalApiController.php";
+require_once "api/controller/UserApiController.php";
 
 $router = new Router();
 
@@ -28,6 +29,9 @@ $router->addRoute("specialization/:ID", "GET", "SpecializationApiController", "f
 // Hospital
 $router->addRoute("hospital", "GET", "HospitalApiController", "findAllHospitals");
 $router->addRoute("hospital/:ID", "GET", "HospitalApiController", "findHospitalById");
+
+// User
+$router->addRoute("user", "GET", "UserApiController", "findAllUsers");
 
 $router->route($_GET["resource"], $_SERVER["REQUEST_METHOD"]);
 ?>

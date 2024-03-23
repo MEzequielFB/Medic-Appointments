@@ -1,4 +1,4 @@
-.doctorBtn, .scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
+.doctorBtn, .userBtn, .scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
     display: block;
     width: 60%;
     margin: 5% auto;
@@ -55,7 +55,7 @@ p.message {
 p.success {
     color: var(--striking);
 }
-.leftArrow {
+.leftArrow, .usersLeftArrow {
     position: absolute;
     top: 0.3rem;
     left: 0.7rem;
@@ -63,7 +63,7 @@ p.success {
     height: 43px;
     cursor: pointer;
 }
-.doctorsDiv {
+.doctorsDiv, .usersDiv {
     position: absolute;
     top: 0;
     left: -100vw;
@@ -73,14 +73,14 @@ p.success {
     transition: 0.7s;
     opacity: 0;
 }
-.doctorsDiv.visible {
+.doctorsDiv.visible, .usersDiv.visible {
     left: 0;
     opacity: 1;
 }
 .doctorsDiv h1, .chosenDoctor h1  {
     margin: 10% 0 0 0;
 }
-.doctorSearch, .usernameSearch {
+.doctorSearch, .userSearch, .usernameSearch {
     display: block;
     width: 80%;
     margin: 5% auto 10% auto;
@@ -89,7 +89,7 @@ p.success {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.doctorSearch::placeholder, .usernameSearch::placeholder {
+.doctorSearch::placeholder, .userSearch::placeholder, .usernameSearch::placeholder {
     color: var(--white-transparent);
 }
 .hidden {

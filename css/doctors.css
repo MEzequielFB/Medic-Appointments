@@ -1,9 +1,9 @@
-.doctorsSection {
+.doctorsSection, .usersSection {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.doctorsSection article, .chosenDoctor {
+.doctorsSection article, .usersSection article, .chosenDoctor, .chosenUser {
     display: flex;
     justify-content: space-between;
     width: 90%;
@@ -13,10 +13,16 @@
     border-radius: var(--soft-radius);
     text-transform: capitalize;
 }
-.chosenDoctor {
+.usersSection article {
+    align-items: center;
+}
+.usersSection article p {
+    text-transform: lowercase;
+}
+.chosenDoctor, .chosenUser {
     margin: 0 auto 0 auto;
 }
-.doctorsSection article h1, .doctorsSection article p, .chosenDoctor h1, .chosenDoctor p, .appointment p {
+.doctorsSection article h1, .doctorsSection article p, .usersSection article h1, .usersSection article p, .chosenDoctor h1, .chosenDoctor p, .appointment p {
     display: inline-block;
     max-height: max-content;
     max-width: 100%;
@@ -30,11 +36,17 @@
     justify-content: space-evenly;
     max-width: 50%;
 }
-.doctorsSection article h1, .chosenDoctor h1 {
+.usersSection article div {
+    max-width: 50%;
+}
+.doctorsSection article h1, .usersSection article h1, .chosenDoctor h1 {
     margin: 0 0 1% 0;
     font-weight: 900;
     font-size: larger;
     text-align: start;
+}
+.usersSection article h1 {
+    width: 100%;
 }
 .doctorsSection article p, .chosenDoctor p {
     margin: 0 0 10% 0;
@@ -46,7 +58,7 @@
     margin: 0;
     font-size: large;
 }
-.doctorsSection article img, .chosenDoctor img {
+.doctorsSection article img, .usersSection article img, .chosenDoctor img {
     width: 50%;
     height: 120px;
 }

@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const doctorBtn = document.querySelector(".doctorBtn");
     doctorBtn.addEventListener("click", showDoctors);
 
+    // userBtn is only avaiblable for admins
+    try {
+        const userBtn = document.querySelector(".userBtn");
+        userBtn.addEventListener("click", showUsers);
+    } catch (error) {
+        console.warn(error);
+    }
+
     // try catch because just one of the button can be render on the tpl (saveAppointment.tpl). Prevents the application to stop
     try {
         const scheduleBtn = document.querySelector(".scheduleBtn");
@@ -27,6 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const leftArrow = document.querySelector(".leftArrow")
     leftArrow.addEventListener("click", hideDoctors);
+
+    // only available for admins
+    try {
+        const usersLeftArrow = document.querySelector(".usersLeftArrow")
+        usersLeftArrow.addEventListener("click", hideUsers);
+    } catch (error) {
+        console.warn(error);
+    }
 
     const chosenDoctor = document.querySelector(".chosenDoctor");
 
@@ -68,8 +84,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function showUsers() {
+        const usersSection = document.querySelector(".usersSection");
+        const usersDiv = document.querySelector(".usersDiv");
+
+        usersSection.innerHTML = "<div class='loader'></div>"
+        usersDiv.classList.add("visible");
+
+        try {
+            const response = await fetch(baseUrl + "api/user");
+            if (response.ok) {
+                const users = await response.json();
+                console.log(users);
+
+                setTimeout(() => {
+                    renderUsers(users);
+                }, 1000);
+            } else {
+                usersSection.innerHTML = "<p class='message'>Error while fetching users</p>";
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     function hideDoctors() {
         doctorsDiv.classList.remove("visible");
+    }
+
+    function hideUsers() {
+        // only available for admins
+        try {
+            const usersDiv = document.querySelector(".usersDiv");
+            usersDiv.classList.remove("visible");
+        } catch (error) {
+            console.warn(error);
+        }
     }
 
     function renderDoctors(doctors) {
@@ -91,6 +141,23 @@ document.addEventListener("DOMContentLoaded", () => {
         addDoctorsBehavior();
     }
 
+    function renderUsers(users) {
+        const usersSection = document.querySelector(".usersSection");
+        usersSection.innerHTML = "";
+        users.forEach(user => {
+            usersSection.innerHTML += `
+            <article class="eligibleUser user${user.id}">
+                <div>
+                    <h1>${user.username}</h1>
+                    <p>${user.email}</p>
+                </div>
+                <img src="${baseUrl}image/profile/${user.image}" alt="user's image">
+            </article>`;
+        });
+
+        addUsersBehavior();
+    }
+
     function addDoctorsBehavior() {
         const doctors = document.querySelectorAll(".eligibleDoctor");
         doctors.forEach(doctor => {
@@ -106,6 +173,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 chosenDoctor.classList.remove("hidden");
                 dateDiv.classList.remove("hidden");
                 doctorsDiv.classList.remove("visible");
+            });
+        });
+    }
+
+    function addUsersBehavior() {
+        const usersDiv = document.querySelector(".usersDiv");
+        const chosenUser = document.querySelector(".chosenUser");
+        const users = document.querySelectorAll(".eligibleUser");
+        users.forEach(user => {
+            user.addEventListener("click", async () => { // Choose user
+                chosenUser.innerHTML = user.innerHTML;
+                const userId = user.className.charAt(user.className.length-1);
+                chosenUser.innerHTML += `<input type="hidden" name="userId" class="userId" value="${userId}">`;
+
+                chosenUser.classList.remove("hidden");
+                usersDiv.classList.remove("visible");
             });
         });
     }
