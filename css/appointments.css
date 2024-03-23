@@ -223,6 +223,8 @@ h2 {
 /* Appointments manager */
 
 .appointmentsSearchForm {
+    width: 90%;
+    margin: 3% auto;
     padding: 2%;
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);

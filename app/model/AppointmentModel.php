@@ -103,7 +103,7 @@ class AppointmentModel {
             FROM appointment
             WHERE DATE(date) = ?
             AND doctor_id = ?
-            ORDER BY DATE(a.date), TIME(a.date)");
+            ORDER BY DATE(date), TIME(date)");
         $query->execute([$date, $doctorId]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);

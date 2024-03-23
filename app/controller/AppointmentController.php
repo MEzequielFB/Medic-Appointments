@@ -43,7 +43,8 @@ class AppointmentController extends Controller {
             die();
         }
 
-        if ($appointment->user_id != $this->authHelper->getUserId()) {
+        // Admins can reschedule any appointment
+        if ($appointment->user_id != $this->authHelper->getUserId() && $this->authHelper->getUserRole() == "USER") {
             header("Location: " . BASE_URL . "appointments");
             die();
         }
@@ -90,7 +91,8 @@ class AppointmentController extends Controller {
             die();
         }
 
-        if ($appointment->user_id != $this->authHelper->getUserId()) {
+        // Admins can cancel the appointment even if the logged user id is different from the appointment's user_id
+        if ($appointment->user_id != $this->authHelper->getUserId() && $this->authHelper->getUserRole() == "USER") {
             header("Location: " . BASE_URL . "appointments");
             die();
         }
