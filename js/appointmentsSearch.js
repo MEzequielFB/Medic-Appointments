@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <h1>${appointment.doctor_name}<h1>
                             <p>${appointment.doctor_specialization} - ${appointment.doctor_hospital}</p>
                             <p>Pacient: ${appointment.user_username}</p>
+                            <p>Reason: ${appointment.reason}</p>
                         </div>
 
                         <img src="image/profile/${appointment.doctor_image}">
@@ -215,10 +216,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button type="button">Cancel</button>
                     </a>
                     <a href="${baseUrl}appointment/${appointment.id}/reschedule">
-                        <button type="button">Reschedule</button>
+                        <button type="button" class="rescheduleButton">Reschedule</button>
                     </a>
                 </div>
             `;
+        }
+
+        if (appointment.status == "to be confirmed") {
+            appointmentLi.lastElementChild.innerHTML += `
+                <a href="${baseUrl}appointment/${appointment.id}/confirm">
+                    <button type="button" class="confirmButton">Confirm</button>
+                </a>
+            `
         }
     }
 });

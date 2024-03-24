@@ -246,7 +246,7 @@ h2 {
 .appointmentBtns a:first-child button {
     background-color: var(--white-transparent);
 }
-.appointmentBtns button:last-child {
+.appointmentBtns .rescheduleButton {
     background-color: var(--primary);
 }
 
@@ -284,4 +284,7 @@ h2 {
 }
 .statusSearch {
     width: 100%;
+}
+.appointmentBtns .confirmButton {
+    background-color: var(--success);
 }

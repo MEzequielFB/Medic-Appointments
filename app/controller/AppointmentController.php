@@ -112,8 +112,29 @@ class AppointmentController extends Controller {
             die();
         }
 
-        $this->model->cancelAppointment($statusCancelled->id, $appointmentId);
+        $this->model->changeAppointmentStatus($statusCancelled->id, $appointmentId);
         header("Location: " . BASE_URL . "appointments");
+    }
+
+    // Only admins can confirm appointments
+    public function confirmAppointment($params = null) {
+        $this->authHelper->checkIsAdmin();
+
+        $appointmentId = $params[":ID"];
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        if (!$appointment) {
+            header("Location: " . BASE_URL . "appointments");
+            die();
+        }
+
+        $statusConfirmed = $this->statusModel->findStatusByName("confirmed");
+        if (!$statusConfirmed) {
+            header("Location: " . BASE_URL . "appointments");
+            die();
+        }
+
+        $this->model->changeAppointmentStatus($statusConfirmed->id, $appointmentId);
+        header("Location: " . BASE_URL . "appointments/manage");
     }
 }
 ?>

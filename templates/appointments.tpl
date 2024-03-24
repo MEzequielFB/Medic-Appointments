@@ -53,7 +53,7 @@
                     <button type="button">Cancel</button>
                 </a>
                 <a href="{$baseUrl}appointment/{$nearest->id}/reschedule">
-                    <button type="button">Reschedule</button>
+                    <button type="button" class="rescheduleButton">Reschedule</button>
                 </a>
             </div>
         </li>

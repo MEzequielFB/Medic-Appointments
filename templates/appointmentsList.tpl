@@ -32,7 +32,7 @@
                     </a>
                     {if $appointment->reason eq "consultation"}
                         <a href="{$baseUrl}appointment/{$appointment->id}/reschedule">
-                            <button type="button">Reschedule</button>
+                            <button type="button" class="rescheduleButton">Reschedule</button>
                         </a>
                     {/if}
                 </div>
