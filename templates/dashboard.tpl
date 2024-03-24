@@ -17,7 +17,7 @@
                 <li><a href="{$baseUrl}specialization/save">SPECIALIZATIONS</a></li>
             {/if}
 
-            <li><a>SETTINGS</a></li>
+            <li><a href="{$baseUrl}settings">SETTINGS</a></li>
             <li><a href="{$baseUrl}logout">SIGN OUT</a></li>
         </ul>
     </nav>

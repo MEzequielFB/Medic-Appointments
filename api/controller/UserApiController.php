@@ -1,15 +1,18 @@
 <?php
 require_once "api/controller/ApiController.php";
+require_once "app/controller/AuthHelper.php";
 require_once "app/model/UserModel.php";
 require_once "app/model/RoleModel.php";
 
 class UserApiController extends ApiController {
     private $roleModel;
+    private $authHelper;
 
     function __construct() {
         parent::__construct();
         $this->model = new UserModel();
         $this->roleModel = new RoleModel();
+        $this->authHelper = new AuthHelper();
     }
 
     // Users with role USER
@@ -21,6 +24,35 @@ class UserApiController extends ApiController {
 
         $users = $this->model->findAllUsersByRole($role->name);
         return $this->view->response($users, 200);
+    }
+
+    public function updateUserInformation() {
+        $this->authHelper->checkLoggedUser();
+
+        $userId = $this->authHelper->getUserId();
+        $user = $this->model->findUserById($userId);
+        if (!$user) {
+            return $this->view->response("The specified user doesn't exist", 404);
+        }
+
+        $emptyFields = $this->checkRequiredFields(["email", "username"]);
+        if (!empty($emptyFields)) {
+            return $this->view->response("The following fields are empty: " . implode(", ", $emptyFields), 400);
+        }
+
+        $requestData = $this->getRequestData();
+
+        $existingUser = $this->model->findUserByEmail($requestData->email);
+        if ($existingUser && $existingUser->id != $userId) {
+            return $this->view->response("The email '$requestData->email' is already in use", 400);
+        }
+
+        $this->model->updateProfileInformation($requestData->email, $requestData->username, $userId);
+
+        $user = $this->model->findUserById($userId);
+        $this->authHelper->login($user);
+
+        return $this->view->response($user, 200);
     }
 }
 ?>

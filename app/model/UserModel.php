@@ -43,5 +43,10 @@ class UserModel {
 
         return $this->db->lastInsertId();
     }
+
+    public function updateProfileInformation($email, $username, $userId) {
+        $query = $this->db->prepare("UPDATE user SET email = ?, username = ? WHERE id = ?");
+        $query->execute([$email, $username, $userId]);
+    }
 }
 ?>

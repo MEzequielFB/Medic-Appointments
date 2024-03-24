@@ -1,0 +1,70 @@
+.settingsSections {
+    width: 100%;
+    margin: 5% auto;
+}
+.settingsSections button {
+    padding: 0.2rem;
+    font-size: medium;
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
+.settingsSections button.selected {
+    background-color: var(--success);
+}
+.settingsSection {
+    width: 90%;
+    margin: 0 auto;
+    border: 5px solid var(--primary);
+    border-radius: var(--soft-radius);
+}
+.settingsSection h1 {
+    padding: 2%;
+    background-color: var(--primary);
+    font-size: larger;
+}
+.settingsSection form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.settingsSection form label {
+    margin: 5% 0 0 0;
+    font-size: large;
+}
+.settingsSection form input {
+    width: 80%;
+    padding: 2%;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
+.settingsSection form button {
+    margin: 5% 0;
+    padding: 0.6rem;
+    color: var(--white);
+    font-size: medium;
+    background-color: var(--secundary);
+    border-radius: var(--soft-radius);
+}
+p.message {
+    margin: 5% 0;
+    color: var(--striking);
+    text-align: center;
+}
+.success-popup {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: var(--white);
+    background-color: var(--success);
+    opacity: 1;
+    transition: 1s;
+}
+.success-popup.hidden {
+    bottom: -100px;
+    opacity: 0;
+}
+.success-popup p {
+    padding: 3%;
+    text-align: center;
+}

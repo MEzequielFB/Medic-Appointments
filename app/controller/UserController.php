@@ -11,10 +11,12 @@ class UserController extends Controller {
 
     function __construct() {
         $this->model = new UserModel();
-        $this->view = new UserView();
+        $this->roleModel = new RoleModel();
+
         $this->authHelper = new AuthHelper();
 
-        $this->roleModel = new RoleModel();
+        $this->view = new UserView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
+        
     }
 
     public function showLogin() {
@@ -31,6 +33,15 @@ class UserController extends Controller {
         } else {
             $this->view->showSignUp();
         }
+    }
+
+    public function showSettings() {
+        $this->authHelper->checkLoggedUser();
+
+        $userId = $this->authHelper->getUserId();
+        $user = $this->model->findUserById($userId);
+        
+        $this->view->showSettings($user);
     }
 
     public function logoutUser() {

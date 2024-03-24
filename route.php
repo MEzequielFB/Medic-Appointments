@@ -19,6 +19,7 @@ $router->addRoute("authentication", "POST", "UserController", "authenticateUser"
 $router->addRoute("signUp", "GET", "UserController", "showSignUp");
 
 // User
+$router->addRoute("settings", "GET", "UserController", "showSettings");
 $router->addRoute("user", "POST", "UserController", "saveUser");
 
 // Appointment
