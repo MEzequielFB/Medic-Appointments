@@ -399,12 +399,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function rescheduleAppointment() {
-        if (!fieldsHaveBeenEntered()) {
+        /* if (!fieldsHaveBeenEntered()) {
             return;
+        } */
+
+        let emptyFields = [];
+
+        const doctorId = chosenDoctor.lastElementChild;
+        if (!doctorId) {
+            emptyFields.push("doctor");
+        }
+
+        if (date.value == "") {
+            emptyFields.push("date");
         }
 
         const selectedTime = document.querySelector(".selected");
-        const doctorId = chosenDoctor.lastElementChild;
+        if (!selectedTime) {
+            emptyFields.push("time");
+        }
+
+        let duration = null;
+        let reason = null
+        try {
+            duration = document.querySelector("#duration").value;
+            reason = document.querySelector("#reason").value;
+            console.log("REASON", reason);
+            if (reason == "") {
+                emptyFields.push("reason");
+            }
+        } catch (error) {
+            console.warn(error);
+        }
+
+        if (emptyFields.length != 0) {
+            messageP.innerHTML = "The following fields are empty: " + emptyFields.join(", ");
+            return;
+        }
         console.log("Date: ", `${date.value} ${selectedTime.innerHTML}`);
 
         let data = {
@@ -413,6 +444,13 @@ document.addEventListener("DOMContentLoaded", () => {
             "reason": "consultation",
             "doctorId": doctorId.value,
         };
+
+        if (duration) {
+            data["duration"] = duration;
+        }
+        if (reason != "" && reason != null) {
+            data["reason"] = reason;
+        }
 
         try {
             // window.location.pathname.split( '/' )[3] is the id of the appointment from the url path

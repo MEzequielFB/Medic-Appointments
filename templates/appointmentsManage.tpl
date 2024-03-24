@@ -23,12 +23,16 @@
 
     <div>
         <input type="date" name="dateSearch" id="dateSearch" class="dateSearch">
-        <select name="statusSearch" id="statusSearch" class="statusSearch">
-            <option value=""></option>
-            {foreach from=$status item=s}
-                <option value="{$s->id}">{$s->name|capitalize}</option>
-            {/foreach}
-        </select>
+
+        <div class="statusSearchContainer">
+            <label for="statusSearch">Status:</label>
+            <select name="statusSearch" id="statusSearch" class="statusSearch">
+                <option value=""></option>
+                {foreach from=$status item=s}
+                    <option value="{$s->id}">{$s->name|capitalize}</option>
+                {/foreach}
+            </select>
+        </div>
     </div>
 
     <button type="submit" class="appointmentSearchBtn">Search</button>

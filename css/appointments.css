@@ -267,7 +267,7 @@ h2 {
     justify-content: space-around;
     align-items: end;
 }
-.statusSearch, .dateSearch {
+.dateSearch {
     width: 40%;
 }
 .appointmentsSearchForm button {
@@ -276,4 +276,12 @@ h2 {
 }
 .appointment div > div {
     width: 60%;
+}
+.appointmentsSearchForm .statusSearchContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.statusSearch {
+    width: 100%;
 }
