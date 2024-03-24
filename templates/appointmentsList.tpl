@@ -30,9 +30,11 @@
                     <a href="{$baseUrl}appointment/{$appointment->id}/cancel">
                         <button type="button">Cancel</button>
                     </a>
-                    <a href="{$baseUrl}appointment/{$appointment->id}/reschedule">
-                        <button type="button">Reschedule</button>
-                    </a>
+                    {if $appointment->reason eq "consultation"}
+                        <a href="{$baseUrl}appointment/{$appointment->id}/reschedule">
+                            <button type="button">Reschedule</button>
+                        </a>
+                    {/if}
                 </div>
             {/if}
         </li>

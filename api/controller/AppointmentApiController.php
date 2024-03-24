@@ -127,6 +127,11 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("Server Error", 500);
         }
 
+        // Normal users cannot change the doctor when rescheduling. Only the admins
+        if ($requestData->doctorId != $appointment->doctor_id) {
+            $requestData->doctorId = $appointment->doctor_id;
+        }
+
         $this->model->rescheduleAppointment($requestData->date, $requestData->duration, $requestData->reason, $status->id, $requestData->doctorId, $appointmentId);
 
         $this->view->response("Appointment rescheduled succesfully", 200);

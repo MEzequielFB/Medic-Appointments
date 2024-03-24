@@ -13,9 +13,12 @@
 {include file="header.tpl"}
 {include file="dashboard.tpl"}
 
-<button class="doctorBtn" type="button">Choose a doctor</button>
+{if $appointment neq null}
+    
+{/if}
 
 {if $appointment eq null}
+    <button class="doctorBtn" type="button">Choose a doctor</button>
     <article class="chosenDoctor hidden">
     
     </article>
@@ -32,6 +35,11 @@
         <input type="date" name="date" id="date" class="date">
     </div>
 {else}
+    {if $userRole eq "USER"}
+        <button class="doctorBtn hidden" type="button">Choose a doctor</button>
+    {else}
+        <button class="doctorBtn" type="button">Choose a doctor</button>
+    {/if}
     <article class="chosenDoctor">
         <div>
             <div>
