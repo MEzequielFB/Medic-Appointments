@@ -25,6 +25,15 @@ class AppointmentController extends Controller {
 
     public function showAllUpcomingAppointmentsByUser() {
         $userId = $this->authHelper->getUserId();
+
+        $cancelledStatus = $this->statusModel->findStatusByName("cancelled");
+        $completedStatus = $this->statusModel->findStatusByName("completed");
+        $toBeConfirmedStatus = $this->statusModel->findStatusByName("to be confirmed");
+        $confirmedStatus = $this->statusModel->findStatusByName("confirmed");
+
+        $this->model->completePastAppointmentsByUser($completedStatus->id, $confirmedStatus->id, $userId);
+        $this->model->cancelPastAppointmentsByUser($cancelledStatus->id, $toBeConfirmedStatus->id, $userId);
+
         $nearest = $this->model->findNearestAppointmentByUser($userId);
         $appointments = $this->model->findAllUpcomingAppointmentsByUser($userId);
 

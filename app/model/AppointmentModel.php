@@ -160,5 +160,32 @@ class AppointmentModel {
         $query = $this->db->prepare("UPDATE appointment SET status_id = ? WHERE id = ?");
         $query->execute([$statusId, $appointmentId]);
     }
+
+    public function completePastAppointmentsByUser($completedStatusId, $confirmedStatusId, $userId) {
+        $query = $this->db->prepare("UPDATE appointment
+        SET status_id = ?
+        WHERE user_id = ?
+        AND DATE_ADD(date, INTERVAL duration MINUTE) <= NOW()
+        AND status_id = ?");
+        $query->execute([$completedStatusId, $userId, $confirmedStatusId]);
+    }
+
+    public function cancelPastAppointmentsByUser($cancelledStatusId, $toBeConfirmedStatusId, $userId) {
+        $query = $this->db->prepare("UPDATE appointment
+        SET status_id = ?
+        WHERE user_id = ?
+        AND DATE_ADD(date, INTERVAL duration MINUTE) <= NOW()
+        AND status_id = ?");
+        $query->execute([$cancelledStatusId, $userId, $toBeConfirmedStatusId]);
+    }
+
+    public function findPastAppointmentsByUser($userId) {
+        $query = $this->db->prepare("SELECT * FROM appointment
+        WHERE user_id = ?
+        AND DATE_ADD(date, INTERVAL duration MINUTE) <= NOW()");
+        $query->execute([$userId]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 ?>
