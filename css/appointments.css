@@ -80,7 +80,7 @@ p.success {
 .doctorsDiv h1, .chosenDoctor h1  {
     margin: 10% 0 0 0;
 }
-.doctorSearch, .userSearch, .usernameSearch {
+.doctorSearch, .userSearch, .usernameSearch, #reason {
     display: block;
     width: 80%;
     margin: 5% auto 10% auto;
@@ -89,7 +89,7 @@ p.success {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
-.doctorSearch::placeholder, .userSearch::placeholder, .usernameSearch::placeholder {
+.doctorSearch::placeholder, .userSearch::placeholder, .usernameSearch::placeholder, #reason::placeholder {
     color: var(--white-transparent);
 }
 .hidden {
@@ -97,6 +97,36 @@ p.success {
 }
 .timeDiv .selected {
     background-color: var(--success);
+}
+.sliderContainer {
+    width: 90%;
+    margin: 0 auto;
+}
+.sliderContainer p {
+    margin: 2% 0 0 0;
+    text-align: center;
+}
+#duration {
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    /* margin: 0 auto; */
+    padding: 1%;
+    border-radius: var(--soft-radius);
+    background-color: var(--primary);
+    opacity: 0.8;
+    transition: 2s;
+}
+#duration:hover {
+    opacity: 1;
+}
+#duration::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 /* HTML: <div class="loader"></div> */

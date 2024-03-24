@@ -68,6 +68,16 @@
     </div>
 {/if}
 
+{if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
+    <div class="sliderContainer">
+        <label for="duration">Select duration:</label>
+        <input type="range" name="duration" id="duration" min="30" max="1000" step="30" value="30">
+        <p class="durationP"><span class="durationValue">30</span> minutes</p>
+    </div>
+
+    <input type="text" name="reason" id="reason" placeholder="reason of appointment">
+{/if}
+
 {if $appointment eq null}
     <button class="scheduleBtn" type="button">Schedule</button>
 {else}

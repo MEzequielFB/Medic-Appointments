@@ -63,6 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const messageP = document.querySelector(".message");
 
+    try {
+        const durationInput = document.querySelector("#duration");
+        durationInput.addEventListener("input", showDurationValue);
+    } catch (error) {
+        console.warn(error);
+    }
+
+    function showDurationValue() {
+        const durationInput = document.querySelector("#duration");
+        const durationSpan = document.querySelector(".durationValue");
+        durationSpan.innerHTML = durationInput.value;
+    }
+
     async function showDoctors() {
         doctorsSection.innerHTML = "<div class='loader'></div>"
         doctorsDiv.classList.add("visible");
@@ -286,11 +299,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let userId = null
+        let duration = null;
+        let reason = null
         try {
             const chosenUser = document.querySelector(".chosenUser");
             userId = chosenUser.lastElementChild;
             if (!userId) {
                 emptyFields.push("user");
+            }
+
+            duration = document.querySelector("#duration").value;
+            reason = document.querySelector("#reason").value;
+            console.log("REASON", reason);
+            if (reason == "") {
+                emptyFields.push("reason");
             }
         } catch (error) {
             console.warn(error);
@@ -322,6 +344,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (userId) {
             data["userId"] = userId.value;
         }
+        if (duration) {
+            data["duration"] = duration;
+        }
+        if (reason != "" && reason != null) {
+            data["reason"] = reason;
+        }
 
         console.log("DATA: ", data);
 
@@ -335,8 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                console.log(response.body);
-                /* window.location.href = baseUrl + "appointments"; */
+                window.location.href = baseUrl + "appointments";
             } else {
                 const message = await response.text();
                 messageP.innerHTML = message;

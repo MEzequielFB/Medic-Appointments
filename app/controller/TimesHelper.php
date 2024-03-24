@@ -13,7 +13,7 @@ class TimesHelper {
 
         $times = [];
 
-        while ($currentTime <= $endTime) {
+        while ($currentTime < $endTime) {
             if (!$this->isSuperposed($currentTime, $appointmentsTime)) {
                 $objectTime = new stdClass();
                 $objectTime->hour = date("H:i", $currentTime);
@@ -31,7 +31,7 @@ class TimesHelper {
             $appointmentStartTime = strtotime($appointmentTime->hour);
             $appointmentEndTime = strtotime($appointmentTime->hour) + ($appointmentTime->duration * 60);
 
-            if ($time >= $appointmentStartTime && $time < $appointmentEndTime) {
+            if ($time >= $appointmentStartTime && $time <= $appointmentEndTime) {
                 return true;
             }
         }

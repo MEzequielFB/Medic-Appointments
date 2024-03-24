@@ -59,6 +59,8 @@ class AppointmentApiController extends ApiController {
 
         if ($this->authHelper->getUserRole() == "ADMIN" || $this->authHelper->getUserRole() == "SUPER_ADMIN") {
             array_push($requiredFields, "userId");
+            array_push($requiredFields, "duration");
+            array_push($requiredFields, "reason");
         }
 
         $emptyFields = $this->checkRequiredFields($requiredFields);

@@ -99,11 +99,13 @@ class AppointmentModel {
     }
 
     public function findAppointmentsTimeByDateAndDoctor($date, $doctorId) {
-        $query = $this->db->prepare("SELECT TIME(date) AS hour, duration
-            FROM appointment
-            WHERE DATE(date) = ?
-            AND doctor_id = ?
-            ORDER BY DATE(date), TIME(date)");
+        $query = $this->db->prepare("SELECT TIME(a.date) AS hour, a.duration
+            FROM appointment a
+            JOIN status s ON a.status_id = s.id
+            WHERE DATE(a.date) = ?
+            AND a.doctor_id = ?
+            AND (s.name = 'to be confirmed' OR s.name = 'confirmed')
+            ORDER BY DATE(a.date), TIME(a.date)");
         $query->execute([$date, $doctorId]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
