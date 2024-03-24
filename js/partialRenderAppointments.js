@@ -109,8 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <li class="appointment" id="appointment${appointment.id}">
                     <div class="doctorInfo">
                         <div>
-                            <h1>${appointment.doctor_name}<h1>
+                            <h1>${appointment.doctor_name}</h1>
                             <p>${appointment.doctor_specialization} - ${appointment.doctor_hospital}</p>
+                            <p>Reason: ${appointment.reason}</p>
                         </div>
 
                         <img src="image/profile/${appointment.doctor_image}">

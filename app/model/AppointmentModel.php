@@ -35,7 +35,7 @@ class AppointmentModel {
     }
 
     public function findAllCompletedAppointmentsByUser($userId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id
@@ -43,14 +43,14 @@ class AppointmentModel {
         JOIN hospital h ON d.hospital_id = h.id
         WHERE a.user_id = ?
         AND (s.name = 'completed')
-        ORDER BY DATE(a.date), TIME(a.date)");
+        ORDER BY DATE(a.date) DESC, TIME(a.date) DESC");
         $query->execute([$userId]);
         
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function findAllCancelledAppointmentsByUser($userId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id
@@ -58,14 +58,14 @@ class AppointmentModel {
         JOIN hospital h ON d.hospital_id = h.id
         WHERE a.user_id = ?
         AND (s.name = 'cancelled')
-        ORDER BY DATE(a.date), TIME(a.date)");
+        ORDER BY DATE(a.date) DESC, TIME(a.date) DESC");
         $query->execute([$userId]);
         
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function findNearestAppointmentByUser($userId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id
@@ -112,7 +112,7 @@ class AppointmentModel {
     }
 
     public function findAllAppointmentsByDoctor($doctorId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital, u.username AS user_username
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital, u.username AS user_username
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id
@@ -127,7 +127,7 @@ class AppointmentModel {
     }
     
     public function findAllAppointmentsByFilter($username, $date, $statusId, $doctorId) {
-        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital, u.username AS user_username
+        $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital, u.username AS user_username
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
         JOIN specialization sp ON d.specialization_id = sp.id

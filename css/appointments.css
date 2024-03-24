@@ -210,6 +210,14 @@ h2 {
     object-fit: cover;
     object-position: top;
 }
+.appointment .doctorInfo h1, .appointment .doctorInfo p {
+    display: inline-block;
+    max-height: max-content;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .appointment ul {
     display: flex;
     justify-content: space-around;
