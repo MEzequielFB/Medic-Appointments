@@ -48,5 +48,10 @@ class UserModel {
         $query = $this->db->prepare("UPDATE user SET email = ?, username = ? WHERE id = ?");
         $query->execute([$email, $username, $userId]);
     }
+
+    public function updateProfileImage($image, $userId) {
+        $query = $this->db->prepare("UPDATE user SET image = ? WHERE id = ?");
+        $query->execute([$image, $userId]);
+    }
 }
 ?>

@@ -108,5 +108,44 @@ class UserController extends Controller {
 
         header("Location: " . APPOINTMENTS);
     }
+
+    public function updateProfileImage() {
+        $userId = $this->authHelper->getUserId();
+        $user = $this->model->findUserById($userId);
+        if (!$user) {
+            header("Location: " . BASE_URL . "settings");
+            die();
+        }
+
+        $emptyFields = [];
+
+        if (!isset($_FILES["image"]["name"]) || empty($_FILES["image"]["name"])) {
+            array_push($emptyFields, "image");
+        }
+
+        if (!empty($emptyFields)) {
+            $this->view->showSettings($user, "The following fields are empty: " . implode(", ", $emptyFields));
+            die();
+        }
+
+        $filename = $_FILES["image"]["name"];
+        $tempname = $_FILES["image"]["tmp_name"];
+        $folder = "image/profile/" . $filename;
+        $validExtensions = ["png", "jpg", "jpeg"];
+
+        $isValidFile = $this->checkFileExtension($filename, $validExtensions);
+        if (!$isValidFile) {
+            $this->view->showSettings($user, "Invalid extension file! Allowed extensions: " . implode(", ", $validExtensions));
+            die();
+        }
+
+        if (!move_uploaded_file($tempname, $folder)) {
+            $this->view->showSettings($user, "Error while uploading the file");
+            die();
+        }
+
+        $this->model->updateProfileImage($filename, $userId);
+        $this->view->showSettings($user, "", "Profile picture updated!");
+    }
 }
 ?>

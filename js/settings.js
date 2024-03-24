@@ -17,10 +17,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const usernameInput = document.querySelector("#username");
 
     const profilePictureForm = document.querySelector(".profilePictureForm");
+    const imageInput = document.querySelector("#image");
+
     const passwordForm = document.querySelector(".passwordForm");
 
     const messageP = document.querySelector(".message");
     const popup = document.querySelector(".success-popup");
+
+    /* profilePictureForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        let data = {
+            "image": imageInput.files[0]
+        }
+
+        const formData = new FormData();
+        formData.append('image', imageInput.files[0]);
+        
+        console.log("FILES ", imageInput.files[0]);
+        console.log("FORM DATA: ", formData);
+
+        try {
+            const response = await fetch(baseUrl + "api/user/updateProfileImage", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(data)
+            });
+            if (response.ok) {
+                const message = await response.text();
+                console.log(message);
+
+                popup.firstElementChild.innerHTML = "Profile picture updated!";
+                popup.classList.remove("hidden");
+            } else {
+                const message = await response.text();
+                messageP.innerHTML = message;
+            }
+        } catch (error) {
+            messageP.innerHTML = "Internal Server Error";
+            console.error(error);
+        }
+    }); */
 
     profileInformationForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -95,4 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
         profilePictureBtn.classList.remove("selected");
         changePasswordBtn.classList.remove("selected");
     }
+
+    // When changing profile picture and redirect to settings. After a time hide the popup again
+    setTimeout(() => {
+        popup.classList.add("hidden");
+        popup.firstElementChild.innerHTML = "";
+    }, 4000);
 });

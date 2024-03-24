@@ -28,9 +28,11 @@ class UserView {
         $this->smarty->display("templates/signUp.tpl");
     }
 
-    public function showSettings($user) {
+    public function showSettings($user, $errorMsg = "", $successMsg = "") {
         $this->smarty->assign("title", "User settings");
         $this->smarty->assign("user", $user);
+        $this->smarty->assign("errorMsg", $errorMsg);
+        $this->smarty->assign("successMsg", $successMsg);
 
         $this->smarty->display("templates/settings.tpl");
     }

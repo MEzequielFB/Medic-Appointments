@@ -13,12 +13,21 @@
 {include file="dashboard.tpl"}
 
 <nav class="settingsSections">
-    <button class="profileInformationBtn selected">Profile information</button>
-    <button class="profilePictureBtn">Profile picture</button>
+    {if $errorMsg eq "" || $successMsg eq ""}
+        <button class="profileInformationBtn selected">Profile information</button>
+        <button class="profilePictureBtn">Profile picture</button>
+    {else}
+        <button class="profileInformationBtn">Profile information</button>
+        <button class="profilePictureBtn selected">Profile picture</button>
+    {/if}
     <button class="changePasswordBtn">Change password</button>
 </nav>
 
-<section class="profileInformation settingsSection">
+{if $errorMsg neq "" || $successMsg neq ""}
+    <section class="profileInformation settingsSection hidden">
+{else}
+    <section class="profileInformation settingsSection">
+{/if}
     <h1>Edit profile</h1>
     <form method="post" class="profileInformationForm">
         <label for="email">Email:</label>
@@ -31,13 +40,17 @@
     </form>
 </section>
 
-<section class="profilePicture settingsSection hidden">
+{if $errorMsg neq "" || $successMsg neq ""}
+    <section class="profilePicture settingsSection">
+{else}
+    <section class="profilePicture settingsSection hidden">
+{/if}
     <h1>Change profile picture</h1>
-    <form method="post" class="profilePictureForm" enctype="multipart/form-data">
-        <label for="iamge">Picture:</label>
+    <form action="{$baseUrl}user/updateProfileImage" method="post" class="profilePictureForm" enctype="multipart/form-data">
+        <label for="image">Picture:</label>
         <input type="file" name="image" id="image">
 
-        <button>Update picure</button>
+        <button>Update picture</button>
     </form>
 </section>
 
@@ -57,7 +70,14 @@
     </form>
 </section>
 
-<p class="message"></p>
-<div class="success-popup hidden">
-    <p></p>
-</div>
+<p class="message">{$errorMsg}</p>
+
+{if $successMsg neq ""}
+    <div class="success-popup">
+        <p>{$successMsg}</p>
+    </div>    
+{else}
+    <div class="success-popup hidden">
+        <p></p>
+    </div>
+{/if}

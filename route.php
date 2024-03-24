@@ -21,6 +21,7 @@ $router->addRoute("signUp", "GET", "UserController", "showSignUp");
 // User
 $router->addRoute("settings", "GET", "UserController", "showSettings");
 $router->addRoute("user", "POST", "UserController", "saveUser");
+$router->addRoute("user/updateProfileImage", "POST", "UserController", "updateProfileImage");
 
 // Appointment
 $router->addRoute("appointments", "GET", "AppointmentController", "showAllUpcomingAppointmentsByUser");
