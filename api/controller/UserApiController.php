@@ -54,5 +54,33 @@ class UserApiController extends ApiController {
 
         return $this->view->response($user, 200);
     }
+
+    public function updatePassword() {
+        $userId = $this->authHelper->getUserId();
+        $user = $this->model->findUserById($userId);
+        if (!$user) {
+            return $this->view->response("The specified user doesn't exist", 404);
+        }
+
+        $emptyFields = $this->checkRequiredFields(["password", "newPassword", "newPasswordConfirm"]);
+        if (!empty($emptyFields)) {
+            return $this->view->response("The following fields are empty: " . implode(", ", $emptyFields), 400);
+        }
+
+        $requestData = $this->getRequestData();
+
+        if (!password_verify($requestData->password, $user->password)) {
+            return $this->view->response("Invalid password", 400);
+        }
+
+        if ($requestData->newPassword != $requestData->newPasswordConfirm) {
+            return $this->view->response("The passwords do not match", 400);
+        }
+
+        $hashedPassword = password_hash($requestData->newPassword, PASSWORD_BCRYPT);
+
+        $this->model->updateUserPassword($hashedPassword, $userId);
+        return $this->view->response("The password has been updated!", 200);
+    }
 }
 ?>

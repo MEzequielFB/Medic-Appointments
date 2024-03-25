@@ -16,50 +16,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.querySelector("#email");
     const usernameInput = document.querySelector("#username");
 
-    const profilePictureForm = document.querySelector(".profilePictureForm");
-    const imageInput = document.querySelector("#image");
-
     const passwordForm = document.querySelector(".passwordForm");
+    const currentPasswordInput = document.querySelector("#currentPassword");
+    const newPasswordInput = document.querySelector("#newPassword");
+    const newPasswordConfirmInput = document.querySelector("#newPasswordConfirm");
 
     const messageP = document.querySelector(".message");
     const popup = document.querySelector(".success-popup");
 
-    /* profilePictureForm.addEventListener("submit", async (e) => {
+    passwordForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        
-        let data = {
-            "image": imageInput.files[0]
-        }
 
-        const formData = new FormData();
-        formData.append('image', imageInput.files[0]);
-        
-        console.log("FILES ", imageInput.files[0]);
-        console.log("FORM DATA: ", formData);
+        let data = {
+            "password": currentPasswordInput.value,
+            "newPassword": newPasswordInput.value,
+            "newPasswordConfirm": newPasswordConfirmInput.value
+        };
 
         try {
-            const response = await fetch(baseUrl + "api/user/updateProfileImage", {
-                "method": "POST",
+            const response = await fetch(baseUrl + "api/user/updatePassword", {
+                "method": "PUT",
                 "headers": {
                     "Content-Type": "application/json"
                 },
                 "body": JSON.stringify(data)
             });
             if (response.ok) {
-                const message = await response.text();
-                console.log(message);
+                const message  = await response.text();
 
-                popup.firstElementChild.innerHTML = "Profile picture updated!";
+                currentPasswordInput.value = "";
+                newPasswordInput.value = "";
+                newPasswordConfirmInput.value = "";
+
+                popup.firstElementChild.innerHTML = message;
                 popup.classList.remove("hidden");
+
+                setTimeout(() => {
+                    popup.classList.add("hidden");
+                    popup.firstElementChild.innerHTML = "";
+                }, 4000);
+
+                messageP.innerHTML = "";
             } else {
                 const message = await response.text();
                 messageP.innerHTML = message;
             }
         } catch (error) {
-            messageP.innerHTML = "Internal Server Error";
             console.error(error);
         }
-    }); */
+    });
 
     profileInformationForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -103,6 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     profileInformationBtn.addEventListener("click", () => {
+        window.history.pushState(null, "", baseUrl + "settings");
+        messageP.innerHTML = "";
         unselectButtons();
         profileInformationBtn.classList.add("selected");
 
@@ -112,6 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     profilePictureBtn.addEventListener("click", () => {
+        window.history.pushState(null, "", baseUrl + "settings");
+        messageP.innerHTML = "";
         unselectButtons();
         profilePictureBtn.classList.add("selected");
 
@@ -121,6 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     changePasswordBtn.addEventListener("click", () => {
+        window.history.pushState(null, "", baseUrl + "settings");
+        messageP.innerHTML = "";
         unselectButtons();
         changePasswordBtn.classList.add("selected");
 
