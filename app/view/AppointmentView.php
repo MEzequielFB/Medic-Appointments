@@ -5,7 +5,7 @@ require_once "app/controller/AuthHelper.php";
 class AppointmentView {
     private $smarty;
 
-    function __construct($userUsername, $userRole) {
+    function __construct($userUsername, $userRole, $userImage) {
         $this->smarty = new Smarty();
         $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
@@ -13,6 +13,7 @@ class AppointmentView {
 
         $this->smarty->assign("userUsername", $userUsername);
         $this->smarty->assign("userRole", $userRole);
+        $this->smarty->assign("userImage", $userImage);
     }
 
     public function showAppointments($appointments, $nearest) {

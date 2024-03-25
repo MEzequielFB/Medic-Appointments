@@ -15,7 +15,7 @@ class DoctorController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new DoctorView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
+        $this->view = new DoctorView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
     }
 
     public function showDoctorCreation() {

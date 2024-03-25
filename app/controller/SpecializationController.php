@@ -13,7 +13,7 @@ class SpecializationController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new SpecializationView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
+        $this->view = new SpecializationView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
     }
 
     public function showSpecializationCreation(){

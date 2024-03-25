@@ -15,7 +15,7 @@ class UserController extends Controller {
 
         $this->authHelper = new AuthHelper();
 
-        $this->view = new UserView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
+        $this->view = new UserView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
         
     }
 
@@ -145,6 +145,10 @@ class UserController extends Controller {
         }
 
         $this->model->updateProfileImage($filename, $userId);
+
+        $user = $this->model->findUserById($userId);
+        $this->authHelper->login($user); // To update the session attributes
+
         $this->view->showSettings($user, "", "Profile picture updated!");
     }
 }

@@ -4,7 +4,7 @@ require_once "libs/Smarty.class.php";
 class SpecializationView {
     private $smarty;
 
-    function __construct($userUsername, $userRole) {
+    function __construct($userUsername, $userRole, $userImage) {
         $this->smarty = new Smarty();
         $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
@@ -12,6 +12,7 @@ class SpecializationView {
 
         $this->smarty->assign("userUsername", $userUsername);
         $this->smarty->assign("userRole", $userRole);
+        $this->smarty->assign("userImage", $userImage);
     }
 
     public function showSpecializationCreation($specializations, $errorMsg = "") {

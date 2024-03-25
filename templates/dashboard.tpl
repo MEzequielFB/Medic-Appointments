@@ -2,7 +2,11 @@
     <img src="{$baseUrl}image/cross.png" alt="cross" class="cross">
 
     <div class="userInfo">
-        <img src="{$baseUrl}image/profile/therapist.jpg" alt="profile image">
+        {if $userImage neq null && $userImage neq ""}
+            <img src="{$baseUrl}image/profile/{$userImage}" alt="profile image">
+        {else}
+            <img src="{$baseUrl}image/profile/default.png" alt="profile image">
+        {/if}
         <p>{$userUsername}</p>
     </div>
 

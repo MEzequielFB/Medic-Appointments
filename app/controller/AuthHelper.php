@@ -10,6 +10,7 @@ class AuthHelper {
         $_SESSION["EMAIL"] = $user->email;
         $_SESSION["USERNAME"] = $user->username;
         $_SESSION["ROLE"] = $user->role;
+        $_SESSION["IMAGE"] = $user->image;
     }
 
     public function logout() {
@@ -61,6 +62,14 @@ class AuthHelper {
     public function getUserRole() {
         if (isset($_SESSION["ROLE"])) {
             return $_SESSION["ROLE"];
+        }
+
+        return null;
+    }
+
+    public function getUserImage() {
+        if (isset($_SESSION["IMAGE"])) {
+            return $_SESSION["IMAGE"];
         }
 
         return null;

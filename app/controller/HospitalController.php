@@ -12,7 +12,7 @@ class HospitalController extends Controller {
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkIsAdmin();
 
-        $this->view = new HospitalView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole());
+        $this->view = new HospitalView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
     }
 
     public function showHospitalCreation() {

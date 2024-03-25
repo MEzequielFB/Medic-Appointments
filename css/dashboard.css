@@ -30,9 +30,13 @@
     margin: 0 auto;
 }
 .dashboard .userInfo img {
-    width: 50%;
+    /* width: 200px;
+    height: 112px; */
+    width: 120px;
+    height: 130px;
     clip-path: circle();
-    border: 2px solid var(--white);
+    object-fit: cover;
+    object-position: top;
 }
 .dashboard .userInfo P {
     margin: 5% 0 20% 0;
