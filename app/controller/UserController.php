@@ -44,6 +44,15 @@ class UserController extends Controller {
         $this->view->showSettings($user);
     }
 
+    public function showUsersManage() {
+        $this->authHelper->checkIsAdmin();
+
+        $users = $this->model->findAllUsers();
+        $roles = $this->roleModel->findAllRoles();
+
+        $this->view->showUsersManage($users, $roles);
+    }
+
     public function logoutUser() {
         $this->authHelper->logout();
 

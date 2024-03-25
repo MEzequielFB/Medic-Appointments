@@ -20,6 +20,7 @@ $router->addRoute("signUp", "GET", "UserController", "showSignUp");
 
 // User
 $router->addRoute("settings", "GET", "UserController", "showSettings");
+$router->addRoute("users/manage", "GET", "UserController", "showUsersManage");
 $router->addRoute("user", "POST", "UserController", "saveUser");
 $router->addRoute("user/updateProfileImage", "POST", "UserController", "updateProfileImage");
 

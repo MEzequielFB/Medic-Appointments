@@ -164,8 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     <h1>${user.username}</h1>
                     <p>${user.email}</p>
                 </div>
-                <img src="${baseUrl}image/profile/${user.image}" alt="user's image">
             </article>`;
+
+            if (user.image != "" && user.image != null) {
+                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/${user.image}" alt="user's image"></img>`
+            } else {
+                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/default.png" alt="user's image"></img>`
+            }
         });
 
         addUsersBehavior();

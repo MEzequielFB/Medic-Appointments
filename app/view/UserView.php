@@ -37,5 +37,13 @@ class UserView {
 
         $this->smarty->display("templates/settings.tpl");
     }
+
+    public function showUsersManage($users, $roles) {
+        $this->smarty->assign("title", "Users manage");
+        $this->smarty->assign("users", $users);
+        $this->smarty->assign("roles", $roles);
+
+        $this->smarty->display("templates/usersManage.tpl");
+    }
 }
 ?>

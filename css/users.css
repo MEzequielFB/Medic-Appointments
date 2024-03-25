@@ -1,0 +1,56 @@
+h1 {
+    font-size: xx-large;
+}
+section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+article {
+    position: relative;
+    width: 45%;
+    margin: 0 0 20px 0;
+    padding: 0 0 5px 0;
+    border: 4px solid var(--primary);
+    border-radius: var(--soft-radius);
+}
+.banner {
+    width: 100%;
+    height: 3rem;
+    background-color: var(--primary);
+}
+article img {
+    position: relative;
+    top: -40px;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    border: 4px solid var(--primary);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+}
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-40px);
+}
+.userInfo p:first-child {
+    font-size: x-large;
+    font-weight: 800;
+}
+.roleSelection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+select {
+    width: 70%;
+    padding: 0.2rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
