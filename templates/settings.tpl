@@ -13,12 +13,12 @@
 {include file="dashboard.tpl"}
 
 <nav class="settingsSections">
-    {if $errorMsg eq "" || $successMsg eq ""}
-        <button class="profileInformationBtn selected">Profile information</button>
-        <button class="profilePictureBtn">Profile picture</button>
-    {else}
+    {if $errorMsg neq "" || $successMsg neq ""}
         <button class="profileInformationBtn">Profile information</button>
         <button class="profilePictureBtn selected">Profile picture</button>
+    {else}
+        <button class="profileInformationBtn selected">Profile information</button>
+        <button class="profilePictureBtn">Profile picture</button>
     {/if}
     <button class="changePasswordBtn">Change password</button>
 </nav>
