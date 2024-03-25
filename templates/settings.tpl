@@ -75,7 +75,7 @@
 {if $successMsg neq ""}
     <div class="success-popup">
         <p>{$successMsg}</p>
-    </div>    
+    </div>
 {else}
     <div class="success-popup hidden">
         <p></p>

@@ -82,5 +82,29 @@ class UserApiController extends ApiController {
         $this->model->updateUserPassword($hashedPassword, $userId);
         return $this->view->response("The password has been updated!", 200);
     }
+
+    public function updateUserRole($params = null) {
+        $this->authHelper->checkIsAdmin();
+
+        $userId = $params[":ID"];
+        $user = $this->model->findUserById($userId);
+        if (!$user) {
+            return $this->view->response("The specified user doesn't exist", 404);
+        }
+
+        $requestData = $this->getRequestData();
+
+        $role = $this->roleModel->findRoleById($requestData->roleId);
+        if (!$role) {
+            return $this->view->response("The specified role doesn't exist", 404);
+        }
+
+        if ($user->role == $role->name) {
+            return $this->view->response("The user with email '$user->email' already has the selected role ($role->name)", 400);
+        }
+
+        $this->model->updateUserRole($role->id, $userId);
+        return $this->view->response("The role of the user with email '$user->email' has been changed from '$user->role' to '$role->name'", 200);
+    }
 }
 ?>

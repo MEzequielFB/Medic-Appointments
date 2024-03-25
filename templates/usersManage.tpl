@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{$baseUrl}css/users.css">
 
 <script src="{$baseUrl}js/nav.js"></script>
+<script src="{$baseUrl}js/userManage.js"></script>
 </head>
 
 {include file="header.tpl"}
@@ -24,6 +25,7 @@
             <div class="userInfo">
                 <p>{$user->username}</p>
                 <p>{$user->email}</p>
+                <p class="roleP{$user->id}">{$user->role}</p>
             </div>
 
             <div class="roleSelection">
@@ -39,9 +41,15 @@
                         {/foreach}
                     </select>
                 {else}
-                    <p>USER</p>
+                    <p>{$user->role}</p>
                 {/if}
             </div>
+
+            <button class="roleBtn userRole{$user->id}">Update role</button>
         </article>
     {/foreach}
 </section>
+
+<div class="popup">
+    <p></p>
+</div>

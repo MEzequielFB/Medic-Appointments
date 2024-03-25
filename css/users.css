@@ -54,3 +54,23 @@ select {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
+.popup {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: var(--white);
+    background-color: var(--striking);
+    opacity: 1;
+    transition: 1s;
+}
+.popup.success {
+    background-color: var(--success);
+}
+.popup.hidden {
+    bottom: -100px;
+    opacity: 0;
+}
+.popup p {
+    padding: 3%;
+    text-align: center;
+}

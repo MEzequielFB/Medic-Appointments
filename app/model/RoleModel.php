@@ -13,6 +13,13 @@ class RoleModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findRoleById($roleId) {
+        $query = $this->db->prepare("SELECT * FROM role WHERE id = ?");
+        $query->execute([$roleId]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function findRoleByName($name) {
         $query = $this->db->prepare("SELECT * FROM role WHERE name = ?");
         $query->execute([$name]);

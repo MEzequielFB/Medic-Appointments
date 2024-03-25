@@ -34,6 +34,7 @@ $router->addRoute("hospital/:ID", "GET", "HospitalApiController", "findHospitalB
 $router->addRoute("user", "GET", "UserApiController", "findAllUsers");
 $router->addRoute("user/updateInformation", "PUT", "UserApiController", "updateUserInformation");
 $router->addRoute("user/updatePassword", "PUT", "UserApiController", "updatePassword");
+$router->addRoute("user/:ID/updateRole", "PUT", "UserApiController", "updateUserRole");
 
 $router->route($_GET["resource"], $_SERVER["REQUEST_METHOD"]);
 ?>

@@ -58,5 +58,10 @@ class UserModel {
         $query = $this->db->prepare("UPDATE user SET password = ? WHERE id = ?");
         $query->execute([$hashedPassword, $userId]);
     }
+
+    public function updateUserRole($roleId, $userId) {
+        $query = $this->db->prepare("UPDATE user SET role_id = ? WHERE id = ?");
+        $query->execute([$roleId, $userId]);
+    }
 }
 ?>
