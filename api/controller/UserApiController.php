@@ -84,9 +84,18 @@ class UserApiController extends ApiController {
     }
 
     public function updateUserRole($params = null) {
-        $this->authHelper->checkIsAdmin();
+        $loggedUserRole = $this->authHelper->getUserRole();
+        if ($loggedUserRole != "SUPER_ADMIN") {
+            return $this->view->response("You don't have the permissions to update users roles", 403);
+        }
 
+        $loggedUserId = $this->authHelper->getUserId();
         $userId = $params[":ID"];
+
+        if ($loggedUserId == $userId) {
+            return $this->view->response("You cannot update your own role", 400);
+        }
+
         $user = $this->model->findUserById($userId);
         if (!$user) {
             return $this->view->response("The specified user doesn't exist", 404);

@@ -15,41 +15,43 @@
 <h1>Users</h1>
 <section class="users">
     {foreach from=$users item=user}
-        <article>
-            <div class="banner"></div>
-            {if $user->image eq "" || $user->image eq null}
-                <img src="image/profile/default.png" alt="profile user's picture">
-            {else}
-                <img src="image/profile/{$user->image}" alt="profile user's picture">
-            {/if}
-            <div class="userInfo">
-                <p>{$user->username}</p>
-                <p>{$user->email}</p>
-                <p class="roleP{$user->id}">{$user->role}</p>
-            </div>
-
-            <div class="roleSelection">
-                <p>Role:</p>
-                {if $userRole eq "SUPER_ADMIN"}
-                    <select name="role" id="role">
-                        {foreach from=$roles item=role}
-                            {if $user->role eq $role->name}
-                                <option value="{$role->id}" selected>{$role->name}</option>
-                            {else}
-                                <option value="{$role->id}">{$role->name}</option>
-                            {/if}
-                        {/foreach}
-                    </select>
+        {if $userId neq $user->id}
+            <article>
+                <div class="banner"></div>
+                {if $user->image eq "" || $user->image eq null}
+                    <img src="image/profile/default.png" alt="profile user's picture">
                 {else}
-                    <p>{$user->role}</p>
+                    <img src="image/profile/{$user->image}" alt="profile user's picture">
                 {/if}
-            </div>
+                <div class="userInfo">
+                    <p>{$user->username}</p>
+                    <p>{$user->email}</p>
+                    <p class="roleP{$user->id}">{$user->role}</p>
+                </div>
 
-            <button class="roleBtn userRole{$user->id}">Update role</button>
-        </article>
+                <div class="roleSelection">
+                    <p>Role:</p>
+                    {if $userRole eq "SUPER_ADMIN"}
+                        <select name="role" id="role" class="role" title="user roles">
+                            {foreach from=$roles item=role}
+                                {if $user->role eq $role->name}
+                                    <option value="{$role->id}" selected>{$role->name}</option>
+                                {else}
+                                    <option value="{$role->id}">{$role->name}</option>
+                                {/if}
+                            {/foreach}
+                        </select>
+                    {else}
+                        <p>{$user->role}</p>
+                    {/if}
+                </div>
+
+                <button class="roleBtn userRole{$user->id} hidden">Update role</button>
+            </article>
+        {/if}
     {/foreach}
 </section>
 
-<div class="popup">
+<div class="popup hidden">
     <p></p>
 </div>

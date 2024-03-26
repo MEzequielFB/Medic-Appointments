@@ -15,7 +15,7 @@ class UserController extends Controller {
 
         $this->authHelper = new AuthHelper();
 
-        $this->view = new UserView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
+        $this->view = new UserView($this->authHelper->getUserId(), $this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
         
     }
 

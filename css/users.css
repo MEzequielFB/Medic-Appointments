@@ -4,6 +4,7 @@ h1 {
 section {
     display: flex;
     justify-content: space-around;
+    align-items: baseline;
     flex-wrap: wrap;
 }
 article {
@@ -54,6 +55,16 @@ select {
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
+.roleBtn {
+    display: block;
+    width: 85%;
+    margin: 0.5rem auto;
+    padding: 0.2rem;
+    text-align: center;
+    color: var(--white);
+    border-radius: var(--soft-radius);
+    background-color: var(--secundary);
+}
 .popup {
     position: fixed;
     bottom: 0;
@@ -73,4 +84,7 @@ select {
 .popup p {
     padding: 3%;
     text-align: center;
+}
+.hidden {
+    display: none;
 }
