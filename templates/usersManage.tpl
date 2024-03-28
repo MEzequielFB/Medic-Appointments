@@ -13,6 +13,22 @@
 {include file="dashboard.tpl"}
 
 <h1>Users</h1>
+
+<form class="userSearchForm">
+    <input type="search" name="filter" id="filter" placeholder="by username, email...">
+
+    <div class="roleSearchContainer">
+        <label for="roleSearch">Role:</label>
+        <select name="roleSearch" id="roleSearch" title="roleSearch">
+        <option value=""></option>
+            {foreach from=$roles item=role}
+                <option value="{$role->id}">{$role->name}</option>
+            {/foreach}
+        </select>
+    </div>
+    <button>Search</button>
+</form>
+
 <section class="users">
     {foreach from=$users item=user}
         {if $userId neq $user->id}
@@ -55,3 +71,5 @@
 <div class="popup hidden">
     <p></p>
 </div>
+
+<input type="hidden" value="{$userRole}" class="userRole">

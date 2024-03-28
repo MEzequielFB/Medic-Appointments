@@ -30,6 +30,20 @@ class UserModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findAllUsersByFilter($filter, $roles) {
+        /* $in = str_repeat('?,', count($roles) - 1) . '?'; */
+        $in = implode(',', array_fill(0, count($roles), '?'));
+
+        $query = $this->db->prepare("SELECT u.*, r.name AS role 
+        FROM user u 
+        JOIN role r ON u.role_id = r.id 
+        WHERE (u.username = ? OR u.email = ?)
+        OR r.name IN ($in)");
+        $query->execute(array_merge([$filter, $filter], $roles));
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findUserByEmail($email) {
         $query = $this->db->prepare("SELECT u.*, r.name AS role FROM user u JOIN role r ON u.role_id = r.id WHERE email = ?");
         $query->execute([$email]);

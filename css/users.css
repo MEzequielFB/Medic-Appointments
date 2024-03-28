@@ -1,6 +1,43 @@
 h1 {
     font-size: xx-large;
 }
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 0.5rem;
+    margin: 5% auto;
+    border: 2px solid var(--white);
+    border-radius: var(--soft-radius);
+}
+input {
+    width: 70%;
+    margin: 1% 0 5% 0;
+    padding: 0.5rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: var(--soft-radius);
+}
+input::placeholder {
+    color: var(--white-transparent);
+}
+.roleSearchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 70%;
+}
+form select {
+    width: 100%;
+    margin: 0 0 5% 0;
+}
+form button {
+    padding: 0.7rem;
+    color: var(--white);
+    background-color: var(--secundary);
+    border-radius: var(--soft-radius);
+}
 section {
     display: flex;
     justify-content: space-around;

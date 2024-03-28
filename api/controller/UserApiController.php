@@ -26,6 +26,18 @@ class UserApiController extends ApiController {
         return $this->view->response($users, 200);
     }
 
+    public function findAllUsersByFilter() {
+        $requestData = $this->getRequestData();
+
+        $roles = explode("", $requestData->role);
+        if (empty($requestData->role)) {
+            $roles = $this->roleModel->findAllRolesNames(); 
+        }
+
+        $users = $this->model->findAllUsersByFilter($requestData->filter, $roles);
+        return $this->view->response($users, 200);
+    }
+
     public function updateUserInformation() {
         $this->authHelper->checkLoggedUser();
 

@@ -27,6 +27,7 @@ body {
 }
 button {
     cursor: pointer;
+    border-radius: var(--soft-radius);
 }
 .hidden {
     display: none;
