@@ -5,7 +5,7 @@ header {
     background-color: var(--primary);
 }
 header img {
-    width: 10%;
+    width: 2.5rem;
 }
 nav {
     display: flex;

@@ -38,13 +38,13 @@ form button {
     background-color: var(--secundary);
     border-radius: var(--soft-radius);
 }
-section {
+.users {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
 }
-article {
+.users article {
     position: relative;
     width: 45%;
     margin: 0 0 20px 0;
@@ -57,7 +57,7 @@ article {
     height: 3rem;
     background-color: var(--primary);
 }
-article img {
+.users article img {
     position: relative;
     top: -40px;
     left: 50%;
@@ -70,13 +70,13 @@ article img {
     object-fit: cover;
     object-position: top;
 }
-.userInfo {
+.users .userInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translateY(-40px);
 }
-.userInfo p:first-child {
+.users .userInfo p:first-child {
     font-size: x-large;
     font-weight: 800;
 }

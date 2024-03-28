@@ -45,7 +45,7 @@
     font-size: larger;
     text-align: start;
 }
-.usersSection article h1 {
+.usersSection article h1, .doctorsSection article h1 {
     width: 100%;
 }
 .doctorsSection article p, .chosenDoctor p {
