@@ -29,7 +29,8 @@ class UserApiController extends ApiController {
     public function findAllUsersByFilter() {
         $requestData = $this->getRequestData();
 
-        $roles = explode("", $requestData->role);
+        /* $roles = explode("", $requestData->role); */
+        $roles = [$requestData->role];
         if (empty($requestData->role)) {
             $roles = $this->roleModel->findAllRolesNames(); 
         }

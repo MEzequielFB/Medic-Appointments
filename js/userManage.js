@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
             if (response.ok) {
                 const users = await response.json();
+                const roles = await getRoles();
 
                 userSection.innerHTML = "";
                 for (let user of users) {
@@ -43,37 +44,31 @@ document.addEventListener("DOMContentLoaded", () =>{
             
                             <div class="roleSelection">
                                 <p>Role:</p>
-                                
+                            </div>
                         </article>
                     `;
 
                     const loggedUserRole = document.querySelector(".userRole").value;
-
+                    console.log("Logged user role: ", loggedUserRole);
 
                     if (loggedUserRole == "SUPER_ADMIN") {
-                        const roles = await getRoles();
-
-                        userSection.lastElementChild.innerHTML += `
+                        userSection.lastElementChild.lastElementChild.innerHTML += `
                             <select name="role" id="role" class="role" title="user roles">
+                            </select>
                         `;
 
                         for (let role of roles) {
                             if (user.role == role.name) {
-                                userSection.lastElementChild.innerHTML += `<option value="${role.id}" selected>${role.name}</option>`;
+                                userSection.lastElementChild.lastElementChild.lastElementChild.innerHTML += `<option value="${role.id}" selected>${role.name}</option>`;
                             } else {
-                                userSection.lastElementChild.innerHTML += `<option value="${role.id}">${role.name}</option>`;
+                                userSection.lastElementChild.lastElementChild.lastElementChild.innerHTML += `<option value="${role.id}">${role.name}</option>`;
                             }
                         }
-
-                        userSection.lastElementChild.innerHTML += `</select>`;
                     } else {
-                        userSection.lastElementChild.innerHTML += `<p>${user.role}</p>`;
+                        userSection.lastElementChild.lastElementChild.innerHTML += `<p>${user.role}</p>`;
                     }
 
-                    userSection.lastElementChild.innerHTML += `
-                        </div>
-                        <button class="roleBtn userRole${user.id} hidden">Update role</button>
-                    `;
+                    userSection.lastElementChild.innerHTML += `<button class="roleBtn userRole${user.id} hidden">Update role</button>`;
                 }
 
                 addRoleUpdateBehavior();

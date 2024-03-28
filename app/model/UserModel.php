@@ -31,14 +31,15 @@ class UserModel {
     }
 
     public function findAllUsersByFilter($filter, $roles) {
-        /* $in = str_repeat('?,', count($roles) - 1) . '?'; */
+        // Return a string with tokens (?) separated with commas depending on the $roles array length
         $in = implode(',', array_fill(0, count($roles), '?'));
 
         $query = $this->db->prepare("SELECT u.*, r.name AS role 
         FROM user u 
         JOIN role r ON u.role_id = r.id 
-        WHERE (u.username = ? OR u.email = ?)
-        OR r.name IN ($in)");
+        WHERE (u.username LIKE CONCAT(?, '%') OR u.email LIKE CONCAT(?, '%'))
+        AND r.name IN ($in)
+        ORDER BY r.name, u.username");
         $query->execute(array_merge([$filter, $filter], $roles));
 
         return $query->fetchAll(PDO::FETCH_OBJ);

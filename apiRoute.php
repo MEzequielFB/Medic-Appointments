@@ -5,6 +5,7 @@ require_once "api/controller/DoctorApiController.php";
 require_once "api/controller/SpecializationApiController.php";
 require_once "api/controller/HospitalApiController.php";
 require_once "api/controller/UserApiController.php";
+require_once "api/controller/RoleApiController.php";
 
 $router = new Router();
 
@@ -38,7 +39,7 @@ $router->addRoute("user/updatePassword", "PUT", "UserApiController", "updatePass
 $router->addRoute("user/:ID/updateRole", "PUT", "UserApiController", "updateUserRole");
 
 // Role
-/* $router->addRoute("role", "GET", "RoleApiController", "findAllRoles"); */
+$router->addRoute("role", "GET", "RoleApiController", "findAllRoles");
 
 $router->route($_GET["resource"], $_SERVER["REQUEST_METHOD"]);
 ?>

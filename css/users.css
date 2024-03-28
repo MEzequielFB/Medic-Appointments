@@ -41,7 +41,7 @@ form button {
 section {
     display: flex;
     justify-content: space-around;
-    align-items: baseline;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 article {

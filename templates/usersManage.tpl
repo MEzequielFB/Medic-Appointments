@@ -22,7 +22,7 @@
         <select name="roleSearch" id="roleSearch" title="roleSearch">
         <option value=""></option>
             {foreach from=$roles item=role}
-                <option value="{$role->id}">{$role->name}</option>
+                <option value="{$role->name}">{$role->name}</option>
             {/foreach}
         </select>
     </div>
