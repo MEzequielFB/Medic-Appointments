@@ -40,6 +40,7 @@
     max-width: 50%;
 }
 .doctorsSection article h1, .usersSection article h1, .chosenDoctor h1 {
+    width: 100%;
     margin: 0 0 1% 0;
     font-weight: 900;
     font-size: larger;

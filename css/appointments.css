@@ -1,15 +1,15 @@
 .doctorBtn, .userBtn, .scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
     display: block;
-    width: 60%;
-    margin: 5% auto;
-    padding: 5%;
+    width: 10rem;
+    margin: 1.2rem auto;
+    padding: 1rem;
     color: var(--white);
     background-color: var(--primary);
     border-radius: var(--soft-radius);
 }
 .scheduleBtn, .rescheduleBtn, .appointmentSearchBtn {
-    width: 35%;
-    padding: 3%;
+    width: 7rem;
+    padding: 0.7rem;
     background-color: var(--secundary);
 }
 h1 {
@@ -213,6 +213,7 @@ h2 {
 .appointment .doctorInfo h1, .appointment .doctorInfo p {
     display: inline-block;
     max-height: max-content;
+    width: 100%;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -295,4 +296,24 @@ h2 {
 }
 .appointmentBtns .confirmButton {
     background-color: var(--success);
+}
+
+@media only screen and (min-width: 768px) {
+    .appointmentsNav  {
+        width: 60%;
+    }
+    h2 {
+        margin: 0;
+        text-align: center;
+    }
+    .appointment {
+        width: 60%;
+    }
+    .appointment .doctorInfo {
+        justify-content: center;
+        align-items: center;
+    }
+    .appointment ul {
+        align-items: baseline;
+    }
 }
