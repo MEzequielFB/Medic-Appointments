@@ -179,6 +179,22 @@ class AppointmentModel {
         $query->execute([$cancelledStatusId, $userId, $toBeConfirmedStatusId]);
     }
 
+    public function completePastAppointments($completedStatusId, $confirmedStatusId) {
+        $query = $this->db->prepare("UPDATE appointment
+        SET status_id = ?
+        WHERE status_id = ?
+        AND DATE_ADD(date, INTERVAL duration MINUTE) <= NOW()");
+        $query->execute([$completedStatusId, $confirmedStatusId]);
+    }
+
+    public function cancelPastAppointments($cancelledStatusId, $toBeConfirmedStatusId) {
+        $query = $this->db->prepare("UPDATE appointment
+        SET status_id = ?
+        WHERE status_id = ?
+        AND DATE_ADD(date, INTERVAL duration MINUTE) <= NOW()");
+        $query->execute([$cancelledStatusId, $toBeConfirmedStatusId]);
+    }
+
     public function findPastAppointmentsByUser($userId) {
         $query = $this->db->prepare("SELECT * FROM appointment
         WHERE user_id = ?

@@ -37,6 +37,15 @@ class AppointmentApiController extends ApiController {
 
     public function findAllAppointmentsByDoctor($params = null) {
         $doctorId = $params[":DOCTOR_ID"];
+
+        $cancelledStatus = $this->statusModel->findStatusByName("cancelled");
+        $completedStatus = $this->statusModel->findStatusByName("completed");
+        $toBeConfirmedStatus = $this->statusModel->findStatusByName("to be confirmed");
+        $confirmedStatus = $this->statusModel->findStatusByName("confirmed");
+
+        $this->model->completePastAppointments($completedStatus->id, $confirmedStatus->id);
+        $this->model->cancelPastAppointments($cancelledStatus->id, $toBeConfirmedStatus->id);
+
         $appointments = $this->model->findAllAppointmentsByDoctor($doctorId);
 
         return $this->view->response($appointments, 200);
