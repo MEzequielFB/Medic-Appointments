@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{$baseUrl}css/nav.css">
 <link rel="stylesheet" href="{$baseUrl}css/save.css">
 <link rel="stylesheet" href="{$baseUrl}/css/dashboard.css">
+<link rel="stylesheet" href="{$baseUrl}/css/hospitals.css">
 
 <script src="{$baseUrl}js/nav.js"></script>
 <script src="{$baseUrl}js/saveSpecialization.js"></script>

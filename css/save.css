@@ -1,4 +1,5 @@
 h1 {
+    margin: 1rem 0 0 0;
     text-align: center;
     font-size: xx-large;
 }
@@ -6,10 +7,10 @@ form {
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin: 0 auto 15% auto;
+    margin: 0 auto 4rem auto;
 }
 form input, form label, form button {
-    margin: 5% 0 0 0;
+    margin: 1.5rem 0 0 0;
 }
 form input, form select, form button {
     color: var(--white);
@@ -20,7 +21,7 @@ input#endTime, input#startTime {
     margin: 0;
 }
 form input {
-    padding: 3%;
+    padding: 0.7rem;
 }
 form input::placeholder {
     color: var(--white-transparent);
@@ -30,8 +31,8 @@ form select {
 }
 form button {
     width: 35%;
-    margin: 5% auto 0 auto;
-    padding: 3%;
+    margin: 2rem auto 0 auto;
+    padding: 0.7rem;
     background-color: var(--secundary);
 }
 p.errorMsg{
@@ -50,25 +51,15 @@ select {
     border: 1px solid var(--white);
     background-color: var(--white-transparent);
 }
-.specializationsSection {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.specializationsSection article {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-    margin: 0 0 3% 0;
-    padding: 1%;
-    border: 2px solid var(--white);
-    border-radius: var(--soft-radius);
-}
-.specializationsSection h1 {
-    text-transform: capitalize;
-    font-size: larger;
-}
 article.selected {
     border-color: var(--secundary);
+}
+
+@media only screen and (min-width: 768px) {
+    form {
+        width: 50%;
+    }
+    form button {
+        width: 20%;
+    }
 }

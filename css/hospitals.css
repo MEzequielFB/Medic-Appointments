@@ -1,6 +1,7 @@
-.hospitalsSection {
+.hospitalsSection, .specializationsSection {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: stretch;
     flex-wrap: wrap;
 }
 article {
@@ -8,8 +9,8 @@ article {
     flex-direction: column;
     justify-content: center;
     width: 40%;
-    margin: 0 0 3% 0;
-    padding: 3%;
+    margin: 0.2rem;
+    padding: 0.4rem;
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
 }
@@ -23,4 +24,12 @@ article h1 {
 }
 article p {
     font-size: medium;
+}
+
+@media only screen and (min-width: 768px) {
+    article {
+        width: 25%;
+        margin: 0.5rem;
+        padding: 0.7rem;
+    }
 }
