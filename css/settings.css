@@ -18,7 +18,7 @@
     border-radius: var(--soft-radius);
 }
 .settingsSection h1 {
-    padding: 2%;
+    padding: 0.5rem;
     background-color: var(--primary);
     font-size: larger;
 }
@@ -33,7 +33,7 @@
 }
 .settingsSection form input {
     width: 80%;
-    padding: 2%;
+    padding: 0.5rem;
     color: var(--white);
     background-color: var(--primary);
     border-radius: var(--soft-radius);
@@ -67,4 +67,14 @@ p.message {
 .success-popup p {
     padding: 3%;
     text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .settingsSection form input {
+        width: 60%;
+        padding: 0.7rem;
+    }
+    .settingsSections button {
+        padding: 0.7rem;
+    }
 }
