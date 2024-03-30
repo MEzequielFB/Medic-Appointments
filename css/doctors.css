@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     width: 90%;
-    margin: 0 0 4% 0;
+    margin: 0 0 1rem 0;
     padding: 3%;
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
@@ -61,5 +61,13 @@
 }
 .doctorsSection article img, .usersSection article img, .chosenUser img, .chosenDoctor img {
     width: 50%;
-    height: 120px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+}
+
+@media only screen and (min-width: 768px) {
+    .doctorsSection article, .usersSection article, .chosenDoctor, .chosenUser {
+        width: 60%;
+    }
 }
