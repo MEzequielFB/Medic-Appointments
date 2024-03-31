@@ -51,8 +51,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeDiv = document.querySelector(".timeDiv");
     const dateDiv = document.querySelector(".dateDiv");
 
+    const doctorSearchForm = document.querySelector(".doctorSearchForm");
+    doctorSearchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        searchDoctors();
+    });
     const doctorSearch = document.querySelector(".doctorSearch");
-    doctorSearch.addEventListener("input", searchDoctors);
+
+    try {
+        const userSearchForm = document.querySelector(".userSearchForm");
+        userSearchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            searchUsers();
+        });
+    } catch (error) {
+        console.warn(error);
+    }
 
     try {
         const date = document.querySelector(".date");
@@ -288,6 +302,44 @@ document.addEventListener("DOMContentLoaded", () => {
             } else{
                 const message = await response.text();
                 messageP.innerHTML = message;
+            }
+        } catch (error) {
+            console.error(error);
+            messageP.innerHTML = "Error while fetching doctors";
+        }
+    }
+
+    async function searchUsers() {
+        const usersSection = document.querySelector(".usersSection");
+        const userSearch = document.querySelector(".userSearch");
+
+        usersSection.innerHTML = "<div class='loader'></div>";
+
+        const data = {
+            "filter": userSearch.value
+        };
+
+        try {
+            const response = await fetch(baseUrl + "api/user/search/username", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(data)
+            });
+            if (response.ok) {
+                const users = await response.json();
+
+                if (users.length == 0) {
+                    usersSection.innerHTML = "<p class='usersMessage'>No users found!</p>";
+                } else {
+                    setTimeout(() => {
+                        renderUsers(users);
+                    }, 1000);
+                }
+            } else{
+                const message = await response.text();
+                messageP.innerHTML = message.replaceAll('"', '');
             }
         } catch (error) {
             console.error(error);

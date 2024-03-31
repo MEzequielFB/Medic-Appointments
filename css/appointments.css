@@ -59,6 +59,10 @@ p.message {
 p.success {
     color: var(--striking);
 }
+.usersMessage {
+    text-align: center;
+    font-size: x-large;
+}
 .appointmentsMessage {
     text-align: center;
     font-size: x-large;
@@ -85,13 +89,13 @@ p.success {
     left: 0;
     opacity: 1;
 }
-.doctorsDiv h1, .chosenDoctor h1  {
+.doctorsDiv h1, .chosenDoctor h1, .usersDiv h1  {
     margin: 2rem 0 0 0;
 }
 .doctorSearch, .userSearch, .usernameSearch, #reason {
     display: block;
     width: 80%;
-    margin: 1rem auto 2rem auto;
+    margin: 1rem auto;
     padding: 0.7rem;
     color: var(--white);
     background-color: var(--primary);
@@ -99,6 +103,19 @@ p.success {
 }
 .doctorSearch::placeholder, .userSearch::placeholder, .usernameSearch::placeholder, #reason::placeholder {
     color: var(--white-transparent);
+}
+.userSearchForm, .doctorSearchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto 2rem auto;
+}
+.userSearchForm button, .doctorSearchForm button {
+    padding: 0.7rem;
+    color: var(--white);
+    border-radius: var(--soft-radius);
+    background-color: var(--secundary);
 }
 .hidden {
     display: none;
@@ -333,7 +350,7 @@ h2 {
     .appointment ul {
         align-items: baseline;
     }
-    .doctorSearch {
+    .doctorSearch, .userSearch {
         width: 60%;
     }
     .date {
@@ -395,6 +412,9 @@ h2 {
     .timeDiv ul {
         width: 70%;
     }
+    .appointment {
+        width: 30%;
+    }
 }
 
 @media only screen and (min-width: 1600px) {
@@ -414,9 +434,18 @@ h2 {
         width: 35%;
     }
     .doctorSearch, .userSearch {
-        width: 25%;
+        width: 85%;
     }
     .appointmentsSearchForm {
+        width: 20%;
+    }
+    .sliderContainer, #reason {
+        width: 20%;
+    }
+    .userSearchForm, .doctorSearchForm {
+        width: 20%;
+    }
+    .userSearchForm button, .doctorSearchForm button {
         width: 20%;
     }
 }

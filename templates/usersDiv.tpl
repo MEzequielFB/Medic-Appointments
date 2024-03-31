@@ -2,7 +2,10 @@
     <img src="image/left-arrow.png" alt="left arrow" class="usersLeftArrow">
 
     <h1>Users</h1>
-    <input type="search" placeholder="username..." class="userSearch">
+    <form method="post" class="userSearchForm">
+        <input type="search" placeholder="by username, email..." class="userSearch">
+        <button type="submit">Search</button>
+    </form>
 
     <section class="usersSection">
         <div class="loader"></div>

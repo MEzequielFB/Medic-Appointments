@@ -45,6 +45,19 @@ class UserModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // Retrieves USER type users
+    public function findAllUsersByUsername($filter) {
+        $query = $this->db->prepare("SELECT u.*, r.name AS role
+        FROM user u
+        JOIN role r ON u.role_id = r.id
+        WHERE u.username LIKE CONCAT(?, '%')
+        OR u.email LIKE CONCAT(?, '%')
+        AND r.name = 'USER'");
+        $query->execute([$filter, $filter]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findUserByEmail($email) {
         $query = $this->db->prepare("SELECT u.*, r.name AS role FROM user u JOIN role r ON u.role_id = r.id WHERE email = ?");
         $query->execute([$email]);
