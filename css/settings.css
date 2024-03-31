@@ -47,7 +47,7 @@
     border-radius: var(--soft-radius);
 }
 p.message {
-    margin: 5% 0;
+    margin: 1rem 0;
     color: var(--striking);
     text-align: center;
 }
@@ -60,12 +60,15 @@ p.message {
     opacity: 1;
     transition: 1s;
 }
+.success-popup.error {
+    background-color: var(--striking);
+}
 .success-popup.hidden {
     bottom: -100px;
     opacity: 0;
 }
 .success-popup p {
-    padding: 3%;
+    padding: 0.5rem;
     text-align: center;
 }
 

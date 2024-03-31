@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 newPasswordInput.value = "";
                 newPasswordConfirmInput.value = "";
 
-                popup.firstElementChild.innerHTML = message;
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
                 popup.classList.remove("hidden");
 
                 setTimeout(() => {
@@ -59,7 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 messageP.innerHTML = "";
             } else {
                 const message = await response.text();
-                messageP.innerHTML = message;
+
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
+                popup.classList.add("error");
+                popup.classList.remove("hidden");
+
+                setTimeout(() => {
+                    popup.classList.add("hidden");
+                    popup.classList.remove("error");
+                    popup.firstElementChild.innerHTML = "";
+                }, 4000);
+
+                messageP.innerHTML = "";
             }
         } catch (error) {
             console.error(error);
@@ -99,7 +110,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 messageP.innerHTML = "";
             } else {
                 const message = await response.text();
-                messageP.innerHTML = message;
+
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
+                popup.classList.add("error");
+                popup.classList.remove("hidden");
+
+                setTimeout(() => {
+                    popup.classList.add("hidden");
+                    popup.classList.remove("error");
+                    popup.firstElementChild.innerHTML = "";
+                }, 4000);
+
+                messageP.innerHTML = "";
             }
         } catch (error) {
             messageP.innerHTML = "Internal Server Error";
