@@ -27,7 +27,7 @@ h1 {
     border-radius: var(--soft-radius);
 }
 .date, .timeDiv ul {
-    margin: 2% 0 0 0;
+    margin: 0.5rem 0 0 0;
 }
 .dateDiv, .timeDiv {
     display: flex;
@@ -42,13 +42,13 @@ h1 {
 }
 .timeDiv ul li {
     margin: 0.3rem;
-    padding: 5%;
+    padding: 1rem;
     background-color: var(--primary);
     border: 1px solid var(--white);
     border-radius: var(--soft-radius);
 }
 .dateDiv {
-    margin: 5% 0;
+    margin: 2rem 0;
 }
 p.message {
     margin: 1rem 0 0 0;
@@ -339,15 +339,12 @@ h2 {
     .appointmentsSearchForm div {
         justify-content: space-evenly;
     }
+    .timeDiv ul {
+        width: 80%;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
-    /* .appointment ul img {
-        width: 15%;
-    }
-    .appointment ul li:last-child img {
-        width: 10%;
-    } */
     .appointmentsList {
         display: flex;
         justify-content: center;
@@ -360,6 +357,9 @@ h2 {
         width: 40%;
         margin: 0.5rem;
         padding: 0.5rem;
+    }
+    .nearest {
+        margin: 0.5rem auto 2rem auto;
     }
     .doctorSearch, .userSearch {
         width: 40%;
@@ -379,5 +379,11 @@ h2 {
         flex-wrap: wrap;
         width: 95%;
         margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .timeDiv ul {
+        width: 70%;
     }
 }

@@ -23,7 +23,7 @@
 <div class="upcomingAppointments hidden">
     {if $nearest neq null}
         <h2>Nearest visit</h2>
-        <li class="appointment" id="appointment{$nearest->id}">
+        <li class="appointment nearest" id="appointment{$nearest->id}">
             <div class="doctorInfo">
                 <div>
                     <h1>{$nearest->doctor_name}<h1>

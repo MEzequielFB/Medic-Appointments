@@ -81,3 +81,9 @@ p.message {
         padding: 0.7rem;
     }
 }
+
+@media only screen and (min-width: 1280px) {
+    .settingsSection {
+        width: 75%;
+    }
+}
