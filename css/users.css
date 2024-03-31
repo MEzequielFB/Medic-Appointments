@@ -149,3 +149,19 @@ select {
         padding: 0.5rem;
     }
 }
+
+@media only screen and (min-width: 1024px) {
+    form {
+        width: 40%;
+    }
+    .roleSearchContainer {
+        width: 45%;
+    }
+    .users {
+        justify-content: center;
+    }
+    .users article {
+        width: 30%;
+        margin: 0.5rem;
+    }
+}

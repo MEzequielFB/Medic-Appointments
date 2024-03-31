@@ -19,7 +19,7 @@
 </article>
 
 <form class="appointmentsSearchForm">
-    <input type="search" placeholder="username" name="usernameSearch" id="usernameSearch" class="usernameSearch">
+    <input type="search" placeholder="pacient's username" name="usernameSearch" id="usernameSearch" class="usernameSearch">
 
     <div>
         <input type="date" name="dateSearch" id="dateSearch" class="dateSearch">

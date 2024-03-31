@@ -81,13 +81,13 @@ p.success {
     opacity: 1;
 }
 .doctorsDiv h1, .chosenDoctor h1  {
-    margin: 10% 0 0 0;
+    margin: 2rem 0 0 0;
 }
 .doctorSearch, .userSearch, .usernameSearch, #reason {
     display: block;
     width: 80%;
     margin: 1rem auto 2rem auto;
-    padding: 1rem;
+    padding: 0.7rem;
     color: var(--white);
     background-color: var(--primary);
     border-radius: var(--soft-radius);
@@ -133,7 +133,7 @@ p.success {
 }
 
 /* HTML: <div class="loader"></div> */
-.loader {
+/* .loader {
     width: 50px;
     margin: auto auto;
     aspect-ratio: 1;
@@ -164,6 +164,10 @@ p.success {
     100% {
         transform: rotate(360deg);
     }
+} */
+
+.loader:after {
+    content: "Loading...";
 }
 
 /* Appointment home */
@@ -267,8 +271,8 @@ h2 {
 
 .appointmentsSearchForm {
     width: 90%;
-    margin: 3% auto;
-    padding: 2%;
+    margin: 1.5rem auto;
+    padding: 0.5rem;
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
 }
@@ -323,11 +327,11 @@ h2 {
     .doctorSearch {
         width: 60%;
     }
-    .sliderContainer {
-        width: 50%;
+    .date {
+        width: 20%;
     }
-    #reason {
-        width: 55%;
+    .sliderContainer, #reason {
+        width: 50%;
     }
     .usernameSearch {
         margin: 1rem auto;
@@ -356,5 +360,24 @@ h2 {
         width: 40%;
         margin: 0.5rem;
         padding: 0.5rem;
+    }
+    .doctorSearch, .userSearch {
+        width: 40%;
+    }
+    .date {
+        width: 20%;
+    }
+    .sliderContainer, #reason {
+        width: 40%;
+    }
+    .appointmentsSearchForm {
+        width: 40%;
+    }
+    .appointments {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 95%;
+        margin: 0 auto;
     }
 }
