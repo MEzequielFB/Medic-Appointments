@@ -20,7 +20,7 @@ form {
     align-items: center;
     margin: 0 auto;
     width: 85%;
-    padding: 5%;
+    padding: 1rem;
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
 }
@@ -28,13 +28,13 @@ form > * {
     width: 100%;
 }
 form > input {
-    margin: 0 0 5% 0;
-    padding: 3%;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem;
     border-radius: var(--soft-radius);
     background-color: var(--white);
 }
 form .errorMsg {
-    margin: 4% 0 0 0;
+    margin: 1rem 0 0 0;
     color: var(--striking);
     text-align: center;
     font-weight: 900;
@@ -46,10 +46,27 @@ form > button, form a button {
     border-radius: var(--soft-radius);
 }
 form a {
-    margin: 10% 0 0 0;
-    padding: 10% 0 0 0;
+    margin: 1.5rem 0 0 0;
+    padding: 1.5rem 0 0 0;
     border-top: 2px solid var(--white-transparent);
 }
 form a button {
     width: inherit;
+}
+
+@media only screen and (min-width: 768px) {
+    form {
+        width: 60%;
+        padding: 1.5rem;
+    }
+    form > button, form a button {
+        width: 30%;
+        padding: 0.5rem;
+    }
+    form a {
+        width: 30%;
+    }
+    form a button {
+        width: 100%;
+    }
 }
