@@ -103,36 +103,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         container.innerHTML = "";
 
-        container.innerHTML += "<ul>";
-            for (let appointment of appointments) {
-                container.innerHTML += `
-                <li class="appointment" id="appointment${appointment.id}">
-                    <div class="doctorInfo">
-                        <div>
-                            <h1>${appointment.doctor_name}</h1>
-                            <p>${appointment.doctor_specialization} - ${appointment.doctor_hospital}</p>
-                            <p>Reason: ${appointment.reason}</p>
-                        </div>
-
-                        <img src="image/profile/${appointment.doctor_image}">
+        container.innerHTML += "<ul class='appointmentsList'></ul>";
+        for (let appointment of appointments) {
+            container.lastElementChild.innerHTML += `
+            <li class="appointment" id="appointment${appointment.id}">
+                <div class="doctorInfo">
+                    <div>
+                        <h1>${appointment.doctor_name}</h1>
+                        <p>${appointment.doctor_specialization} - ${appointment.doctor_hospital}</p>
+                        <p>Reason: ${appointment.reason}</p>
                     </div>
 
-                    <ul>
-                        <li>
-                            <img src="${baseUrl}/image/calendar.png" alt="calendar">
-                            <p>${appointment.date}</p>
-                        </li>
-                        <li>
-                            <img src="${baseUrl}/image/clock.png" alt="clock">
-                            <p>${appointment.time}</p>
-                        </li>
-                        <li class="">
-                            <img src="${baseUrl}/image/${appointment.status_image}" alt="dot">
-                            <p>${appointment.status}</p>
-                        </li>
-                    </ul>
-                </li>`;
-            }
-        container.innerHTML += "</ul>";
+                    <img src="image/profile/${appointment.doctor_image}">
+                </div>
+
+                <ul class='appointmentInfo'>
+                    <li>
+                        <img src="${baseUrl}/image/calendar.png" alt="calendar">
+                        <p>${appointment.date}</p>
+                    </li>
+                    <li>
+                        <img src="${baseUrl}/image/clock.png" alt="clock">
+                        <p>${appointment.time}</p>
+                    </li>
+                    <li class="">
+                        <img src="${baseUrl}/image/${appointment.status_image}" alt="dot">
+                        <p>${appointment.status}</p>
+                    </li>
+                </ul>
+            </li>`;
+        }
     }
 });

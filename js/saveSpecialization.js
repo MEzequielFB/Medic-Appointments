@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "block": "start"
         });
 
+        removeSelected();
+
         specializationField.value = "";
         cancelBtn.classList.add("hidden");
         saveBtn.innerHTML = "Save";

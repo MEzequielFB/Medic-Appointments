@@ -170,7 +170,7 @@ p.success {
 
 .appointmentsNav {
     width: 100%;
-    margin: 5% auto;
+    margin: 2rem auto;
 }
 .appointmentsNav button {
     font-size: medium;
@@ -226,7 +226,7 @@ h2 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 5% 0;
+    margin: 1rem 0 0 0;
 }
 .appointment ul img {
     width: 20%;
@@ -248,6 +248,7 @@ h2 {
 .appointmentBtns {
     display: flex;
     justify-content: space-around;
+    margin: 1rem 0 0 0;
 }
 .appointmentBtns button {
     padding: 0.6rem;
@@ -333,5 +334,27 @@ h2 {
     }
     .appointmentsSearchForm div {
         justify-content: space-evenly;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    /* .appointment ul img {
+        width: 15%;
+    }
+    .appointment ul li:last-child img {
+        width: 10%;
+    } */
+    .appointmentsList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 95%;
+        margin: 0 auto;
+    }
+    .appointment {
+        width: 40%;
+        margin: 0.5rem;
+        padding: 0.5rem;
     }
 }

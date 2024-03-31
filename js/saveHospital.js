@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "block": "start"
         });
 
+        removeSelected();
+
         nameField.value = "";
         addressField.value = "";
         cancelBtn.classList.add("hidden");

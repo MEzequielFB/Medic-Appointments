@@ -1,4 +1,4 @@
-<ul>
+<ul class="appointmentsList">
     {foreach from=$appointments item=appointment}
         <li class="appointment" id="appointment{$appointment->id}">
             <div class="doctorInfo">
@@ -11,7 +11,7 @@
                 <img src="image/profile/{$appointment->doctor_image}">
             </div>
 
-            <ul>
+            <ul class="appointmentInfo">
                 <li>
                     <img src="{$baseUrl}/image/calendar.png" alt="calendar">
                     <p>{$appointment->date}</p>

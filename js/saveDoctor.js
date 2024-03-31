@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "block": "start"
         });
 
+        removeSelected();
+
         pageHeader.innerHTML = "Save doctor";
         saveBtn.innerHTML = "Save";
         cancelBtn.classList.add("hidden");
