@@ -10,6 +10,8 @@
 <script src="{$baseUrl}js/appointmentsSearch.js"></script>
 </head>
 
+{include file="doctorsDiv.tpl"}
+
 {include file="header.tpl"}
 {include file="dashboard.tpl"}
 
@@ -44,5 +46,3 @@
 <ul class="appointments">
 
 </ul>
-
-{include file="doctorsDiv.tpl"}

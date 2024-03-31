@@ -10,6 +10,11 @@
 <script src="{$baseUrl}js/nav.js"></script>
 </head>
 
+{include file="doctorsDiv.tpl"}
+{if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
+    {include file="usersDiv.tpl"}
+{/if}
+
 {include file="header.tpl"}
 {include file="dashboard.tpl"}
 
@@ -92,8 +97,3 @@
     <button class="rescheduleBtn" type="button">Reschedule</button>
 {/if}
 <p class="message"></p>
-
-{include file="doctorsDiv.tpl"}
-{if $userRole eq "ADMIN" || $userRole eq "SUPER_ADMIN"}
-    {include file="usersDiv.tpl"}
-{/if}

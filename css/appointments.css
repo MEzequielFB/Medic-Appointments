@@ -46,6 +46,7 @@ h1 {
     background-color: var(--primary);
     border: 1px solid var(--white);
     border-radius: var(--soft-radius);
+    cursor: pointer;
 }
 .dateDiv {
     margin: 2rem 0;
@@ -88,6 +89,9 @@ p.success {
 .doctorsDiv.visible, .usersDiv.visible {
     left: 0;
     opacity: 1;
+}
+.doctorsDiv.visible ~ *, .usersDiv.visible ~ * {
+    display: none;
 }
 .doctorsDiv h1, .chosenDoctor h1, .usersDiv h1  {
     margin: 2rem 0 0 0;
