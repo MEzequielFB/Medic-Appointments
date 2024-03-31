@@ -20,7 +20,7 @@ h1 {
     font-size: xx-large;
 }
 .date, .dateSearch, .statusSearch {
-    padding: 2%;
+    padding: 0.5rem;
     width: 60%;
     color: var(--white);
     background-color: var(--primary);
@@ -284,7 +284,7 @@ h2 {
 }
 .appointmentsSearchForm button {
     display: block;
-    margin: 10% auto 2% auto;
+    margin: 2rem auto 0.7rem auto;
 }
 .appointment div > div {
     width: 60%;
@@ -327,5 +327,11 @@ h2 {
     }
     #reason {
         width: 55%;
+    }
+    .usernameSearch {
+        margin: 1rem auto;
+    }
+    .appointmentsSearchForm div {
+        justify-content: space-evenly;
     }
 }
