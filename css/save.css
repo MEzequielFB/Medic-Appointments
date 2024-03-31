@@ -7,7 +7,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin: 0 auto 4rem auto;
+    margin: 0 auto 1rem auto;
 }
 form input, form label, form button {
     margin: 1.5rem 0 0 0;
@@ -27,7 +27,7 @@ form input::placeholder {
     color: var(--white-transparent);
 }
 form select {
-    padding: 2%;
+    padding: 0.7rem;
 }
 form button {
     width: 35%;
@@ -36,9 +36,10 @@ form button {
     background-color: var(--secundary);
 }
 p.errorMsg{
-    margin: 5% 0;
+    margin: 1rem 0 2rem 0;
     text-align: center;
     color: var(--striking);
+    font-weight: 800;
 }
 select {
     text-transform: capitalize;
@@ -61,5 +62,11 @@ article.selected {
     }
     form button {
         width: 20%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    form {
+        width: 30%;
     }
 }

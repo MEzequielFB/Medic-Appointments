@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const appointments = await response.json();
 
                 if (appointments.length == 0) {
-                    completedAppointments.innerHTML = "<p>No appointments!</p>";
+                    completedAppointments.innerHTML = "<p class='appointmentsMessage'>No appointments!</p>";
                 } else {
                     setTimeout(() => {
                         renderAppointments(appointments, "completedAppointments");
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const appointments = await response.json();
 
                 if (appointments.length == 0) {
-                    cancelledAppointments.innerHTML = "<p>No appointments!</p>";
+                    cancelledAppointments.innerHTML = "<p class='appointmentsMessage'>No appointments!</p>";
                 } else {
                     setTimeout(() => {
                         renderAppointments(appointments, "cancelledAppointments");

@@ -54,9 +54,14 @@ p.message {
     margin: 1rem 0 0 0;
     text-align: center;
     color: var(--striking);
+    font-weight: 800;
 }
 p.success {
     color: var(--striking);
+}
+.appointmentsMessage {
+    text-align: center;
+    font-size: x-large;
 }
 .leftArrow, .usersLeftArrow {
     position: absolute;
@@ -166,6 +171,10 @@ p.success {
     }
 } */
 
+.loader {
+    text-align: center;
+    font-size: x-large;
+}
 .loader:after {
     content: "Loading...";
 }
@@ -385,5 +394,29 @@ h2 {
 @media only screen and (min-width: 1280px) {
     .timeDiv ul {
         width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .appointmentsNav {
+        width: 35%;
+    }
+    h2 {
+        font-size: xx-large;
+    }
+    .appointment {
+        width: 20%;
+    }
+    .chosenDoctor h1 {
+        margin: 0;
+    }
+    .timeDiv ul {
+        width: 35%;
+    }
+    .doctorSearch, .userSearch {
+        width: 25%;
+    }
+    .appointmentsSearchForm {
+        width: 20%;
     }
 }

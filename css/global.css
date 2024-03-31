@@ -35,3 +35,6 @@ button {
 img {
     border-radius: var(--soft-radius);
 }
+select {
+    cursor: pointer;
+}

@@ -50,6 +50,7 @@ p.message {
     margin: 1rem 0;
     color: var(--striking);
     text-align: center;
+    font-weight: 800;
 }
 .success-popup {
     position: fixed;
@@ -85,5 +86,15 @@ p.message {
 @media only screen and (min-width: 1280px) {
     .settingsSection {
         width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .settingsSections {
+        width: 50%;
+        margin: 2rem auto 3rem auto;
+    }
+    .settingsSection {
+        width: 45%;
     }
 }

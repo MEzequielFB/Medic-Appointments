@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const doctors = await response.json();
 
                 if (doctors.length == 0) {
-                    doctorsSection.innerHTML = "<p>No doctors found</p>";
+                    doctorsSection.innerHTML = "<p class='doctorsMessage'>No doctors found!</p>";
                 } else {
                     setTimeout(() => {
                         renderDoctors(doctors);

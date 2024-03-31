@@ -59,8 +59,12 @@
         </li>
     {/if}
 
-    <h2>Future visits</h2>
-    {include file="appointmentsList.tpl"}
+    {if $appointments|@count > 0}
+        <h2>Future visits</h2>
+        {include file="appointmentsList.tpl"}
+    {else}
+        <p class="appointmentsMessage">No appointments!</p>
+    {/if}
 </div>
 
 <div class="completedAppointments hidden"></div>

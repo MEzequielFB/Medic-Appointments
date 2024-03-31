@@ -57,3 +57,9 @@ a {
         padding: 0.5rem 0 0 0;
     }
 }
+
+@media only screen and (min-width: 1600px) {
+    .dashboard {
+        width: 20vw;
+    }
+}

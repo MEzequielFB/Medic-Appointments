@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
                 popup.classList.add("success");
                 popup.classList.remove("hidden");
-                popup.firstElementChild.innerHTML = message;
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
 
                 setTimeout(() => {
                     popup.classList.add("hidden");
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
                 popup.classList.add("success");
                 popup.classList.remove("hidden");
-                popup.firstElementChild.innerHTML = message;
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
 
                 setTimeout(() => {
                     popup.classList.add("hidden");
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
                 popup.classList.add("success");
                 popup.classList.remove("hidden");
-                popup.firstElementChild.innerHTML = message;
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
 
                 setTimeout(() => {
                     popup.classList.add("hidden");
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
                 popup.classList.remove("success");
                 popup.classList.remove("hidden");
-                popup.firstElementChild.innerHTML = message;
+                popup.firstElementChild.innerHTML = message.replaceAll('"', '');
 
                 setTimeout(() => {
                     popup.classList.add("hidden");
