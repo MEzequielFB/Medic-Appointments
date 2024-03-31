@@ -1,17 +1,17 @@
 body {
     background-color: var(--primary-light);
 }
-div {
+.presentation {
     width: 95%;
-    margin: 10% auto;
+    margin: 2rem auto;
     text-align: center;
 }
 h1 {
-    margin: 0 0 5% 0;
+    margin: 0 0 1rem 0;
     font-size: xx-large;
 }
-div > p {
-    margin: 0 0 5% 0;
+.presentation > p {
+    margin: 0 0 1rem 0;
     font-size: large;
 }
 form {
@@ -72,5 +72,26 @@ form a button {
     }
     form a button {
         width: 100%;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    /* body {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 15% 0 0 0;
+        background-color: var(--primary-light);
+    } */
+    .loginContainer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 15% 0 0 0;
+    }
+    .presentation {
+        width: 40%;
+    }
+    form {
+        width: 35%;
     }
 }

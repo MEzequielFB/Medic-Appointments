@@ -1,6 +1,12 @@
-body {
+.signupContainer {
     padding: 20% 0 0 0;
 }
 h1 {
     text-align: center;
+}
+
+@media only screen and (min-width: 1024px) {
+    .signupContainer {
+        padding: 10% 0 0 0;
+    }
 }

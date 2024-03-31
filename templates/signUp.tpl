@@ -4,18 +4,20 @@
 <link rel="stylesheet" href="css/signUp.css">
 </head>
 
-<h1>Get started!</h1>
+<div class="signupContainer">
+    <h1>Get started!</h1>
 
-<form action="user" method="post">
-    <input type="text" name="username" id="username" placeholder="Username">
+    <form action="user" method="post">
+        <input type="text" name="username" id="username" placeholder="Username">
 
-    <input type="email" name="email" id="email" placeholder="Email">
+        <input type="email" name="email" id="email" placeholder="Email">
 
-    <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="password" id="password" placeholder="Password">
 
-    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Repeat the password">
+        <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Repeat the password">
 
-    <button type="submit">Sign up</button>
-</form>
+        <button type="submit">Sign up</button>
+    </form>
 
-<p>{$errorMsg}</p>
+    <p>{$errorMsg}</p>
+</div>
