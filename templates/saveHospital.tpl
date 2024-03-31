@@ -25,6 +25,7 @@
 </form>
 <p class="errorMsg">{$errorMsg}</p>
 
+<p class="adviceMsg">Click a hospital to edit it!</p>
 <section class="hospitalsSection">
     {foreach from=$hospitals item=hospital}
         <article class="eligibleHospital hospital{$hospital->id}">

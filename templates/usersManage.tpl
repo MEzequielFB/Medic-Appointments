@@ -35,7 +35,7 @@
             <article>
                 <div class="banner"></div>
                 {if $user->image eq "" || $user->image eq null}
-                    <img src="image/profile/default.png" alt="profile user's picture">
+                    <img src="image/profile/default.jpg" alt="profile user's picture">
                 {else}
                     <img src="image/profile/{$user->image}" alt="profile user's picture">
                 {/if}

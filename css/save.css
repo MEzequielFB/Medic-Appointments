@@ -41,6 +41,12 @@ p.errorMsg{
     color: var(--striking);
     font-weight: 800;
 }
+.adviceMsg {
+    text-align: center;
+    font-size: larger;
+    font-weight: 800;
+    color: #1c34b8;
+}
 select {
     text-transform: capitalize;
 }

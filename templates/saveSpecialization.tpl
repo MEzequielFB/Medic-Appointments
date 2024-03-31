@@ -23,6 +23,7 @@
 </form>
 <p class="errorMsg">{$errorMsg}</p>
 
+<p class="adviceMsg">Click a specialization to edit it!</p>
 <section class="specializationsSection">
     {foreach from=$specializations item=specialization}
         <article class="eligibleSpecialization specialization{$specialization->id}">

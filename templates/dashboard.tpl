@@ -5,7 +5,7 @@
         {if $userImage neq null && $userImage neq ""}
             <img src="{$baseUrl}image/profile/{$userImage}" alt="profile image">
         {else}
-            <img src="{$baseUrl}image/profile/default.png" alt="profile image">
+            <img src="{$baseUrl}image/profile/default.jpg" alt="profile image">
         {/if}
         <p>{$userUsername}</p>
     </div>
