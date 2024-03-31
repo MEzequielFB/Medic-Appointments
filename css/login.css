@@ -30,8 +30,12 @@ form > * {
 form > input {
     margin: 0 0 1rem 0;
     padding: 0.5rem;
+    color: var(--white);
+    background-color: var(--primary);
     border-radius: var(--soft-radius);
-    background-color: var(--white);
+}
+form > input::placeholder {
+    color: var(--white-transparent);
 }
 form .errorMsg {
     margin: 1rem 0 0 0;
