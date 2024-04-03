@@ -1,11 +1,11 @@
 <?php
-require_once "app/controller/Controller.php";
-require_once "app/controller/AuthHelper.php";
-require_once "app/controller/TimesHelper.php";
-require_once "app/model/AppointmentModel.php";
-require_once "app/model/StatusModel.php";
-require_once "app/model/DoctorModel.php";
-require_once "app/view/AppointmentView.php";
+require_once __DIR__ . "/../controller/Controller.php";
+require_once __DIR__ . "/../controller/AuthHelper.php";
+require_once __DIR__ . "/../controller/TimesHelper.php";
+require_once __DIR__ . "/../model/AppointmentModel.php";
+require_once __DIR__ . "/../model/StatusModel.php";
+require_once __DIR__ . "/../model/DoctorModel.php";
+require_once __DIR__ . "/../view/AppointmentView.php";
 
 class AppointmentController extends Controller {
     private $statusModel;

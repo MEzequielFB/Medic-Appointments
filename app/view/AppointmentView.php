@@ -1,6 +1,6 @@
 <?php
-require_once "libs/Smarty.class.php";
-require_once "app/controller/AuthHelper.php";
+require_once __DIR__ . "/../../libs/Smarty.class.php";
+require_once __DIR__ . "/../controller/AuthHelper.php";
 
 class AppointmentView {
     private $smarty;

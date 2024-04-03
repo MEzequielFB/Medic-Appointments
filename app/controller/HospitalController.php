@@ -1,7 +1,7 @@
 <?php
-require_once "app/controller/Controller.php";
-require_once "app/controller/AuthHelper.php";
-require_once "app/view/HospitalView.php";
+require_once __DIR__ . "/../controller/Controller.php";
+require_once __DIR__ . "/../controller/AuthHelper.php";
+require_once __DIR__ . "/../view/HospitalView.php";
 
 class HospitalController extends Controller {
     private $authHelper;

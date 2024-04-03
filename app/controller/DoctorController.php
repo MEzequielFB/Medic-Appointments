@@ -1,10 +1,10 @@
 <?php
-require_once "app/model/DoctorModel.php";
-require_once "app/model/SpecializationModel.php";
-require_once "app/model/HospitalModel.php";
-require_once "app/view/DoctorView.php";
-require_once "app/controller/Controller.php";
-require_once "app/controller/AuthHelper.php";
+require_once __DIR__ . "/../model/DoctorModel.php";
+require_once __DIR__ . "/../model/SpecializationModel.php";
+require_once __DIR__ . "/../model/HospitalModel.php";
+require_once __DIR__ . "/../view/DoctorView.php";
+require_once __DIR__ . "/../controller/Controller.php";
+require_once __DIR__ . "/../controller/AuthHelper.php";
 
 class DoctorController extends Controller {
     private $authHelper;

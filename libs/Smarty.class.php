@@ -601,7 +601,9 @@ class Smarty extends Smarty_Internal_TemplateBase
      * @var array
      */
     protected $template_dir = array('./templates/');
-
+    /* protected $template_dir = array('./'); */
+    /* protected $template_dir = array(__DIR__ . '/../templates/'); */
+    
     /**
      * flags for normalized template directory entries
      *
@@ -628,7 +630,8 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @var string
      */
-    protected $compile_dir = './templates_c/';
+    /* protected $compile_dir = './templates_c/'; */
+    protected $compile_dir = __DIR__ . '/../templates_c/';
 
     /**
      * plugins directory

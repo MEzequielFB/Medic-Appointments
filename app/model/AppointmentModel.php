@@ -2,8 +2,16 @@
 class AppointmentModel {
     private $db;
 
-    function __construct() {
+    /* function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=appointments_db;charset=utf8', 'root', '');
+    } */
+
+    /* function __construct() {
+        $this->db = new PDO('mysql:host=sql106.infinityfree.com;dbname=if0_36279951_appointments_db;charset=utf8', 'if0_36279951', 'yJMhgmGC7cB');
+    } */
+
+    function __construct() {
+        $this->db = new PDO('mysql:host=sql10.freesqldatabase.com;dbname=sql10695904;charset=utf8', 'sql10695904', 'Mu4pt8x16n');
     }
 
     public function findAppointmentById($appointmentId) {

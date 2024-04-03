@@ -1,5 +1,5 @@
 <?php
-require_once "libs/Smarty.class.php";
+require_once __DIR__ . "/../../libs/Smarty.class.php";
 
 class UserView {
     private $smarty;
@@ -20,14 +20,15 @@ class UserView {
         $this->smarty->assign("title", "Login");
         $this->smarty->assign("errorMsg", $errorMsg);
 
-        $this->smarty->display("templates/login.tpl");
+        /* $this->smarty->display("templates/login.tpl"); */
+        $this->smarty->display(__DIR__ . "/../../templates/login.tpl");
     }
 
     public function showSignUp($errorMsg = "") {
         $this->smarty->assign("title", "Sign Up");
         $this->smarty->assign("errorMsg", $errorMsg);
 
-        $this->smarty->display("templates/signUp.tpl");
+        $this->smarty->display(__DIR__ . "/../../templates/signUp.tpl");
     }
 
     public function showSettings($user, $errorMsg = "", $successMsg = "") {
@@ -36,7 +37,7 @@ class UserView {
         $this->smarty->assign("errorMsg", $errorMsg);
         $this->smarty->assign("successMsg", $successMsg);
 
-        $this->smarty->display("templates/settings.tpl");
+        $this->smarty->display(__DIR__ . "/../../templates/settings.tpl");
     }
 
     public function showUsersManage($users, $roles) {
@@ -44,7 +45,7 @@ class UserView {
         $this->smarty->assign("users", $users);
         $this->smarty->assign("roles", $roles);
 
-        $this->smarty->display("templates/usersManage.tpl");
+        $this->smarty->display(__DIR__ . "/../../templates/usersManage.tpl");
     }
 }
 ?>

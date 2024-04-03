@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "builds": [
+        {"src": "/api/index.php", "use": "vercel-php@0.6.0"}
+    ],
+
+    "rewrites": [
+        { "source": "/api/:resource", "destination": "/api/index.php" },
+        { "source": "/:action", "destination": "/api/index.php" }
+    ]
+}

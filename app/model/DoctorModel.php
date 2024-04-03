@@ -2,8 +2,12 @@
 class DoctorModel {
     private $db;
 
-    function __construct() {
+    /* function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=appointments_db;charset=utf8', 'root', '');
+    } */
+
+    function __construct() {
+        $this->db = new PDO('mysql:host=sql10.freesqldatabase.com;dbname=sql10695904;charset=utf8', 'sql10695904', 'Mu4pt8x16n');
     }
 
     public function findAllDoctors() {

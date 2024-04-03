@@ -1,9 +1,11 @@
 <?php
-require_once "app/model/UserModel.php";
-require_once "app/model/RoleModel.php";
-require_once "app/view/UserView.php";
-require_once "app/controller/AuthHelper.php";
-require_once "app/controller/Controller.php";
+/* require_once "app/model/UserModel.php";
+require_once "../model/UserModel.php"; */
+require_once __DIR__ . "/../model/UserModel.php";
+require_once __DIR__ . "/../model/RoleModel.php";
+require_once __DIR__ . "/../view/UserView.php";
+require_once __DIR__ . "/../controller/AuthHelper.php";
+require_once __DIR__ . "/../controller/Controller.php";
 
 class UserController extends Controller {
     private $authHelper;
