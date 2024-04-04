@@ -62,7 +62,7 @@ class DoctorController extends Controller {
             die();
         }
 
-        header("Location: " . BASE_URL . "doctor/save");
+        header("Location: doctor/save");
     }
 
     public function updateDoctor($params = null) {
@@ -113,7 +113,7 @@ class DoctorController extends Controller {
 
         $this->model->updateDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital, $doctorId);
 
-        header("Location: " . BASE_URL . "doctor/save");
+        header("Location: doctor/save");
     }
 }
 ?>

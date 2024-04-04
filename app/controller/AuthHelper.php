@@ -19,14 +19,14 @@ class AuthHelper {
 
     public function checkLoggedUser() {
         if (!isset($_SESSION["ID"])) {
-            header("Location: " . LOGIN);
+            header("Location: login");
             die();
         }
     }
 
     public function checkIsAdmin() {
         if (!isset($_SESSION["ROLE"]) || ($_SESSION["ROLE"] != "ADMIN" && $_SESSION["ROLE"] != "SUPER_ADMIN")) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
     }

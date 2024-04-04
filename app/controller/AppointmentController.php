@@ -48,30 +48,30 @@ class AppointmentController extends Controller {
         $appointmentId = $params[":ID"];
         $appointment = $this->model->findAppointmentById($appointmentId);
         if (!$appointment) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         // Admins can reschedule any appointment
         if ($appointment->user_id != $this->authHelper->getUserId() && $this->authHelper->getUserRole() == "USER") {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         if ($appointment->status != "to be confirmed" && $appointment->status != "confirmed") {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         // Only admins and superadmins can reschedule non consultation appointments
         if (strtolower($appointment->reason) != "consultation" && ($this->authHelper->getUserRole() != "ADMIN" && $this->authHelper->getUserRole() != "SUPERADMIN")) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         $doctor = $this->doctorModel->findDoctorById($appointment->doctor_id);
         if (!$doctor) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
@@ -96,24 +96,24 @@ class AppointmentController extends Controller {
         $appointmentId = $params[":ID"];
         $appointment = $this->model->findAppointmentById($appointmentId);
         if (!$appointment) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         // Admins can cancel the appointment even if the logged user id is different from the appointment's user_id
         if ($appointment->user_id != $this->authHelper->getUserId() && $this->authHelper->getUserRole() == "USER") {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         $statusCancelled = $this->statusModel->findStatusByName("cancelled");
         if (!$statusCancelled) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         $this->model->changeAppointmentStatus($statusCancelled->id, $appointmentId);
-        header("Location: " . BASE_URL . "appointments");
+        header("Location: appointments");
     }
 
     // Only admins can confirm appointments
@@ -123,18 +123,18 @@ class AppointmentController extends Controller {
         $appointmentId = $params[":ID"];
         $appointment = $this->model->findAppointmentById($appointmentId);
         if (!$appointment) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         $statusConfirmed = $this->statusModel->findStatusByName("confirmed");
         if (!$statusConfirmed) {
-            header("Location: " . BASE_URL . "appointments");
+            header("Location: appointments");
             die();
         }
 
         $this->model->changeAppointmentStatus($statusConfirmed->id, $appointmentId);
-        header("Location: " . BASE_URL . "appointments/manage");
+        header("Location: appointments/manage");
     }
 }
 ?>

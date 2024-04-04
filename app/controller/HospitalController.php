@@ -40,7 +40,7 @@ class HospitalController extends Controller {
 
         $this->model->saveHospital($name, $address);
 
-        header("Location: " . BASE_URL . "hospital/save");
+        header("Location: hospital/save");
     }
 
     public function updateHospital($params = null) {
@@ -71,7 +71,7 @@ class HospitalController extends Controller {
 
         $this->model->updateHospital($name, $address, $hospitalId);
 
-        header("Location: " . BASE_URL . "hospital/save");
+        header("Location: hospital/save");
     }
 }
 ?>

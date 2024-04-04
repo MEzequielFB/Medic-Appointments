@@ -2,37 +2,41 @@
 require_once __DIR__ . "/../controller/AuthHelper.php";
 
 class AppointmentView {
-    /* function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
-        $this->smarty->assign("baseUrl", BASE_URL);
-        $this->smarty->assign("loginUrl", LOGIN);
+    private $appointmentsUrl;
+    private $baseUrl;
+    private $loginUrl;
 
-        $this->smarty->assign("userUsername", $userUsername);
-        $this->smarty->assign("userRole", $userRole);
-        $this->smarty->assign("userImage", $userImage);
+    private $userUsername;
+    private $userRole;
+    private $userImage;
+
+    private $dir;
+
+    function __construct($userUsername, $userRole, $userImage) {
+        $this->appointmentsUrl = APPOINTMENTS;
+        $this->baseUrl = BASE_URL;
+        $this->loginUrl = LOGIN;
+
+        $this->userUsername = $userUsername;
+        $this->userRole = $userRole;
+        $this->userImage = $userImage;
+
+        $this->dir = __DIR__;
     }
 
     public function showAppointments($appointments, $nearest) {
-        $this->smarty->assign("title", "Appointments");
-        $this->smarty->assign("appointments", $appointments);
-        $this->smarty->assign("nearest", $nearest);
-
-        $this->smarty->display("templates/appointments.tpl");
+        $title = "Appointments";
+        require_once __DIR__ . "/../../templates/appointments.php";
     }
 
     public function showAppointmentCreation($appointment = null, $times = null) {
-        $this->smarty->assign("title", "Schedule appointment");
-        $this->smarty->assign("appointment", $appointment);
-        $this->smarty->assign("times", $times);
-
-        $this->smarty->display("templates/saveAppointment.tpl");
+        $title = "Schedule appointment";
+        require_once __DIR__ . "/../../templates/saveAppointment.php";
     }
 
     public function showAppointmentsManage($status) {
-        $this->smarty->assign("title", "Appointments manager");
-        $this->smarty->assign("status", $status);
-
-        $this->smarty->display("templates/appointmentsManage.tpl");
-    } */
+        $title = "Appointments manager";
+        require_once __DIR__ . "/../../templates/appointmentsManage.php";
+    }
 }
 ?>

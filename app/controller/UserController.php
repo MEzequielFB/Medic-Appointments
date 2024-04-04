@@ -23,7 +23,7 @@ class UserController extends Controller {
 
     public function showLogin() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . APPOINTMENTS);
+            header("Location: appointments");
         } else {
             $this->view->showLogin();
         }
@@ -31,7 +31,7 @@ class UserController extends Controller {
 
     public function showSignUp() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . APPOINTMENTS);
+            header("Location: appointments");
         } else {
             $this->view->showSignUp();
         }
@@ -58,7 +58,7 @@ class UserController extends Controller {
     public function logoutUser() {
         $this->authHelper->logout();
 
-        header("Location: " . LOGIN);
+        header("Location: login");
     }
 
     public function authenticateUser() {
@@ -78,7 +78,7 @@ class UserController extends Controller {
         }
 
         $this->authHelper->login($user);
-        header("Location: " . APPOINTMENTS);
+        header("Location: appointments");
     }
 
     public function saveUser() {
@@ -117,14 +117,14 @@ class UserController extends Controller {
 
         $this->authHelper->login($user);
 
-        header("Location: " . APPOINTMENTS);
+        header("Location: appointments");
     }
 
     public function updateProfileImage() {
         $userId = $this->authHelper->getUserId();
         $user = $this->model->findUserById($userId);
         if (!$user) {
-            header("Location: " . BASE_URL . "settings");
+            header("Location: settings");
             die();
         }
 
