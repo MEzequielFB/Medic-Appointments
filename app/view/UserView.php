@@ -1,51 +1,48 @@
 <?php
-require_once __DIR__ . "/../../libs/Smarty.class.php";
 
 class UserView {
-    private $smarty;
+    private $appointmentsUrl;
+    private $baseUrl;
+    private $loginUrl;
+
+    private $userId;
+    private $userUsername;
+    private $userRole;
+    private $userImage;
+
+    private $dir;
 
     function __construct($userId, $userUsername, $userRole, $userImage) {
-        $this->smarty = new Smarty();
-        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
-        $this->smarty->assign("baseUrl", BASE_URL);
-        $this->smarty->assign("loginUrl", LOGIN);
+        $this->appointmentsUrl = APPOINTMENTS;
+        $this->baseUrl = BASE_URL;
+        $this->loginUrl = LOGIN;
 
-        $this->smarty->assign("userId", $userId);
-        $this->smarty->assign("userUsername", $userUsername);
-        $this->smarty->assign("userRole", $userRole);
-        $this->smarty->assign("userImage", $userImage);
+        $this->userId = $userId;
+        $this->userUsername = $userUsername;
+        $this->userRole = $userRole;
+        $this->userImage = $userImage;
+
+        $this->dir = __DIR__;
     }
 
     public function showLogin($errorMsg = "") {
-        $this->smarty->assign("title", "Login");
-        $this->smarty->assign("errorMsg", $errorMsg);
-
-        /* $this->smarty->display("templates/login.tpl"); */
-        $this->smarty->display(__DIR__ . "/../../templates/login.tpl");
+        $title = "Login";
+        require_once __DIR__ . "/../../templates/login.php";
     }
 
     public function showSignUp($errorMsg = "") {
-        $this->smarty->assign("title", "Sign Up");
-        $this->smarty->assign("errorMsg", $errorMsg);
-
-        $this->smarty->display(__DIR__ . "/../../templates/signUp.tpl");
+        $title = "Sign Up";
+        require_once __DIR__ . "/../../templates/signUp.php";
     }
 
     public function showSettings($user, $errorMsg = "", $successMsg = "") {
-        $this->smarty->assign("title", "User settings");
-        $this->smarty->assign("user", $user);
-        $this->smarty->assign("errorMsg", $errorMsg);
-        $this->smarty->assign("successMsg", $successMsg);
-
-        $this->smarty->display(__DIR__ . "/../../templates/settings.tpl");
+        $title = "User settings";
+        require_once __DIR__ . "/../../templates/settings.php";
     }
 
     public function showUsersManage($users, $roles) {
-        $this->smarty->assign("title", "Users manage");
-        $this->smarty->assign("users", $users);
-        $this->smarty->assign("roles", $roles);
-
-        $this->smarty->display(__DIR__ . "/../../templates/usersManage.tpl");
+        $title = "Users manage";
+        require_once __DIR__ . "/../../templates/usersManage.php";
     }
 }
 ?>

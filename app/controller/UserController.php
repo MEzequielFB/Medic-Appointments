@@ -84,7 +84,7 @@ class UserController extends Controller {
     public function saveUser() {
         $emptyFields = $this->checkRequiredFields(["username", "email", "password", "passwordCheck"]);
         if (!empty($emptyFields)) {
-            $this->view->showLogin("The following fields are empty: " . implode(", ", $emptyFields));
+            $this->view->showSignUp("The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 

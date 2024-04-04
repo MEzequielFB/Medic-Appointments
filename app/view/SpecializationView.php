@@ -1,11 +1,8 @@
 <?php
-require_once __DIR__ . "/../../libs/Smarty.class.php";
 
 class SpecializationView {
-    private $smarty;
 
-    function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty = new Smarty();
+    /* function __construct($userUsername, $userRole, $userImage) {
         $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
         $this->smarty->assign("loginUrl", LOGIN);
@@ -21,6 +18,6 @@ class SpecializationView {
         $this->smarty->assign("specializations", $specializations);
 
         $this->smarty->display("templates/saveSpecialization.tpl");
-    }
+    } */
 }
 ?>

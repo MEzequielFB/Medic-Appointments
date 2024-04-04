@@ -1,11 +1,8 @@
 <?php
-require_once __DIR__ . "/../../libs/Smarty.class.php";
 
 class DoctorView {
-    private $smarty;
-
-    function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty = new Smarty();
+    
+    /* function __construct($userUsername, $userRole, $userImage) {
         $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
         $this->smarty->assign("baseUrl", BASE_URL);
         $this->smarty->assign("loginUrl", LOGIN);
@@ -22,6 +19,6 @@ class DoctorView {
         $this->smarty->assign("doctors", $doctors);
 
         $this->smarty->display("templates/saveDoctor.tpl");
-    }
+    } */
 }
 ?>
