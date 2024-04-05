@@ -61,14 +61,14 @@ echo("
                 </a>
             </div>
         </li>");
-
-        if (count($appointments) > 0) {
-            echo "<h2>Future visits</h2>";
-            require_once __DIR__ . "/../templates/appointmentsList.php";
-        } else {
-            echo "<p class='appointmentsMessage'>No appointments!</p>";
-        }
     }
+
+if (count($appointments) > 0) {
+    echo "<h2>Future visits</h2>";
+    require_once __DIR__ . "/../templates/appointmentsList.php";
+} else {
+    echo "<p class='appointmentsMessage'>No appointments!</p>";
+}
 
 echo("
 </div>

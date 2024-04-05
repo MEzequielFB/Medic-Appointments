@@ -160,6 +160,8 @@ class AppointmentModel {
     public function saveAppointment($date, $duration, $reason, $doctorId, $statusId, $userId) {
         $query = $this->db->prepare("INSERT INTO appointment(date, duration, reason, doctor_id, status_id, user_id) VALUES(?,?,?,?,?,?)");
         $query->execute([$date, $duration, $reason, $doctorId, $statusId, $userId]);
+
+        return $this->db->lastInsertId();
     }
 
     public function rescheduleAppointment($date, $duration, $reason, $statusId, $doctorId, $appointmentId) {

@@ -126,7 +126,10 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("The selected date has already passed", 400);
         }
         
-        $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
+        $appointmentId = $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
+
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        return $this->view->response($appointment, 200);
     }
 
     public function rescheduleAppointment($params = null) {

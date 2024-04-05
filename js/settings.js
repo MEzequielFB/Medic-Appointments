@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const profileInformationBtn = document.querySelector(".profileInformationBtn");
@@ -175,5 +178,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
 
     // When user update profile image set the url to /settings
-    window.history.pushState(null, "", baseUrl + "settings");
+    window.history.replaceState(null, "", baseUrl + "settings");
 });
