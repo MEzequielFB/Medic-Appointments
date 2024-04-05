@@ -17,8 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const doctorBtn = document.querySelector(".doctorBtn");
     doctorBtn.addEventListener("click", showDoctors);
 
+    const doctorSearchForm = document.querySelector(".doctorSearchForm");
+    doctorSearchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        searchDoctors();
+    });
     const doctorSearch = document.querySelector(".doctorSearch");
-    doctorSearch.addEventListener("input", searchDoctors);
 
     const messageP = document.querySelector(".message");
     const appointmentsList = document.querySelector(".appointments");
@@ -157,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const doctors = await response.json();
 
                 if (doctors.length == 0) {
-                    doctorsSection.innerHTML = "<p>No doctors found</p>";
+                    doctorsSection.innerHTML = "<p class='doctorsMessage'>No doctors found!</p>";
                 } else {
                     setTimeout(() => {
                         renderDoctors(doctors);

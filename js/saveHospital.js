@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use  strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const pageHeader = document.querySelector(".pageHeader");
