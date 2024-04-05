@@ -31,6 +31,13 @@ class StatusModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findAllStatusIds() {
+        $query = $this->db->prepare("SELECT id FROM status");
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_COLUMN);
+    }
+
     public function saveStatus($name) {
         $query = $this->db->prepare("INSERT INTO status(name) VALUES(?)");
         $query->execute([$name]);

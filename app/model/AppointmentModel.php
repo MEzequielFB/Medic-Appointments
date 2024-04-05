@@ -134,7 +134,10 @@ class AppointmentModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     
-    public function findAllAppointmentsByFilter($username, $date, $statusId, $doctorId) {
+    public function findAllAppointmentsByFilter($username, $date, $statusIds, $doctorId) {
+        // Return a string with tokens (?) separated with commas depending on the $statusIds array length
+        $in = implode(',', array_fill(0, count($statusIds), '?'));
+
         $query = $this->db->prepare("SELECT a.id, DATE(a.date) AS date, TIME(a.date) AS time, a.reason, d.fullname AS doctor_name, sp.name AS doctor_specialization, d.image AS doctor_image, s.name AS status, s.image AS status_image, h.name AS doctor_hospital, u.username AS user_username
         FROM appointment a
         JOIN doctor d ON a.doctor_id = d.id
@@ -142,14 +145,14 @@ class AppointmentModel {
         JOIN status s ON a.status_id = s.id
         JOIN hospital h ON d.hospital_id = h.id
         JOIN user u ON a.user_id = u.id
-        WHERE (
-            u.username = ? 
-            OR DATE(a.date) = ?
-            OR a.status_id = ?
+        WHERE a.doctor_id = ?
+        AND (
+            u.username LIKE CONCAT(?, '%')
+            AND DATE(a.date) >= ?
+            AND a.status_id IN ($in)
         )
-        AND a.doctor_id = ?
         ORDER BY DATE(a.date), TIME(a.date)");
-        $query->execute([$username, $date, $statusId, $doctorId]);
+        $query->execute(array_merge([$doctorId, $username, $date], $statusIds));
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

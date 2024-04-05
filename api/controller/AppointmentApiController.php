@@ -58,7 +58,17 @@ class AppointmentApiController extends ApiController {
             return $this->view->response($appointments, 200);
         }
 
-        $appointments = $this->model->findAllAppointmentsByFilter($requestData->username, $requestData->date, $requestData->statusId, $requestData->doctorId);
+        $date = $requestData->date;
+        $statusIds = [$requestData->statusId];
+
+        if ($date == "") {
+            $date = "1980-01-01";
+        }
+        if (empty($requestData->statusId)) {
+            $statusIds = $this->statusModel->findAllStatusIds();
+        }
+
+        $appointments = $this->model->findAllAppointmentsByFilter($requestData->username, $date, $statusIds, $requestData->doctorId);
 
         return $this->view->response($appointments, 200);
     }
