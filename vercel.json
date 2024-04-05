@@ -6,7 +6,7 @@
     },
 
     "rewrites": [
-        { "source": "/api/:resource", "destination": "/api/index.php" },
-        { "source": "/:action", "destination": "/api/index.php" }
+        { "source": "/api/:resource*", "destination": "/api/index.php" },
+        { "source": "/:action*", "destination": "/api/index.php" }
     ]
 }

@@ -2,19 +2,19 @@
 require_once __DIR__ . "/../templates/head.php";
 
 echo("
-    <link rel='stylesheet' href='css/global.css'>
-    <link rel='stylesheet' href='css/nav.css'>
-    <link rel='stylesheet' href='css/doctors.css'>
-    <link rel='stylesheet' href='css/appointments.css'>
-    <link rel='stylesheet' href='css/dashboard.css'>
+    <link rel='stylesheet' href='../css/global.css'>
+    <link rel='stylesheet' href='../css/nav.css'>
+    <link rel='stylesheet' href='../css/doctors.css'>
+    <link rel='stylesheet' href='../css/appointments.css'>
+    <link rel='stylesheet' href='../css/dashboard.css'>
 
-    <script src='js/saveAppointment.js'></script>
-    <script src='js/nav.js'></script>
+    <script src='../js/saveAppointment.js'></script>
+    <script src='../js/nav.js'></script>
 </head>");
 
 require_once __DIR__ . "/../templates/doctorsDiv.php";
 
-if ($userRole == "ADMIN" || $userRole == "SUPER_ADMIN") {
+if ($this->userRole == "ADMIN" || $this->userRole == "SUPER_ADMIN") {
     require_once __DIR__ . "/../templates/usersDiv.php";
 }
 
@@ -27,7 +27,7 @@ if ($appointment == null) {
     <article class='chosenDoctor hidden'>
     
     </article>");
-    if ($userRole == "ADMIN" || $userRole == "SUPER_ADMIN") {
+    if ($this->userRole == "ADMIN" || $this->userRole == "SUPER_ADMIN") {
         echo("
         <button class='userBtn' type='button'>Choose user</button>
         <article class='chosenUser hidden'>
@@ -40,7 +40,7 @@ if ($appointment == null) {
         <input type='date' name='date' id='date' class='date'>
     </div>");
 } else {
-    if ($userRole == "USER") {
+    if ($this->userRole == "USER") {
         echo "<button class='doctorBtn hidden' type='button'>Choose a doctor</button>";
     } else {
         echo "<button class='doctorBtn' type='button'>Choose a doctor</button>";
@@ -86,7 +86,7 @@ if ($times == null) {
     </div");
 }
 
-if ($userRole == "ADMIN" || $userRole == "SUPER_ADMIN") {
+if ($this->userRole == "ADMIN" || $this->userRole == "SUPER_ADMIN") {
     echo("
     <div class='sliderContainer'>
         <label for='duration'>Select duration:</label>

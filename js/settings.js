@@ -173,4 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.classList.add("hidden");
         popup.firstElementChild.innerHTML = "";
     }, 4000);
+
+    // When user update profile image set the url to /settings
+    window.history.pushState(null, "", baseUrl + "settings");
 });

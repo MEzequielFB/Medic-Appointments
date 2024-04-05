@@ -2,13 +2,13 @@
 require_once __DIR__ . "/../templates/head.php";
 
 echo("
-    <link rel='stylesheet' href='css/global.css'>
-    <link rel='stylesheet' href='css/nav.css'>
-    <link rel='stylesheet' href='css/dashboard.css'>
-    <link rel='stylesheet' href='css/users.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/global.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/nav.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/dashboard.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/users.css'>
 
-    <script src='js/nav.js'></script>
-    <script src='js/userManage.js'></script>
+    <script src='$this->baseUrl/js/nav.js'></script>
+    <script src='$this->baseUrl/js/userManage.js'></script>
 </head>");
 
 require_once __DIR__ . "/../templates/header.php";
@@ -41,9 +41,9 @@ foreach ($users as $user) {
         <article>
             <div class='banner'></div>");
             if ($user->image == "" || $user->image == null) {
-                echo "<img src='image/profile/default.jpg' alt='profile user's picture'>";
+                echo "<img src='$this->baseUrl/image/profile/default.jpg' alt='profile user's picture'>";
             } else {
-                echo "<img src='image/profile/$user->image' alt='profile user's picture'>";
+                echo "<img src='$this->baseUrl/image/profile/$user->image' alt='profile user's picture'>";
             }
             echo("
             <div class='userInfo'>
@@ -53,7 +53,7 @@ foreach ($users as $user) {
             </div>
             <div class='roleSelection'>
                 <p>Role:</p>");
-                if ($userRole == "SUPER_ADMIN") {
+                if ($this->userRole == "SUPER_ADMIN") {
                     echo "<select name='role' id='role' class='role' title='user roles'>";
                         foreach ($roles as $role) {
                             if ($user->role == $role->name) {
@@ -80,4 +80,4 @@ echo("
     <p></p>
 </div>
 
-<input type='hidden' value='$userRole' class='userRole'>");
+<input type='hidden' value='$this->userRole' class='userRole'>");

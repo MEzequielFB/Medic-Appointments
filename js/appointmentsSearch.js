@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <p>Reason: ${appointment.reason}</p>
                         </div>
 
-                        <img src="image/profile/${appointment.doctor_image}">
+                        <img src="${baseUrl}/image/profile/${appointment.doctor_image}">
                     </div>
 
                     <ul>

@@ -2,13 +2,13 @@
 require_once __DIR__ . "/../templates/head.php";
 
 echo("
-    <link rel='stylesheet' href='css/global.css'>
-    <link rel='stylesheet' href='css/nav.css'>
-    <link rel='stylesheet' href='css/dashboard.css'>
-    <link rel='stylesheet' href='css/settings.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/global.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/nav.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/dashboard.css'>
+    <link rel='stylesheet' href='$this->baseUrl/css/settings.css'>
 
-    <script src='js/nav.js'></script>
-    <script src='js/settings.js'></script>
+    <script src='$this->baseUrl/js/nav.js'></script>
+    <script src='$this->baseUrl/js/settings.js'></script>
 </head>");
 
 require_once __DIR__ . "/../templates/header.php";
