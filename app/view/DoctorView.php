@@ -1,24 +1,32 @@
 <?php
 
 class DoctorView {
-    
-    /* function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
-        $this->smarty->assign("baseUrl", BASE_URL);
-        $this->smarty->assign("loginUrl", LOGIN);
+    private $appointmentsUrl;
+    private $baseUrl;
+    private $loginUrl;
 
-        $this->smarty->assign("userUsername", $userUsername);
-        $this->smarty->assign("userRole", $userRole);
-        $this->smarty->assign("userImage", $userImage);
+    private $userUsername;
+    private $userRole;
+    private $userImage;
+
+    private $dir;
+    
+    function __construct($userUsername, $userRole, $userImage) {
+        $this->appointmentsUrl = APPOINTMENTS;
+        $this->baseUrl = BASE_URL;
+        $this->loginUrl = LOGIN;
+
+        $this->userUsername = $userUsername;
+        $this->userRole = $userRole;
+        $this->userImage = $userImage;
+
+        $this->dir = __DIR__;
     }
 
     // ADMIN - SUPERADMIN
     public function showDoctorCreation($doctors, $errorMsg = "") {
-        $this->smarty->assign("title", "Save doctor");
-        $this->smarty->assign("errorMsg", $errorMsg);
-        $this->smarty->assign("doctors", $doctors);
-
-        $this->smarty->display("templates/saveDoctor.tpl");
-    } */
+        $title = "Save doctor";
+        require_once __DIR__ . "/../../templates/saveDoctor.php";
+    }
 }
 ?>
