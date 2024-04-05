@@ -1,6 +1,6 @@
 <?php
-require_once "api/controller/ApiController.php";
-require_once "app/model/HospitalModel.php";
+require_once __DIR__ . "/../controller/ApiController.php";
+require_once __DIR__ . "/../../app/model/HospitalModel.php";
 
 class HospitalApiController extends ApiController {
 

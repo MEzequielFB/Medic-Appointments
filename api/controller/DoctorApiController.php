@@ -1,8 +1,8 @@
 <?php
-require_once "api/controller/ApiController.php";
-require_once "app/model/DoctorModel.php";
-require_once "app/model/AppointmentModel.php";
-require_once "app/controller/TimesHelper.php";
+require_once __DIR__ . "/../controller/ApiController.php";
+require_once __DIR__ . "/../../app/model/DoctorModel.php";
+require_once __DIR__ . "/../../app/model/AppointmentModel.php";
+require_once __DIR__ . "/../../app/controller/TimesHelper.php";
 
 class DoctorApiController extends ApiController {
     private $appointmentModel;

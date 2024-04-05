@@ -1,10 +1,10 @@
 <?php
-require_once "api/controller/ApiController.php";
-require_once "app/controller/AuthHelper.php";
-require_once "app/model/AppointmentModel.php";
-require_once "app/model/DoctorModel.php";
-require_once "app/model/StatusModel.php";
-require_once "app/model/UserModel.php";
+require_once __DIR__ . "/../controller/ApiController.php";
+require_once __DIR__ . "/../../app/controller/AuthHelper.php";
+require_once __DIR__ . "/../../app/model/AppointmentModel.php";
+require_once __DIR__ . "/../../app/model/DoctorModel.php";
+require_once __DIR__ . "/../../app/model/StatusModel.php";
+require_once __DIR__ . "/../../app/model/UserModel.php";
 
 class AppointmentApiController extends ApiController {
     private $doctorModel;
