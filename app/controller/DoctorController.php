@@ -6,8 +6,13 @@ require_once __DIR__ . "/../view/DoctorView.php";
 require_once __DIR__ . "/../controller/Controller.php";
 require_once __DIR__ . "/../controller/AuthHelper.php";
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Cloudinary\Cloudinary;
+
 class DoctorController extends Controller {
     private $authHelper;
+    private $cloudinary;
 
     function __construct() {
         $this->model = new DoctorModel();
@@ -16,6 +21,16 @@ class DoctorController extends Controller {
         $this->authHelper->checkIsAdmin();
 
         $this->view = new DoctorView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
+
+        $this->cloudinary = new Cloudinary(
+            [
+                'cloud' => [
+                    'cloud_name' => 'dvfmykwam',
+                    'api_key'    => '341835444527351',
+                    'api_secret' => 'U4IdItWG29l1InV7ZrRK05ZpdQc',
+                ],
+            ]
+        );
     }
 
     public function showDoctorCreation() {
@@ -44,7 +59,7 @@ class DoctorController extends Controller {
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
-        $folder = BASE_URL . "/image/profile/" . $filename;
+        /* $folder = __DIR__ . "/../../image/profile/" . $filename; */
         $validExtensions = ["png", "jpg", "jpeg"];
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -54,13 +69,14 @@ class DoctorController extends Controller {
             die();
         }
 
-        $this->model->saveDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital);
+        $uploadResponse = $this->cloudinary->uploadApi()->upload($tempname);
+        $this->model->saveDoctor($fullname, $uploadResponse["secure_url"], $startTime, $endTime, $specialization, $hospital);
 
-        if (!move_uploaded_file($tempname, $folder)) {
+        /* if (!move_uploaded_file($tempname, $folder)) {
             $doctors = $this->model->findAllDoctors();
             $this->view->showDoctorCreation($doctors, "Error while uploading image");
             die();
-        }
+        } */
 
         header("Location: " . BASE_URL . "/doctor/save");
     }
@@ -94,7 +110,7 @@ class DoctorController extends Controller {
         } else {
             $filename = $_FILES["image"]["name"];
             $tempname = $_FILES["image"]["tmp_name"];
-            $folder = BASE_URL . "/image/profile/" . $filename;
+            /* $folder = BASE_URL . "/image/profile/" . $filename; */
             $validExtensions = ["png", "jpg", "jpeg"];
 
             $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -104,14 +120,15 @@ class DoctorController extends Controller {
                 die();
             }
 
-            if (!move_uploaded_file($tempname, $folder)) {
+            $uploadResponse = $this->cloudinary->uploadApi()->upload($tempname);
+            /* if (!move_uploaded_file($tempname, $folder)) {
                 $doctors = $this->model->findAllDoctors();
                 $this->view->showDoctorCreation($doctors, "Error while uploading image");
                 die();
-            }
+            } */
         }
 
-        $this->model->updateDoctor($fullname, $filename, $startTime, $endTime, $specialization, $hospital, $doctorId);
+        $this->model->updateDoctor($fullname, $uploadResponse["secure_url"], $startTime, $endTime, $specialization, $hospital, $doctorId);
 
         header("Location: " . BASE_URL . "/doctor/save");
     }

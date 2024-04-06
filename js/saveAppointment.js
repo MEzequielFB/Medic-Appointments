@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <p class="hospitalP">${doctor.hospital}</p>
                 </div>
-                <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
+                <img src="${doctor.image}" alt="doctor's image">
             </article>`;
         });
 
@@ -181,13 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <h1>${user.username}</h1>
                     <p>${user.email}</p>
                 </div>
+                <img src="${user.image}" alt="user's image"></img>
             </article>`;
 
-            if (user.image != "" && user.image != null) {
-                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/${user.image}" alt="user's image"></img>`
-            } else {
-                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/default.png" alt="user's image"></img>`
-            }
+            /* usersSection.lastElementChild.innerHTML += `<img src="${user.image}" alt="user's image"></img>` */
         });
 
         addUsersBehavior();

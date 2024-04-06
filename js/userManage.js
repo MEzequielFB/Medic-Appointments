@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     userSection.innerHTML += `
                         <article>
                             <div class="banner"></div>
-                            <img src="${baseUrl}image/profile/${user.image}" alt="profile user's picture">
+                            <img src="${user.image}" alt="profile user's picture">
                             <div class="userInfo">
                                 <p>${user.username}</p>
                                 <p>${user.email}</p>

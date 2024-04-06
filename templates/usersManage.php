@@ -39,13 +39,8 @@ foreach ($users as $user) {
     if ($this->userId != $user->id) {
         echo("
         <article>
-            <div class='banner'></div>");
-            if ($user->image == "" || $user->image == null) {
-                echo "<img src='$this->baseUrl/image/profile/default.jpg' alt='profile user's picture'>";
-            } else {
-                echo "<img src='$this->baseUrl/image/profile/$user->image' alt='profile user's picture'>";
-            }
-            echo("
+            <div class='banner'></div>
+            <img src='$user->image' alt='profile user's picture'>
             <div class='userInfo'>
                 <p>$user->username</p>
                 <p>$user->email</p>

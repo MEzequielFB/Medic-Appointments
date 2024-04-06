@@ -32,7 +32,6 @@ class UserController extends Controller {
                 ],
             ]
         );
-        
     }
 
     public function showLogin() {
@@ -155,7 +154,7 @@ class UserController extends Controller {
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
-        $folder = __DIR__ . "/../../image/profile/" . $filename;
+        /* $folder = __DIR__ . "/../../image/profile/" . $filename; */
         $validExtensions = ["png", "jpg", "jpeg"];
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -164,9 +163,9 @@ class UserController extends Controller {
             die();
         }
 
-        $imageApiUrl = $this->cloudinary->uploadApi()->upload($tempname);
+        $uploadResponse = $this->cloudinary->uploadApi()->upload($tempname);
 
-        $this->model->updateProfileImage($imageApiUrl["secure_url"], $userId);
+        $this->model->updateProfileImage($uploadResponse["secure_url"], $userId);
 
         $user = $this->model->findUserById($userId);
         $this->authHelper->login($user); // To update the session attributes

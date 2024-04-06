@@ -3,14 +3,8 @@ echo("
 <section class='dashboard'>
     <img src='$this->baseUrl/image/cross.png' alt='cross' class='cross'>
 
-    <div class='userInfo'>");
-    if ($this->userImage != null && $this->userImage != "") {
-        /* echo "<img src='$this->baseUrl/image/profile/$this->userImage' alt='profile image'>"; */
-        echo "<img src='$this->userImage' alt='profile image'>";
-    } else {
-        echo "<img src='$this->baseUrl/image/profile/default.jpg' alt='profile image'>";
-    }
-    echo("
+    <div class='userInfo'>
+        <img src='$this->userImage' alt='profile image'>
         <p>$this->userUsername</p>
     </div>
 

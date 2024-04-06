@@ -58,7 +58,7 @@ echo("
                 </div>
                 <p class='hospitalP'>$doctor->hospital</p>
             </div>
-            <img src='$this->baseUrl/image/profile/$doctor->image' alt='doctor's image'>
+            <img src='$doctor->image' alt='doctor's image'>
         </article>");
     }
 echo("
