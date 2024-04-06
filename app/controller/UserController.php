@@ -1,15 +1,19 @@
 <?php
-/* require_once "app/model/UserModel.php";
-require_once "../model/UserModel.php"; */
 require_once __DIR__ . "/../model/UserModel.php";
 require_once __DIR__ . "/../model/RoleModel.php";
 require_once __DIR__ . "/../view/UserView.php";
 require_once __DIR__ . "/../controller/AuthHelper.php";
 require_once __DIR__ . "/../controller/Controller.php";
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Cloudinary\Cloudinary;
+
 class UserController extends Controller {
     private $authHelper;
     private $roleModel;
+
+    private $cloudinary;
 
     function __construct() {
         $this->model = new UserModel();
@@ -18,6 +22,16 @@ class UserController extends Controller {
         $this->authHelper = new AuthHelper();
 
         $this->view = new UserView($this->authHelper->getUserId(), $this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
+
+        $this->cloudinary = new Cloudinary(
+            [
+                'cloud' => [
+                    'cloud_name' => 'dvfmykwam',
+                    'api_key'    => '341835444527351',
+                    'api_secret' => 'U4IdItWG29l1InV7ZrRK05ZpdQc',
+                ],
+            ]
+        );
         
     }
 
@@ -141,7 +155,7 @@ class UserController extends Controller {
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
-        $folder = "image/profile/" . $filename;
+        $folder = __DIR__ . "/../../image/profile/" . $filename;
         $validExtensions = ["png", "jpg", "jpeg"];
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -150,12 +164,9 @@ class UserController extends Controller {
             die();
         }
 
-        if (!move_uploaded_file($tempname, $folder)) {
-            $this->view->showSettings($user, "Error while uploading the file");
-            die();
-        }
+        $imageApiUrl = $this->cloudinary->uploadApi()->upload($tempname);
 
-        $this->model->updateProfileImage($filename, $userId);
+        $this->model->updateProfileImage($imageApiUrl["secure_url"], $userId);
 
         $user = $this->model->findUserById($userId);
         $this->authHelper->login($user); // To update the session attributes

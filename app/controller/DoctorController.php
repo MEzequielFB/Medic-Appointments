@@ -44,7 +44,7 @@ class DoctorController extends Controller {
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
-        $folder = "image/profile/" . $filename;
+        $folder = BASE_URL . "/image/profile/" . $filename;
         $validExtensions = ["png", "jpg", "jpeg"];
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -94,7 +94,7 @@ class DoctorController extends Controller {
         } else {
             $filename = $_FILES["image"]["name"];
             $tempname = $_FILES["image"]["tmp_name"];
-            $folder = "image/profile/" . $filename;
+            $folder = BASE_URL . "/image/profile/" . $filename;
             $validExtensions = ["png", "jpg", "jpeg"];
 
             $isValidFile = $this->checkFileExtension($filename, $validExtensions);
