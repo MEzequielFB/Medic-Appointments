@@ -134,7 +134,7 @@ class AppointmentController extends Controller {
         }
 
         $this->model->changeAppointmentStatus($statusConfirmed->id, $appointmentId);
-        header("Location: appointments/manage");
+        header("Location: " . BASE_URL . "/appointments/manage");
     }
 }
 ?>

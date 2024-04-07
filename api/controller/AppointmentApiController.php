@@ -143,8 +143,15 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("Server Error", 500);
         }
 
+        $loggedUserRole = $this->authHelper->getUserRole();
+
         $requestData = $this->getRequestData();
-        $status = $this->statusModel->findStatusByName("to be confirmed");
+        $status = null;
+        if ($loggedUserRole == "ADMIN" || $loggedUserRole == "SUPER_ADMIN") {
+            $status = $this->statusModel->findStatusByName("confirmed");
+        } else {
+            $status = $this->statusModel->findStatusByName("to be confirmed");
+        }
         if (!$status) {
             return $this->view->response("Server Error", 500);
         }

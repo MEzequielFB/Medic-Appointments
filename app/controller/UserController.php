@@ -140,7 +140,7 @@ class UserController extends Controller {
         $userId = $this->authHelper->getUserId();
         $user = $this->model->findUserById($userId);
         if (!$user) {
-            header("Location: settings");
+            header("Location: " . BASE_URL . "/settings");
             die();
         }
 

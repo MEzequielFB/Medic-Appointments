@@ -30,11 +30,12 @@ echo("
         <li class='appointment nearest' id='appointment$nearest->id'>
             <div class='doctorInfo'>
                 <div>
-                    <h1>$nearest->doctor_name<h1>
+                    <h1>$nearest->doctor_name</h1>
                     <p>$nearest->doctor_specialization - $nearest->doctor_hospital</p>
+                    <p>Reason: $nearest->reason</p>
                 </div>
 
-                <img src='image/profile/$nearest->doctor_image'>
+                <img src='$nearest->doctor_image'>
             </div>
 
             <ul>
@@ -50,16 +51,24 @@ echo("
                     <img src='image/$nearest->status_image' alt='dot'>
                     <p>$nearest->status</p>
                 </li>
-            </ul>
+            </ul>");
 
+        if ($nearest->status == "to be confirmed" || $nearest->status == "confirmed") {
+            echo("
             <div class='appointmentBtns'>
                 <a href='appointment/$nearest->id/cancel'>
                     <button type='button'>Cancel</button>
-                </a>
-                <a href='appointment/$nearest->id/reschedule'>
-                    <button type='button' class='rescheduleButton'>Reschedule</button>
-                </a>
-            </div>
+                </a>");
+                if ($nearest->reason == "consultation") {
+                    echo("
+                    <a href='appointment/$nearest->id/reschedule'>
+                        <button type='button' class='rescheduleButton'>Reschedule</button>
+                    </a>");
+                }
+            echo("
+            </div>");
+        }
+        echo("
         </li>");
     }
 
