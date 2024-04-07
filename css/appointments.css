@@ -332,6 +332,9 @@ h2 {
 .statusSearch {
     width: 100%;
 }
+.statusSearch option {
+    text-transform: capitalize;
+}
 .appointmentBtns .confirmButton {
     background-color: var(--success);
 }

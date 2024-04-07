@@ -5,6 +5,9 @@ require_once __DIR__ . "/../view/UserView.php";
 require_once __DIR__ . "/../controller/AuthHelper.php";
 require_once __DIR__ . "/../controller/Controller.php";
 
+/* require_once __DIR__ . "/../../libs/cloudinary_php/src/Cloudinary.php"; */
+/* require_once __DIR__ . "/../../libs/cloudinary_php/src/Uploader.php";
+require_once __DIR__ . "/../../libs/cloudinary_php/src/Api.php"; */
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Cloudinary\Cloudinary;
