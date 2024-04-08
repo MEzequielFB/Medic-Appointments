@@ -1,13 +1,15 @@
 <?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 class RoleModel {
     private $db;
-
-    /* function __construct() {
-        $this->db = new PDO('mysql:host=localhost;dbname=appointments_db;charset=utf8', 'root', '');
-    } */
+    private $dotenv;
 
     function __construct() {
-        $this->db = new PDO('mysql:host=sql10.freesqldatabase.com;dbname=sql10695904;charset=utf8', 'sql10695904', 'Mu4pt8x16n');
+        $this->dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
+        $this->dotenv->safeLoad();
+
+        $this->db = new PDO('mysql:host=' . $_ENV["DB_HOSTNAME"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
     }
 
     public function findAllRoles() {

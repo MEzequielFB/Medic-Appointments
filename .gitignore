@@ -1,2 +1,4 @@
 templates_c/*
 .vercel
+.env*.local
+.env
