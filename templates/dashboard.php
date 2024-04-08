@@ -10,7 +10,7 @@ echo("
 
     <nav>
         <ul>
-            <li><a href='appointments'>HOME</a></li>");
+            <li><a href='$this->baseUrl/appointments'>HOME</a></li>");
             if ($this->userRole == "ADMIN" || $this->userRole == "SUPER_ADMIN") {
                 echo("
                 <li><a href='$this->baseUrl/appointments/manage'>MANAGE APPOINTMENTS</a></li>

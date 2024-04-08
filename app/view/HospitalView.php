@@ -1,23 +1,31 @@
 <?php
 
 class HospitalView {
+    private $appointmentsUrl;
+    private $baseUrl;
+    private $loginUrl;
 
-    /* function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
-        $this->smarty->assign("baseUrl", BASE_URL);
-        $this->smarty->assign("loginUrl", LOGIN);
+    private $userUsername;
+    private $userRole;
+    private $userImage;
 
-        $this->smarty->assign("userUsername", $userUsername);
-        $this->smarty->assign("userRole", $userRole);
-        $this->smarty->assign("userImage", $userImage);
+    private $dir;
+
+    function __construct($userUsername, $userRole, $userImage) {
+        $this->appointmentsUrl = APPOINTMENTS;
+        $this->baseUrl = BASE_URL;
+        $this->loginUrl = LOGIN;
+
+        $this->userUsername = $userUsername;
+        $this->userRole = $userRole;
+        $this->userImage = $userImage;
+
+        $this->dir = __DIR__;
     }
 
     public function showHospitalCreation($hospitals, $errorMsg = "") {
-        $this->smarty->assign("title", "Save hospital");
-        $this->smarty->assign("errorMsg", $errorMsg);
-        $this->smarty->assign("hospitals", $hospitals);
-
-        $this->smarty->display("templates/saveHospital.tpl");
-    } */
+        $title = "Save hospital";
+        require_once __DIR__ . "/../../templates/saveHospital.php";
+    }
 }
 ?>

@@ -63,7 +63,7 @@ class HospitalController extends Controller {
         $address = $_POST["address"];
 
         $hospital = $this->model->findHospitalByName($name);
-        if ($hospital) {
+        if ($hospital && $hospital->id != $hospitalId) {
             $hospitals = $this->model->findAllHospitals();
             $this->view->showHospitalCreation($hospitals, "A hospital with the name '$name' already exists");
             die();
