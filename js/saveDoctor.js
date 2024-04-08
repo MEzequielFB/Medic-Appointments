@@ -21,6 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelBtn = document.querySelector(".cancelBtn");
     cancelBtn.addEventListener("click", showDoctorSave)
 
+    const fileInputMsg = document.querySelector(".fileInputMsg");
+    const fileInput = document.querySelector("#image");
+    fileInput.addEventListener("input", () => {
+        if (fileInput.value == "") {
+            fileInputMsg.innerHTML = "No file selected";
+        } else {
+            const array = fileInput.value.split("\\");
+            let value = array[array.length-1];
+            fileInputMsg.innerHTML = value;
+        }
+    });
+
     const doctors = document.querySelector(".doctorsSection").children;
     for (let doctor of doctors) {
         doctor.addEventListener("click", () => {

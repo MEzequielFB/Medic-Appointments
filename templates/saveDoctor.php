@@ -37,7 +37,11 @@ echo("
     <label for='endTime'>End time:</label>
     <input type='time' name='endTime' id='endTime'>
     
-    <input type='file' name='image' id='image'>
+    <div class='fileInputContainer'>
+        <label for='image' class='fileBtn'>Select File</label>
+        <input type='file' name='image' id='image' class='image'>
+        <span class='fileInputMsg'>No file selected</span>
+    </div>
 
     <div class='formBtns'>
         <button type='button' class='cancelBtn hidden'>Cancel</button>

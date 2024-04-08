@@ -56,7 +56,12 @@ echo("
     <h1>Change profile picture</h1>
     <form action='user/updateProfileImage' method='post' class='profilePictureForm' enctype='multipart/form-data'>
         <label for='image'>Picture:</label>
-        <input type='file' name='image' id='image'>
+        
+        <div class='fileInputContainer'>
+            <label for='image' class='fileBtn'>Select File</label>
+            <input type='file' name='image' id='image' class='image'>
+            <span class='fileInputMsg'>No file selected</span>
+        </div>
 
         <button>Update picture</button>
     </form>

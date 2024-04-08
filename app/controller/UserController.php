@@ -174,7 +174,7 @@ class UserController extends Controller {
         $user = $this->model->findUserById($userId);
         $this->authHelper->login($user); // To update the session attributes
 
-        $this->view->showSettings($user, "", "Profile picture updated!");
+        $this->view->showSettings($user, "", "Profile picture updated! (reload to see changes)");
     }
 }
 ?>
