@@ -19,6 +19,10 @@
     width: 2.5rem;
     cursor: pointer;
     z-index: 2;
+    transition: 0.5s;
+}
+.cross:hover {
+    transform: rotate(180deg);
 }
 .dashboard, .dashboard .userInfo {
     display: flex;
@@ -45,10 +49,15 @@
 }
 .dashboard ul li {
     margin: 2rem 0;
+    transition: 0.2s;
 }
 a {
     color: var(--white);
     text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    color: var(--primary-light);
 }
 
 @media only screen and (min-width: 1024px) {

@@ -45,6 +45,11 @@
     font-size: medium;
     background-color: var(--secundary);
     border-radius: var(--soft-radius);
+    transition: 0.2s;
+}
+.settingsSection form button:hover {
+    transform: scale(1.02);
+    background-color: var(--secundary-soft-light);
 }
 p.message {
     margin: 1rem 0;

@@ -12,9 +12,14 @@
     border: 2px solid var(--white);
     border-radius: var(--soft-radius);
     text-transform: capitalize;
+    transition: 0.2s;
 }
 .doctorsSection article, .usersSection article {
     cursor: pointer;
+}
+.doctorsSection article:hover,  .usersSection article:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 10px 5px var(--secundary);
 }
 .usersSection article, .chosenUser {
     align-items: center;

@@ -104,6 +104,13 @@ select {
     border-radius: var(--soft-radius);
     background-color: var(--secundary);
 }
+form button, .roleBtn {
+    transition: 0.2s;
+}
+form button:hover, .roleBtn:hover {
+    transform: scale(1.04);
+    background-color: var(--secundary-soft-light);
+}
 .popup {
     position: fixed;
     bottom: 0;
