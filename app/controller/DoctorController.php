@@ -12,6 +12,9 @@ use Cloudinary\Cloudinary;
 
 class DoctorController extends Controller {
     private $authHelper;
+
+    // Dependencies
+    private $dotenv;
     private $cloudinary;
 
     function __construct() {
@@ -22,12 +25,14 @@ class DoctorController extends Controller {
 
         $this->view = new DoctorView($this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
 
+        $this->dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
+        $this->dotenv->safeLoad();
         $this->cloudinary = new Cloudinary(
             [
                 'cloud' => [
-                    'cloud_name' => 'dvfmykwam',
-                    'api_key'    => '341835444527351',
-                    'api_secret' => 'U4IdItWG29l1InV7ZrRK05ZpdQc',
+                    'cloud_name' => $_ENV["CLOUDINARY_CLOUD_NAME"],
+                    'api_key'    => $_ENV["CLOUDINARY_API_KEY"],
+                    'api_secret' => $_ENV["CLOUDINARY_API_SECRET"]
                 ],
             ]
         );
