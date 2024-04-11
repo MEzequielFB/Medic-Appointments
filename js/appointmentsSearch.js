@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         if (!chosenDoctor.classList.contains("hidden")) {
+            appointmentsList.innerHTML = "<div class='loader'></div>";
+            
             const data =  {
                 "username": document.querySelector(".usernameSearch").value,
                 "date": document.querySelector(".dateSearch").value,
@@ -115,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const doctors = document.querySelectorAll(".eligibleDoctor");
         doctors.forEach(doctor => {
             doctor.addEventListener("click", async () => { // Choose doctor
+                appointmentsList.innerHTML = "<div class='loader'></div>";
                 chosenDoctor.innerHTML = doctor.innerHTML;
                 const doctorId = doctor.className.charAt(doctor.className.length-1);
                 chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;

@@ -98,6 +98,7 @@ class AppointmentApiController extends ApiController {
         if ($this->authHelper->getUserRole() == "ADMIN" || $this->authHelper->getUserRole() == "SUPER_ADMIN") {
             $userId = $requestData->userId;
             $user = $this->userModel->findUserById($userId);
+            $status = $this->statusModel->findStatusByName("confirmed");
             if (!$user) {
                 return $this->view->response("The specified user doesn't exist", 404);
             }
