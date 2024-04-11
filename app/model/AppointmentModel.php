@@ -9,7 +9,7 @@ class AppointmentModel {
         $this->dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
         $this->dotenv->safeLoad();
 
-        $this->db = new PDO('mysql:host=' . $_ENV["DB_HOSTNAME"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
+        $this->db = new PDO('mysql:host=' . $_ENV["DB_HOSTNAME"] . ';port=' . $_ENV["DB_PORT"] . ';dbname=' . $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
     }
 
     public function findAppointmentById($appointmentId) {
