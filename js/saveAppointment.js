@@ -510,8 +510,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            // window.location.pathname.split( '/' )[3] is the id of the appointment from the url path
-            const response = await fetch(baseUrl + `api/appointment/${window.location.pathname.split( '/' )[3]}/reschedule`, {
+            let appointmentId = getIdFromPath();
+            
+            const response = await fetch(baseUrl + `api/appointment/${appointmentId}/reschedule`, {
                 "method": "PUT",
                 "headers": {
                     "Content-Type": "application/json"
@@ -529,6 +530,29 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(error);
         }
     }
+
+    function getIdFromPath() {
+        let path = window.location.pathname.split( '/' );
+        let id = null;
+        console.log("URL", path);
+
+
+        for (let pathPart of path) {
+            if (isNumeric(pathPart)) {
+                id = pathPart;
+                break;
+            }
+        }
+
+        return id;
+    }
+
+    function isNumeric(str) {
+        if (typeof str != "string") {
+            return false;
+        } 
+        return !isNaN(str) && !isNaN(parseFloat(str));
+      }
 
     addTimesBehavior();
 });
