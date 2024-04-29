@@ -1,15 +1,21 @@
 <?php
-/* require_once "app/model/UserModel.php";
-require_once "../model/UserModel.php"; */
 require_once __DIR__ . "/../model/UserModel.php";
 require_once __DIR__ . "/../model/RoleModel.php";
 require_once __DIR__ . "/../view/UserView.php";
 require_once __DIR__ . "/../controller/AuthHelper.php";
 require_once __DIR__ . "/../controller/Controller.php";
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Cloudinary\Cloudinary;
+
 class UserController extends Controller {
     private $authHelper;
     private $roleModel;
+
+    // Dependencies
+    private $dotenv;
+    private $cloudinary;
 
     function __construct() {
         $this->model = new UserModel();
@@ -18,12 +24,23 @@ class UserController extends Controller {
         $this->authHelper = new AuthHelper();
 
         $this->view = new UserView($this->authHelper->getUserId(), $this->authHelper->getUserUsername(), $this->authHelper->getUserRole(), $this->authHelper->getUserImage());
-        
+
+        $this->dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
+        $this->dotenv->safeLoad();
+        $this->cloudinary = new Cloudinary(
+            [
+                'cloud' => [
+                    'cloud_name' => $_ENV["CLOUDINARY_CLOUD_NAME"],
+                    'api_key'    => $_ENV["CLOUDINARY_API_KEY"],
+                    'api_secret' => $_ENV["CLOUDINARY_API_SECRET"]
+                ],
+            ]
+        );
     }
 
     public function showLogin() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . APPOINTMENTS);
+            header("Location: " . BASE_URL . "/appointments");
         } else {
             $this->view->showLogin();
         }
@@ -31,7 +48,7 @@ class UserController extends Controller {
 
     public function showSignUp() {
         if ($this->authHelper->isUserLogged()) {
-            header("Location: " . APPOINTMENTS);
+            header("Location: " . BASE_URL . "/appointments");
         } else {
             $this->view->showSignUp();
         }
@@ -58,7 +75,7 @@ class UserController extends Controller {
     public function logoutUser() {
         $this->authHelper->logout();
 
-        header("Location: " . LOGIN);
+        header("Location: " . BASE_URL . "/login");
     }
 
     public function authenticateUser() {
@@ -78,13 +95,13 @@ class UserController extends Controller {
         }
 
         $this->authHelper->login($user);
-        header("Location: " . APPOINTMENTS);
+        header("Location: " . BASE_URL . "/appointments");
     }
 
     public function saveUser() {
         $emptyFields = $this->checkRequiredFields(["username", "email", "password", "passwordCheck"]);
         if (!empty($emptyFields)) {
-            $this->view->showLogin("The following fields are empty: " . implode(", ", $emptyFields));
+            $this->view->showSignUp("The following fields are empty: " . implode(", ", $emptyFields));
             die();
         }
 
@@ -117,14 +134,14 @@ class UserController extends Controller {
 
         $this->authHelper->login($user);
 
-        header("Location: " . APPOINTMENTS);
+        header("Location: " . BASE_URL . "/appointments");
     }
 
     public function updateProfileImage() {
         $userId = $this->authHelper->getUserId();
         $user = $this->model->findUserById($userId);
         if (!$user) {
-            header("Location: " . BASE_URL . "settings");
+            header("Location: " . BASE_URL . "/settings");
             die();
         }
 
@@ -141,7 +158,7 @@ class UserController extends Controller {
 
         $filename = $_FILES["image"]["name"];
         $tempname = $_FILES["image"]["tmp_name"];
-        $folder = "image/profile/" . $filename;
+        /* $folder = __DIR__ . "/../../image/profile/" . $filename; */
         $validExtensions = ["png", "jpg", "jpeg"];
 
         $isValidFile = $this->checkFileExtension($filename, $validExtensions);
@@ -150,17 +167,14 @@ class UserController extends Controller {
             die();
         }
 
-        if (!move_uploaded_file($tempname, $folder)) {
-            $this->view->showSettings($user, "Error while uploading the file");
-            die();
-        }
+        $uploadResponse = $this->cloudinary->uploadApi()->upload($tempname);
 
-        $this->model->updateProfileImage($filename, $userId);
+        $this->model->updateProfileImage($uploadResponse["secure_url"], $userId);
 
         $user = $this->model->findUserById($userId);
         $this->authHelper->login($user); // To update the session attributes
 
-        $this->view->showSettings($user, "", "Profile picture updated!");
+        $this->view->showSettings($user, "", "Profile picture updated! (reload to see changes)");
     }
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
-require_once "api/controller/ApiController.php";
-require_once "app/controller/AuthHelper.php";
-require_once "app/model/AppointmentModel.php";
-require_once "app/model/DoctorModel.php";
-require_once "app/model/StatusModel.php";
-require_once "app/model/UserModel.php";
+require_once __DIR__ . "/../controller/ApiController.php";
+require_once __DIR__ . "/../../app/controller/AuthHelper.php";
+require_once __DIR__ . "/../../app/model/AppointmentModel.php";
+require_once __DIR__ . "/../../app/model/DoctorModel.php";
+require_once __DIR__ . "/../../app/model/StatusModel.php";
+require_once __DIR__ . "/../../app/model/UserModel.php";
 
 class AppointmentApiController extends ApiController {
     private $doctorModel;
@@ -58,7 +58,17 @@ class AppointmentApiController extends ApiController {
             return $this->view->response($appointments, 200);
         }
 
-        $appointments = $this->model->findAllAppointmentsByFilter($requestData->username, $requestData->date, $requestData->statusId, $requestData->doctorId);
+        $date = $requestData->date;
+        $statusIds = [$requestData->statusId];
+
+        if ($date == "") {
+            $date = "1980-01-01";
+        }
+        if (empty($requestData->statusId)) {
+            $statusIds = $this->statusModel->findAllStatusIds();
+        }
+
+        $appointments = $this->model->findAllAppointmentsByFilter($requestData->username, $date, $statusIds, $requestData->doctorId);
 
         return $this->view->response($appointments, 200);
     }
@@ -88,6 +98,7 @@ class AppointmentApiController extends ApiController {
         if ($this->authHelper->getUserRole() == "ADMIN" || $this->authHelper->getUserRole() == "SUPER_ADMIN") {
             $userId = $requestData->userId;
             $user = $this->userModel->findUserById($userId);
+            $status = $this->statusModel->findStatusByName("confirmed");
             if (!$user) {
                 return $this->view->response("The specified user doesn't exist", 404);
             }
@@ -116,7 +127,10 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("The selected date has already passed", 400);
         }
         
-        $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
+        $appointmentId = $this->model->saveAppointment($requestData->date, $requestData->duration, $requestData->reason, $requestData->doctorId, $status->id, $userId);
+
+        $appointment = $this->model->findAppointmentById($appointmentId);
+        return $this->view->response($appointment, 200);
     }
 
     public function rescheduleAppointment($params = null) {
@@ -130,8 +144,15 @@ class AppointmentApiController extends ApiController {
             return $this->view->response("Server Error", 500);
         }
 
+        $loggedUserRole = $this->authHelper->getUserRole();
+
         $requestData = $this->getRequestData();
-        $status = $this->statusModel->findStatusByName("to be confirmed");
+        $status = null;
+        if ($loggedUserRole == "ADMIN" || $loggedUserRole == "SUPER_ADMIN") {
+            $status = $this->statusModel->findStatusByName("confirmed");
+        } else {
+            $status = $this->statusModel->findStatusByName("to be confirmed");
+        }
         if (!$status) {
             return $this->view->response("Server Error", 500);
         }

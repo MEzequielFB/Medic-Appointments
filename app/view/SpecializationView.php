@@ -1,26 +1,31 @@
 <?php
-require_once __DIR__ . "/../../libs/Smarty.class.php";
 
 class SpecializationView {
-    private $smarty;
+    private $appointmentsUrl;
+    private $baseUrl;
+    private $loginUrl;
+
+    private $userUsername;
+    private $userRole;
+    private $userImage;
+
+    private $dir;
 
     function __construct($userUsername, $userRole, $userImage) {
-        $this->smarty = new Smarty();
-        $this->smarty->assign("appointmentsUrl", APPOINTMENTS);
-        $this->smarty->assign("baseUrl", BASE_URL);
-        $this->smarty->assign("loginUrl", LOGIN);
+        $this->appointmentsUrl = APPOINTMENTS;
+        $this->baseUrl = BASE_URL;
+        $this->loginUrl = LOGIN;
 
-        $this->smarty->assign("userUsername", $userUsername);
-        $this->smarty->assign("userRole", $userRole);
-        $this->smarty->assign("userImage", $userImage);
+        $this->userUsername = $userUsername;
+        $this->userRole = $userRole;
+        $this->userImage = $userImage;
+
+        $this->dir = __DIR__;
     }
 
     public function showSpecializationCreation($specializations, $errorMsg = "") {
-        $this->smarty->assign("title", "Save specialization");
-        $this->smarty->assign("errorMsg", $errorMsg);
-        $this->smarty->assign("specializations", $specializations);
-
-        $this->smarty->display("templates/saveSpecialization.tpl");
+        $title = "Save specialization";
+        require_once __DIR__ . "/../../templates/saveSpecialization.php";
     }
 }
 ?>

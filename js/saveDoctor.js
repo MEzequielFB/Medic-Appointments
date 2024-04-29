@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const form = document.querySelector(".saveDoctorForm");
@@ -17,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cancelBtn = document.querySelector(".cancelBtn");
     cancelBtn.addEventListener("click", showDoctorSave)
+
+    const fileInputMsg = document.querySelector(".fileInputMsg");
+    const fileInput = document.querySelector("#image");
+    fileInput.addEventListener("input", () => {
+        if (fileInput.value == "") {
+            fileInputMsg.innerHTML = "No file selected";
+        } else {
+            const array = fileInput.value.split("\\");
+            let value = array[array.length-1];
+            fileInputMsg.innerHTML = value;
+        }
+    });
 
     const doctors = document.querySelector(".doctorsSection").children;
     for (let doctor of doctors) {

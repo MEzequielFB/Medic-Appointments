@@ -31,7 +31,7 @@
     margin: 5% 0 0 0;
     font-size: large;
 }
-.settingsSection form input {
+.settingsSection form input, .fileInputContainer {
     width: 80%;
     padding: 0.5rem;
     color: var(--white);
@@ -45,6 +45,40 @@
     font-size: medium;
     background-color: var(--secundary);
     border-radius: var(--soft-radius);
+    transition: 0.2s;
+}
+.settingsSection form button:hover {
+    transform: scale(1.02);
+    background-color: var(--secundary-soft-light);
+}
+.fileInputContainer {
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: var(--soft-radius);
+    background-color: var(--primary);
+    cursor: pointer;
+}
+.image {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.fileBtn {
+    padding: 0.5rem;
+    color: var(--white);
+    background-color: var(--secundary);
+    border-radius: var(--soft-radius);
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.fileBtn:hover {
+    transform: scale(1.02);
+    background-color: var(--secundary-soft-light);
 }
 p.message {
     margin: 1rem 0;
@@ -74,7 +108,7 @@ p.message {
 }
 
 @media only screen and (min-width: 768px) {
-    .settingsSection form input {
+    .settingsSection form input, .fileInputContainer {
         width: 60%;
         padding: 0.7rem;
     }

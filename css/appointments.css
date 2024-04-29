@@ -6,6 +6,7 @@
     color: var(--white);
     background-color: var(--primary);
     border-radius: var(--soft-radius);
+    transition: 0.2s;
 }
 .doctorBtn, .userBtn {
     margin: 2.5rem auto 0.5rem auto;
@@ -14,6 +15,15 @@
     width: 7rem;
     padding: 0.7rem;
     background-color: var(--secundary);
+}
+.doctorBtn:hover, .userBtn:hover, .scheduleBtn:hover, .rescheduleBtn:hover, .appointmentSearchBtn:hover, .userSearchForm button:hover, .doctorSearchForm button:hover {
+    transform: scale(1.02);
+}
+.scheduleBtn:hover, .rescheduleBtn:hover, .appointmentSearchBtn:hover, .userSearchForm button:hover, .doctorSearchForm button:hover {
+    background-color: var(--secundary-soft-light);
+}
+.doctorBtn:hover, .userBtn:hover {
+    background-color: var(--primary-soft-light);
 }
 h1 {
     text-align: center;
@@ -120,6 +130,7 @@ p.success {
     color: var(--white);
     border-radius: var(--soft-radius);
     background-color: var(--secundary);
+    transition: 0.2s;
 }
 .hidden {
     display: none;
@@ -209,10 +220,21 @@ p.success {
 .appointmentsNav button {
     font-size: medium;
     background-color: var(--primary);
+    border-width: 1px;
     border-radius: var(--soft-radius);
+    outline: 1px solid;
+    outline-color: var(--white);
+    outline-offset: 0px;
+    transition: 0.5s;
 }
 .appointmentsNav button.selected {
     background-color: var(--success);
+}
+.appointmentsNav button:hover {
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 10px;
+    text-shadow: 1px 1px 2px #427388;
 }
 h2 {
     margin: 10% 0 0 0;
@@ -289,6 +311,10 @@ h2 {
     color: var(--white);
     border: 1px solid var(--white);
     border-radius: var(--soft-radius);
+    transition: 0.5s;
+}
+.appointmentBtns button:hover {
+    box-shadow: inset 0px 0px 10px 3px var(--white-transparent);
 }
 .appointmentBtns a:first-child button {
     background-color: var(--white-transparent);
@@ -331,6 +357,9 @@ h2 {
 }
 .statusSearch {
     width: 100%;
+}
+.statusSearch option {
+    text-transform: capitalize;
 }
 .appointmentBtns .confirmButton {
     background-color: var(--success);

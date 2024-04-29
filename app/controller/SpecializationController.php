@@ -40,7 +40,7 @@ class SpecializationController extends Controller {
 
         $this->model->saveSpecialization($name);
 
-        header("Location: " . BASE_URL . "specialization/save");
+        header("Location: " . BASE_URL . "/specialization/save");
     }
 
     public function updateSpecialization($params = null) {
@@ -70,7 +70,7 @@ class SpecializationController extends Controller {
 
         $this->model->updateSpecialization($name, $specializationId);
 
-        header("Location: " . BASE_URL . "specialization/save");
+        header("Location: " . BASE_URL . "/specialization/save");
     }
 }
 ?>

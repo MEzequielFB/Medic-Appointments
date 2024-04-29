@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const profileInformationBtn = document.querySelector(".profileInformationBtn");
@@ -20,6 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPasswordInput = document.querySelector("#currentPassword");
     const newPasswordInput = document.querySelector("#newPassword");
     const newPasswordConfirmInput = document.querySelector("#newPasswordConfirm");
+
+    const fileInputMsg = document.querySelector(".fileInputMsg");
+    const fileInput = document.querySelector("#image");
+    fileInput.addEventListener("input", () => {
+        if (fileInput.value == "") {
+            fileInputMsg.innerHTML = "No file selected";
+        } else {
+            const array = fileInput.value.split("\\");
+            let value = array[array.length-1];
+            fileInputMsg.innerHTML = value;
+        }
+    });
 
     const messageP = document.querySelector(".message");
     const popup = document.querySelector(".success-popup");
@@ -99,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 emailInput.value = user.email;
                 usernameInput.value = user.username;
 
-                popup.firstElementChild.innerHTML = "Profile information updated!";
+                popup.firstElementChild.innerHTML = "Profile information updated! (reload to see changes)";
                 popup.classList.remove("hidden");
 
                 setTimeout(() => {
@@ -173,4 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.classList.add("hidden");
         popup.firstElementChild.innerHTML = "";
     }, 4000);
+
+    // When user update profile image set the url to /settings
+    window.history.replaceState(null, "", baseUrl + "settings");
 });

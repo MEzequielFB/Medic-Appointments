@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () =>{
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const filter = document.querySelector("#filter");
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     userSection.innerHTML += `
                         <article>
                             <div class="banner"></div>
-                            <img src="image/profile/${user.image}" alt="profile user's picture">
+                            <img src="${user.image}" alt="profile user's picture">
                             <div class="userInfo">
                                 <p>${user.username}</p>
                                 <p>${user.email}</p>

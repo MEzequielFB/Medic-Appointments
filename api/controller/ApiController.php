@@ -1,5 +1,5 @@
 <?php
-require_once "api/view/ApiView.php";
+require_once __DIR__ . "/../view/ApiView.php";
 
 class ApiController {
     protected $model;

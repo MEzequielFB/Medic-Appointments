@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const doctorBtn = document.querySelector(".doctorBtn");
@@ -161,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <p class="hospitalP">${doctor.hospital}</p>
                 </div>
-                <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
+                <img src="${doctor.image}" alt="doctor's image">
             </article>`;
         });
 
@@ -178,13 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <h1>${user.username}</h1>
                     <p>${user.email}</p>
                 </div>
+                <img src="${user.image}" alt="user's image"></img>
             </article>`;
 
-            if (user.image != "" && user.image != null) {
-                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/${user.image}" alt="user's image"></img>`
-            } else {
-                usersSection.lastElementChild.innerHTML += `<img src="${baseUrl}image/profile/default.png" alt="user's image"></img>`
-            }
+            /* usersSection.lastElementChild.innerHTML += `<img src="${user.image}" alt="user's image"></img>` */
         });
 
         addUsersBehavior();
@@ -510,8 +510,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            // window.location.pathname.split( '/' )[3] is the id of the appointment from the url path
-            const response = await fetch(baseUrl + `api/appointment/${window.location.pathname.split( '/' )[3]}/reschedule`, {
+            let appointmentId = getIdFromPath();
+            
+            const response = await fetch(baseUrl + `api/appointment/${appointmentId}/reschedule`, {
                 "method": "PUT",
                 "headers": {
                     "Content-Type": "application/json"
@@ -529,6 +530,29 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(error);
         }
     }
+
+    function getIdFromPath() {
+        let path = window.location.pathname.split( '/' );
+        let id = null;
+        console.log("URL", path);
+
+
+        for (let pathPart of path) {
+            if (isNumeric(pathPart)) {
+                id = pathPart;
+                break;
+            }
+        }
+
+        return id;
+    }
+
+    function isNumeric(str) {
+        if (typeof str != "string") {
+            return false;
+        } 
+        return !isNaN(str) && !isNaN(parseFloat(str));
+      }
 
     addTimesBehavior();
 });

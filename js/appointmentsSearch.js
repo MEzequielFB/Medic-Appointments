@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const chosenDoctor = document.querySelector(".chosenDoctor");
@@ -14,8 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const doctorBtn = document.querySelector(".doctorBtn");
     doctorBtn.addEventListener("click", showDoctors);
 
+    const doctorSearchForm = document.querySelector(".doctorSearchForm");
+    doctorSearchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        searchDoctors();
+    });
     const doctorSearch = document.querySelector(".doctorSearch");
-    doctorSearch.addEventListener("input", searchDoctors);
 
     const messageP = document.querySelector(".message");
     const appointmentsList = document.querySelector(".appointments");
@@ -25,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         if (!chosenDoctor.classList.contains("hidden")) {
+            appointmentsList.innerHTML = "<div class='loader'></div>";
+            
             const data =  {
                 "username": document.querySelector(".usernameSearch").value,
                 "date": document.querySelector(".dateSearch").value,
@@ -97,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <p class="hospitalP">${doctor.hospital}</p>
                 </div>
-                <img src="${baseUrl}image/profile/${doctor.image}" alt="doctor's image">
+                <img src="${doctor.image}" alt="doctor's image">
             </article>`;
         });
 
@@ -108,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const doctors = document.querySelectorAll(".eligibleDoctor");
         doctors.forEach(doctor => {
             doctor.addEventListener("click", async () => { // Choose doctor
+                appointmentsList.innerHTML = "<div class='loader'></div>";
                 chosenDoctor.innerHTML = doctor.innerHTML;
                 const doctorId = doctor.className.charAt(doctor.className.length-1);
                 chosenDoctor.innerHTML += `<input type="hidden" name="doctorId" class="doctorId" value="${doctorId}">`;
@@ -154,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const doctors = await response.json();
 
                 if (doctors.length == 0) {
-                    doctorsSection.innerHTML = "<p>No doctors found</p>";
+                    doctorsSection.innerHTML = "<p class='doctorsMessage'>No doctors found!</p>";
                 } else {
                     setTimeout(() => {
                         renderDoctors(doctors);
@@ -183,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <p>Reason: ${appointment.reason}</p>
                         </div>
 
-                        <img src="image/profile/${appointment.doctor_image}">
+                        <img src="${appointment.doctor_image}">
                     </div>
 
                     <ul>

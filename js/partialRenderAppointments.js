@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
-    const baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    let baseUrl = window.location.origin + "/" + window.location.pathname.split( '/' )[1] + "/";
+    if (!baseUrl.includes("localhost")) {
+        baseUrl = window.location.origin + "/";
+    }
     console.log(baseUrl);
 
     const upcomingAppointments = document.querySelector(".upcomingAppointments");
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>Reason: ${appointment.reason}</p>
                     </div>
 
-                    <img src="image/profile/${appointment.doctor_image}">
+                    <img src="${appointment.doctor_image}">
                 </div>
 
                 <ul class='appointmentInfo'>

@@ -14,7 +14,9 @@ body {
 :root {
     /* Colors */
     --primary-light: #6075ee;
+    --primary-soft-light: #263fce;
     --primary: #1c34b8;
+    --secundary-soft-light: #5d2dbe;
     --secundary: #5223ad;
     --white: aliceblue;
     --white-transparent: rgba(240, 248, 255, 0.432);
