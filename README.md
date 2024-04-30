@@ -1,6 +1,12 @@
 # Medic-Appointments
 [Aplicación](https://medic-appointments.vercel.app/login)
 
+Credenciales para acceder como administrador:
+
+    Cuenta de admin: admin@gmail.com | pass123
+
+    Cuenta de super_admin: superadmin@gmail.com | pass123
+
 ## Introducción
 Aplicación para organizar turnos médicos con múltiples especialistas realizada en PHP, HTML, Javascript y CSS. Esta cuenta con:
 - Manejo de sesiones
